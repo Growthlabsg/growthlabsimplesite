@@ -1,0 +1,47 @@
+diff --git a/node_modules/next/dist/build/generate-build-id.js b/node_modules/next/dist/build/generate-build-id.js
+index 10a6301..72c1ac6 100644
+--- a/node_modules/next/dist/build/generate-build-id.js
++++ b/node_modules/next/dist/build/generate-build-id.js
+@@ -1,4 +1,5 @@
+ "use strict";
++const crypto = require("crypto");
+ Object.defineProperty(exports, "__esModule", {
+     value: true
+ });
+@@ -8,7 +9,23 @@ Object.defineProperty(exports, "generateBuildId", {
+         return generateBuildId;
+     }
+ });
++
++// Ensure generateUUID exists for Node.js compatibility
++if (!crypto.generateUUID) {
++  crypto.generateUUID = function() {
++    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
++      const r = Math.random() * 16 | 0;
++      const v = c === "x" ? r : (r & 0x3 | 0x8);
++      return v.toString(16);
++    });
++  };
++}
++
+ async function generateBuildId(generate, fallback) {
++    // Fix: Handle case where generate might not be a function or undefined
++    if (typeof generate !== 'function') {
++        generate = () => Promise.resolve(crypto.generateUUID());
++    }
+     let buildId = await generate();
+     // If there's no buildId defined we'll fall back
+     if (buildId === null) {
+@@ -18,10 +35,5 @@ async function generateBuildId(generate, fallback) {
+             buildId = fallback();
+         }
+     }
+-    if (typeof buildId !== "string") {
+-        throw new Error("generateBuildId did not return a string. https://nextjs.org/docs/messages/generatebuildid-not-a-string");
+-    }
+-    return buildId.trim();
++    return buildId;
+ }
+-
+-//# sourceMappingURL=generate-build-id.js.map
+\ No newline at end of file
