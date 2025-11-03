@@ -17,57 +17,54 @@ export default function Hero() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
   
+  // Disable scroll-based animations on mobile completely
   const { scrollYProgress } = useScroll()
-  // Only use transforms on desktop to reduce mobile lag
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, 50])
+  const opacity = isMobile ? 1 : useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const scale = isMobile ? 1 : useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
+  const y = isMobile ? 0 : useTransform(scrollYProgress, [0, 0.5], [0, 50])
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 }
-  const springY = useSpring(y, springConfig)
+  const springY = isMobile ? 0 : useSpring(y, springConfig)
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-slate-50 to-white pt-20 overflow-hidden">
       {/* Enhanced animated background elements */}
       <div className="absolute inset-0 overflow-hidden z-10">
-        {/* Gradient orbs - simplified animation on mobile */}
-        <motion.div
-          className="absolute top-1/4 right-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full blur-3xl"
-          animate={isMobile ? {
-            opacity: [0.5, 0.7, 0.5],
-          } : {
-            scale: [1, 1.3, 1],
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={isMobile ? {
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          } : {
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-amber/10 via-amber/5 to-transparent rounded-full blur-3xl"
-          animate={isMobile ? {
-            opacity: [0.5, 0.7, 0.5],
-          } : {
-            scale: [1, 1.4, 1],
-            x: [0, -80, 0],
-            y: [0, -60, 0],
-          }}
-          transition={isMobile ? {
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          } : {
-            duration: 25,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
+        {/* Gradient orbs - completely static on mobile for performance */}
+        {isMobile ? (
+          <>
+            <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-primary/5 rounded-full opacity-30" />
+            <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-amber/5 rounded-full opacity-30" />
+          </>
+        ) : (
+          <>
+            <motion.div
+              className="absolute top-1/4 right-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.3, 1],
+                x: [0, 100, 0],
+                y: [0, 50, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-amber/10 via-amber/5 to-transparent rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.4, 1],
+                x: [0, -80, 0],
+                y: [0, -60, 0],
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+          </>
+        )}
         
         {/* Animated grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:60px_60px] opacity-20" />

@@ -122,23 +122,34 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-backdrop-filter: none !important;
   }
   
-  /* Reduce blur intensity on mobile - only for background blurs */
+  /* Completely disable blur effects on mobile for better performance */
   .blur-3xl,
-  [class*="blur-3xl"] {
-    filter: blur(40px) !important; /* Reduced from 64px but still visible */
-  }
-  
+  [class*="blur-3xl"],
   .blur-2xl,
-  [class*="blur-2xl"] {
-    filter: blur(24px) !important; /* Reduced from 40px */
+  [class*="blur-2xl"],
+  .blur-xl,
+  [class*="blur-xl"],
+  .blur-lg,
+  [class*="blur-lg"] {
+    filter: none !important;
+    opacity: 0.3 !important; /* Show as subtle background instead */
   }
   
-  /* Allow Framer Motion to control animations */
-  /* Don't override animation durations globally */
-  
-  /* Only optimize specific heavy elements */
+  /* Disable all backdrop blur */
   [class*="backdrop-blur"] {
     backdrop-filter: none !important;
+  }
+  
+  /* Disable expensive gradients on mobile */
+  [style*="linear-gradient"] {
+    opacity: 0.8 !important;
+  }
+  
+  /* Reduce animation complexity */
+  [data-framer-component],
+  [class*="motion"] {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.15s !important;
   }
 }
 
@@ -158,19 +169,21 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Optimize animations for mobile - hardware acceleration */
 @media (max-width: 1024px) {
-  /* Enable GPU acceleration for animated elements */
-  [data-framer-component],
-  [class*="motion"] {
+  /* Disable will-change on mobile - it causes performance issues */
+  * {
+    will-change: auto !important;
+  }
+  
+  /* Only enable for specific animated elements */
+  [data-framer-component][data-animate="true"] {
     will-change: transform, opacity;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
   }
   
-  /* Reduce reflows on scroll */
+  /* Disable smooth scroll on mobile - it causes lag */
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto !important;
   }
 }
 

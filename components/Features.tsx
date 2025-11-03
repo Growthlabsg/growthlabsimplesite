@@ -87,10 +87,10 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
       <motion.div
         initial={{ opacity: 0, y: isMobile ? 20 : 40, rotateX: isMobile ? 0 : -10 }}
         whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
+        viewport={{ once: true, margin: isMobile ? '-200px' : '-50px' }}
         transition={{ 
-          duration: isMobile ? 0.4 : 0.6, 
-          delay: isMobile ? index * 0.05 : index * 0.1, 
+          duration: isMobile ? 0.2 : 0.6, 
+          delay: isMobile ? 0 : index * 0.1, 
           ease: 'easeOut' 
         }}
         onMouseMove={handleMouseMove}
