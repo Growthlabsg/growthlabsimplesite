@@ -2,24 +2,55 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { ArrowLeft, Mail, Lock, LogIn } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Authentication logic will be implemented here
-    // TODO: Implement authentication API call
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      })
+
+      if (result?.error) {
+        setError('Invalid email or password. Please try again.')
+      } else {
+        router.push('/')
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const handleOAuthLogin = (provider: 'google' | 'linkedin' | 'apple') => {
-    // OAuth login handlers
-    // TODO: Implement OAuth authentication
-    // Example: window.location.href = `/api/auth/${provider}`
-    alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login will be implemented soon`)
+  const handleOAuthLogin = async (provider: 'google' | 'linkedin' | 'apple') => {
+    setIsLoading(true)
+    setError(null)
+    
+    try {
+      await signIn(provider, {
+        callbackUrl: '/',
+        redirect: true,
+      })
+    } catch (err) {
+      setError(`Failed to sign in with ${provider}. Please try again.`)
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -51,13 +82,19 @@ export default function LoginPage() {
 
           {/* OAuth Login Options */}
           <div className="space-y-3 mb-6">
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                {error}
+              </div>
+            )}
             {/* Google Sign In */}
             <motion.button
               type="button"
               onClick={() => handleOAuthLogin('google')}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:border-gray-400 hover:shadow-md transition-all duration-300"
+              disabled={isLoading}
+              whileHover={{ scale: isLoading ? 1 : 1.02 }}
+              whileTap={{ scale: isLoading ? 1 : 0.98 }}
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:border-gray-400 hover:shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
@@ -84,9 +121,10 @@ export default function LoginPage() {
             <motion.button
               type="button"
               onClick={() => handleOAuthLogin('linkedin')}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#0077B5] text-white rounded-lg font-medium hover:bg-[#006399] shadow-md hover:shadow-lg transition-all duration-300"
+              disabled={isLoading}
+              whileHover={{ scale: isLoading ? 1 : 1.02 }}
+              whileTap={{ scale: isLoading ? 1 : 0.98 }}
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#0077B5] text-white rounded-lg font-medium hover:bg-[#006399] shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -98,9 +136,10 @@ export default function LoginPage() {
             <motion.button
               type="button"
               onClick={() => handleOAuthLogin('apple')}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300"
+              disabled={isLoading}
+              whileHover={{ scale: isLoading ? 1 : 1.02 }}
+              whileTap={{ scale: isLoading ? 1 : 0.98 }}
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
@@ -168,9 +207,10 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl"
+              disabled={isLoading}
+              className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Sign In
+              {isLoading ? 'Signing In...' : 'Sign In'}
             </button>
           </form>
 
