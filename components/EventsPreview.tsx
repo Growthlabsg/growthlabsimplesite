@@ -7,17 +7,17 @@ import Link from 'next/link'
 const upcomingEvents = [
   {
     title: 'GrowthLab Monthly Networking Mixer',
-    date: '2024-04-05',
+    date: '2025-12-05',
     type: 'Networking',
   },
   {
     title: 'AI Tools Workshop for Startups',
-    date: '2024-04-12',
+    date: '2025-12-12',
     type: 'Workshop',
   },
   {
-    title: 'GrowthLab Conference 2024',
-    date: '2024-05-15',
+    title: 'GrowthLab Conference 2026',
+    date: '2026-02-15',
     type: 'Conference',
   },
 ]

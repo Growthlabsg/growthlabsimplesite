@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { Network, Rocket, DollarSign, Users, ArrowUpRight, Briefcase, GraduationCap, Sparkles } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const features = [
@@ -50,6 +50,17 @@ const features = [
 
 function FeatureCard({ feature, index }: { feature: typeof features[0], index: number }) {
   const [isHovered, setIsHovered] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024 || 'ontouchstart' in window)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+  
   const x = useMotionValue(0)
   const y = useMotionValue(0)
   const springX = useSpring(x, { stiffness: 300, damping: 30 })
@@ -57,6 +68,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
   const Icon = feature.icon
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return
     const rect = e.currentTarget.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
@@ -73,23 +85,23 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
   return (
     <Link href={feature.href}>
       <motion.div
-        initial={{ opacity: 0, y: 40, rotateX: -10 }}
+        initial={{ opacity: 0, y: isMobile ? 20 : 40, rotateX: isMobile ? 0 : -10 }}
         whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
         viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
+        transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : index * 0.1, ease: 'easeOut' }}
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={() => !isMobile && setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
-        style={{
+        style={isMobile ? {} : {
           x: springX,
           y: springY,
           perspective: '1000px'
         }}
-        whileHover={{ 
+        whileHover={isMobile ? {} : { 
           y: -12,
           transition: { duration: 0.3 }
         }}
-        className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl cursor-pointer overflow-hidden"
+        className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl cursor-pointer overflow-hidden"
       >
       {/* Animated gradient background */}
       <motion.div

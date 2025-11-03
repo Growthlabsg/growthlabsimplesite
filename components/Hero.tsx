@@ -3,9 +3,22 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Sparkles, TrendingUp, Users, Globe } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 export default function Hero() {
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024 || 'ontouchstart' in window)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+  
   const { scrollYProgress } = useScroll()
+  // Only use transforms on desktop to reduce mobile lag
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
   const y = useTransform(scrollYProgress, [0, 0.5], [0, 50])
@@ -16,15 +29,15 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-slate-50 to-white pt-20 overflow-hidden">
       {/* Enhanced animated background elements */}
       <div className="absolute inset-0 overflow-hidden z-10">
-        {/* Gradient orbs */}
+        {/* Gradient orbs - disabled animation on mobile */}
         <motion.div
           className="absolute top-1/4 right-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full blur-3xl"
-          animate={{
+          animate={isMobile ? {} : {
             scale: [1, 1.3, 1],
             x: [0, 100, 0],
             y: [0, 50, 0],
           }}
-          transition={{
+          transition={isMobile ? {} : {
             duration: 20,
             repeat: Infinity,
             ease: 'easeInOut',
@@ -32,12 +45,12 @@ export default function Hero() {
         />
         <motion.div
           className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-amber/10 via-amber/5 to-transparent rounded-full blur-3xl"
-          animate={{
+          animate={isMobile ? {} : {
             scale: [1, 1.4, 1],
             x: [0, -80, 0],
             y: [0, -60, 0],
           }}
-          transition={{
+          transition={isMobile ? {} : {
             duration: 25,
             repeat: Infinity,
             ease: 'easeInOut',
@@ -47,8 +60,8 @@ export default function Hero() {
         {/* Animated grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:60px_60px] opacity-20" />
         
-        {/* Floating icon particles */}
-        {[
+        {/* Floating icon particles - disabled on mobile */}
+        {!isMobile && [
           { Icon: TrendingUp, x: '10%', y: '20%', delay: 0 },
           { Icon: Users, x: '85%', y: '30%', delay: 0.5 },
           { Icon: Globe, x: '20%', y: '70%', delay: 1 },
@@ -79,7 +92,7 @@ export default function Hero() {
       </div>
 
       <motion.div
-        style={{ opacity, scale, y: springY }}
+        style={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity, scale, y: springY }}
         className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
       >
         <div className="text-center">

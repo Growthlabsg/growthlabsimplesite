@@ -1,8 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Linkedin, Mail, Sparkles, Quote } from 'lucide-react'
+import { Linkedin, Mail, Sparkles, Quote, Globe, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
+import GrowthLabLogo from './GrowthLabLogo'
 
 export default function Founder() {
   return (
@@ -110,7 +111,7 @@ export default function Founder() {
                 Arul Murugan
               </h3>
               <p className="text-xl text-primary font-semibold mb-4">Founder & CEO, GrowthLab</p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 mb-6">
                 <a
                   href="https://linkedin.com/in/arulmurugan"
                   target="_blank"
@@ -127,6 +128,51 @@ export default function Founder() {
                 >
                   <Mail className="text-primary group-hover:text-white" size={20} />
                 </a>
+                <a
+                  href="https://www.walkwitharul.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors group"
+                  aria-label="Portfolio"
+                  title="Personal Portfolio"
+                >
+                  <Globe className="text-primary group-hover:text-white" size={20} />
+                </a>
+              </div>
+
+              {/* Ventures */}
+              <div className="mb-6">
+                <p className="text-sm font-semibold text-slate-600 mb-3 uppercase tracking-wider">Ventures</p>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  {[
+                    { name: 'GrowthLab', url: 'https://www.growthlab.sg', icon: <GrowthLabLogo size={20} /> },
+                    { name: 'VELANTEC', url: 'https://www.velantec.com', icon: <Globe className="text-primary" size={20} /> },
+                    { name: 'MrAssistant.Ai', url: 'https://www.mrassistant.ai', icon: <Globe className="text-primary" size={20} /> },
+                    { name: 'ONESTOPSG', url: 'https://www.onestopsg.com', icon: <Globe className="text-primary" size={20} /> },
+                    { name: 'Aval.sg', url: 'https://www.aval.sg', icon: <Globe className="text-primary" size={20} /> },
+                    { name: 'Avan.sg', url: 'https://www.avan.sg', icon: <Globe className="text-primary" size={20} /> },
+                    { name: 'BuzzzBuzzz', url: 'https://www.buzzzbuzzz.com', icon: <Globe className="text-primary" size={20} /> },
+                  ].map((venture, index) => (
+                    <motion.a
+                      key={index}
+                      href={venture.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group relative inline-flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 rounded-lg hover:border-primary hover:shadow-md transition-all duration-300"
+                      title={venture.name}
+                    >
+                      <div className="flex items-center justify-center w-5 h-5 flex-shrink-0">
+                        {venture.icon}
+                      </div>
+                      <span className="text-xs font-semibold text-slate-700 group-hover:text-primary transition-colors whitespace-nowrap">
+                        {venture.name}
+                      </span>
+                      <ExternalLink className="text-slate-400 group-hover:text-primary transition-colors flex-shrink-0" size={10} />
+                    </motion.a>
+                  ))}
+                </div>
               </div>
             </div>
 

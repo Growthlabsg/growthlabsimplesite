@@ -71,6 +71,11 @@ const teamMembers: TeamMember[] = [
         url: 'https://www.avan.sg',
         icon: <Globe className="text-primary" size={20} />,
       },
+      {
+        name: 'BuzzzBuzzz',
+        url: 'https://www.buzzzbuzzz.com',
+        icon: <Globe className="text-primary" size={20} />,
+      },
     ],
   },
   // Add more team members here in the future

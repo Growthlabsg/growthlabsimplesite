@@ -6,11 +6,20 @@ import { motion } from 'framer-motion'
 export default function CursorFollower() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
-  const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const [isTouchDevice, setIsTouchDevice] = useState(true) // Default to true to prevent flash
 
   useEffect(() => {
-    // Detect if device supports touch
-    const touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    // Enhanced touch device detection - check immediately
+    const checkTouchDevice = () => {
+      return (
+        'ontouchstart' in window || 
+        navigator.maxTouchPoints > 0 ||
+        (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches) ||
+        (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(hover: none)').matches)
+      )
+    }
+    
+    const touchDevice = checkTouchDevice()
     setIsTouchDevice(touchDevice)
 
     // Only add mouse event listeners on non-touch devices

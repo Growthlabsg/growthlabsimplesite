@@ -11,7 +11,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: '1',
     title: 'GrowthLab Monthly Networking Mixer',
-    date: '2024-04-05',
+    date: '2025-12-05',
     time: '6:00 PM - 8:00 PM',
     location: 'Singapore • Hybrid',
     type: 'Networking',
@@ -24,7 +24,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: '2',
     title: 'AI Tools Workshop for Startups',
-    date: '2024-04-12',
+    date: '2025-12-12',
     time: '2:00 PM - 4:00 PM',
     location: 'Online',
     type: 'Workshop',
@@ -37,7 +37,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: '3',
     title: 'Investor Pitch Practice Session',
-    date: '2024-04-18',
+    date: '2025-12-18',
     time: '10:00 AM - 12:00 PM',
     location: 'Singapore',
     type: 'Workshop',
@@ -50,7 +50,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: '4',
     title: 'Founder Stories: Scaling Your Startup',
-    date: '2024-04-25',
+    date: '2026-01-10',
     time: '7:00 PM - 9:00 PM',
     location: 'Hybrid',
     type: 'Talk',
@@ -63,7 +63,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: '5',
     title: 'Student Entrepreneurship Bootcamp',
-    date: '2024-05-02',
+    date: '2026-01-20',
     time: '9:00 AM - 5:00 PM',
     location: 'Singapore',
     type: 'Program',
@@ -75,8 +75,8 @@ const fallbackEvents: TransformedEvent[] = [
   },
   {
     id: '6',
-    title: 'GrowthLab Conference 2024',
-    date: '2024-05-15',
+    title: 'GrowthLab Conference 2026',
+    date: '2026-02-15',
     time: 'All Day',
     location: 'Singapore',
     type: 'Conference',
@@ -88,13 +88,13 @@ const fallbackEvents: TransformedEvent[] = [
   },
   {
     id: '7',
-    title: 'Q1 Networking Mixer',
-    date: '2024-01-15',
+    title: 'Q1 2026 Networking Mixer',
+    date: '2026-03-15',
     time: '6:00 PM - 8:00 PM',
     location: 'Singapore',
     type: 'Networking',
     attendees: '45+',
-    description: 'First quarterly networking event of 2024.',
+    description: 'First quarterly networking event of 2026.',
     link: 'https://lu.ma/growthlab.sg',
     imageUrl: null,
     featured: false,
@@ -102,7 +102,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: '8',
     title: 'Startup Fundraising Workshop',
-    date: '2024-02-10',
+    date: '2026-04-10',
     time: '2:00 PM - 4:00 PM',
     location: 'Online',
     type: 'Workshop',
@@ -126,21 +126,26 @@ export function EventsPageClient() {
     async function fetchEvents() {
       try {
         setLoading(true)
+        setError(null)
         const response = await fetch('/api/events')
         const data = await response.json()
         
+        console.log('API response:', data)
+        
         if (data.events && data.events.length > 0) {
           setEvents(data.events)
+          console.log('Successfully loaded', data.events.length, 'events from Luma')
         } else if (data.error) {
-          // If API error but we have fallback, use fallback silently
-          console.warn('Luma API error:', data.error)
+          // Show error to user
+          console.error('Luma API error:', data.error, data.debug)
+          setError(data.error)
           setEvents(fallbackEvents)
         } else {
           setEvents(fallbackEvents)
         }
       } catch (err) {
         console.error('Error fetching events:', err)
-        setError('Failed to load events')
+        setError('Failed to load events. Check your console for details.')
         setEvents(fallbackEvents) // Use fallback on error
       } finally {
         setLoading(false)
@@ -273,8 +278,30 @@ const eventTypes = ['All', 'Networking', 'Workshop', 'Talk', 'Program', 'Confere
 
         {/* Error State */}
         {error && !loading && (
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8">
-            <p className="text-amber-800 text-sm">{error}. Showing sample events.</p>
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-8">
+            <p className="text-amber-800 text-sm mb-4">{error}</p>
+            <p className="text-amber-700 text-xs">
+              <strong>Tip:</strong> Luma API now requires Luma Plus ($59/month). You can use the embed widget below for free, or manually manage events.
+            </p>
+          </div>
+        )}
+
+        {/* Luma Embed Widget - Free Alternative */}
+        {error && error.includes('Luma API') && !loading && (
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-slate-900 mb-4 text-center">
+              View All Events on Luma
+            </h3>
+            <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+              <iframe 
+                src="https://lu.ma/embed-calendar/growthlab.sg"
+                width="100%" 
+                height="800" 
+                frameBorder="0"
+                className="w-full"
+                title="GrowthLab Events Calendar"
+              />
+            </div>
           </div>
         )}
 

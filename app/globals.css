@@ -18,9 +18,21 @@ html {
 }
 
 /* Hide default cursor only on non-touch devices */
+/* Mobile devices will show default cursor */
 @media (hover: hover) and (pointer: fine) {
   html {
     cursor: none;
+  }
+}
+
+/* Ensure default cursor shows on mobile/touch devices */
+@media (hover: none), (pointer: coarse) {
+  html {
+    cursor: auto !important;
+  }
+  
+  * {
+    cursor: auto !important;
   }
 }
 
@@ -100,6 +112,54 @@ h1, h2, h3, h4, h5, h6 {
   transition-property: color, background-color, border-color, transform, opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 1024px) {
+  /* Disable backdrop-blur on mobile (expensive) */
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Reduce blur intensity on mobile */
+  [class*="blur-"] {
+    filter: blur(20px) !important; /* Reduced from blur-3xl (64px) */
+  }
+  
+  /* Optimize transforms */
+  * {
+    will-change: auto;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: none;
+  }
+  
+  /* Reduce animation complexity on mobile */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.2s !important;
+  }
+}
+
+/* Additional mobile performance optimizations */
+@media (hover: none) {
+  /* Disable hover effects on touch devices */
+  *:hover {
+    transform: none !important;
+  }
+  
+  /* Reduce GPU-intensive effects */
+  [class*="perspective"] {
+    perspective: none !important;
+  }
+  
+  /* Disable mix-blend-mode on mobile */
+  * {
+    mix-blend-mode: normal !important;
+  }
 }
 
 /* Custom cursor styles */
