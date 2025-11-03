@@ -194,8 +194,8 @@ export default function Footer() {
         {/* Newsletter Signup */}
         <div className="border-t border-white/10 pt-12 mb-12">
           <div className="max-w-2xl mx-auto">
-            <h3 className="text-2xl font-semibold text-white mb-2 text-center">Stay Updated</h3>
-            <p className="text-gray-300 font-light mb-6 text-center">
+            <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2 text-center">Stay Updated</h3>
+            <p className="text-sm sm:text-base text-gray-300 font-light mb-6 text-center">
               Get the latest updates, events, and insights delivered to your inbox.
             </p>
             <form 
@@ -209,20 +209,20 @@ export default function Footer() {
                   e.currentTarget.reset()
                 }
               }}
-              className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-xl mx-auto"
             >
               <input
                 type="email"
                 name="email"
                 placeholder="Enter your email"
                 required
-                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors text-sm sm:text-base min-h-[44px]"
               />
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-lg whitespace-nowrap"
+                className="px-6 sm:px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-lg whitespace-nowrap min-h-[44px] text-sm sm:text-base"
               >
                 Subscribe
               </motion.button>

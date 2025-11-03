@@ -68,7 +68,7 @@ export default function FAQ() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="lg:col-span-2 relative"
           >
-            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">11</span>
+            <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-300 block leading-none">11</span>
             <motion.div
               className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
               initial={{ width: 0 }}

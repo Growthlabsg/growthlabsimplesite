@@ -48,7 +48,7 @@ export default function StatsSection() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="lg:col-span-2"
           >
-            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">07</span>
+            <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-300 block leading-none">07</span>
           </motion.div>
 
           <motion.div
@@ -58,10 +58,10 @@ export default function StatsSection() {
             transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
             className="lg:col-span-10"
           >
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 mb-4 sm:mb-6 tracking-tight">
               GrowthLab in Numbers
             </h2>
-            <p className="text-2xl sm:text-3xl text-slate-700 max-w-3xl leading-relaxed font-light">
+            <p className="text-xl sm:text-2xl lg:text-3xl text-slate-700 max-w-3xl leading-relaxed font-light">
               Real-time metrics from our global community
             </p>
           </motion.div>
@@ -82,7 +82,7 @@ export default function StatsSection() {
                   y: -8,
                   transition: { duration: 0.3 }
                 }}
-                className="group relative bg-white rounded-lg p-10 border border-slate-200 hover:border-primary/50 transition-all duration-300 hover:shadow-xl cursor-pointer overflow-hidden"
+                className="group relative bg-white rounded-lg p-6 sm:p-8 lg:p-10 border border-slate-200 hover:border-primary/50 transition-all duration-300 hover:shadow-xl cursor-pointer overflow-hidden"
               >
                 {/* Hover gradient */}
                 <motion.div
@@ -91,26 +91,26 @@ export default function StatsSection() {
                 
                 {/* Icon - Animated */}
                 <motion.div
-                  className="mb-6 relative z-10"
+                  className="mb-4 sm:mb-6 relative z-10"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                 >
-                  <div className="w-14 h-14 rounded-lg flex items-center justify-center bg-primary/10 group-hover:bg-primary transition-colors duration-300">
-                    <Icon className="text-primary group-hover:text-white transition-colors duration-300" size={32} />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg flex items-center justify-center bg-primary/10 group-hover:bg-primary transition-colors duration-300">
+                    <Icon className="text-primary group-hover:text-white transition-colors duration-300" size={24} style={{ width: 'clamp(24px, 6vw, 32px)', height: 'clamp(24px, 6vw, 32px)' }} />
                   </div>
                 </motion.div>
 
                 {/* Animated Value */}
-                <div className="text-5xl sm:text-6xl font-bold text-slate-900 mb-3 tracking-tight relative z-10">
+                <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight relative z-10">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </div>
 
                 {/* Label */}
-                <h3 className="text-xl font-semibold text-slate-900 mb-2 relative z-10">
+                <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-1 sm:mb-2 relative z-10">
                   {stat.label}
                 </h3>
 
                 {/* Description */}
-                <p className="text-slate-600 font-light relative z-10">
+                <p className="text-sm sm:text-base text-slate-600 font-light relative z-10">
                   {stat.description}
                 </p>
               </motion.div>

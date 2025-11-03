@@ -90,7 +90,7 @@ export default function Benefits() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="lg:col-span-2 relative z-10"
           >
-            <span className="text-7xl sm:text-8xl font-bold text-gray-800 block leading-none">09</span>
+            <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-gray-800 block leading-none">09</span>
             <motion.div
               className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
               initial={{ width: 0 }}
@@ -107,10 +107,10 @@ export default function Benefits() {
             transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
             className="lg:col-span-10"
           >
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
               Your GrowthLab Advantage
             </h2>
-            <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl leading-relaxed font-light">
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-3xl leading-relaxed font-light">
               GrowthLab empowers founders, investors, students, and innovators to connect, launch, and grow their ventures faster and smarter.
             </p>
           </motion.div>
@@ -128,7 +128,7 @@ export default function Benefits() {
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
                 whileHover={{ scale: 1.02, y: -5, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
-                className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-lg overflow-hidden group"
+                className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 shadow-lg overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-amber/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">

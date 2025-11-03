@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="absolute inset-0 overflow-hidden z-10">
         {/* Gradient orbs */}
         <motion.div
-          className="absolute top-1/4 right-1/4 w-[700px] h-[700px] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full blur-3xl"
+          className="absolute top-1/4 right-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             x: [0, 100, 0],
@@ -31,7 +31,7 @@ export default function Hero() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-[700px] h-[700px] bg-gradient-to-br from-amber/10 via-amber/5 to-transparent rounded-full blur-3xl"
+          className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-amber/10 via-amber/5 to-transparent rounded-full blur-3xl"
           animate={{
             scale: [1, 1.4, 1],
             x: [0, -80, 0],
@@ -80,7 +80,7 @@ export default function Hero() {
 
       <motion.div
         style={{ opacity, scale, y: springY }}
-        className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32"
+        className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
       >
         <div className="text-center">
           {/* Enhanced Subtitle */}
@@ -116,7 +116,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
-            className="text-7xl sm:text-8xl lg:text-9xl font-bold mb-10 leading-[1.05] tracking-tight"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 sm:mb-8 lg:mb-10 leading-[1.05] tracking-tight px-4"
           >
             <motion.span
               initial={{ opacity: 0, x: -30 }}
@@ -141,7 +141,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
-            className="text-2xl sm:text-3xl lg:text-4xl text-slate-700 mb-6 max-w-4xl mx-auto leading-relaxed font-light"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-slate-700 mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed font-light px-4"
           >
             GrowthLab is a global startup ecosystem that empowers founders, investors, students, and innovators to{' '}
             <motion.span
@@ -162,7 +162,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
-            className="text-lg sm:text-xl text-slate-600 mb-16 max-w-2xl mx-auto font-light"
+            className="text-base sm:text-lg lg:text-xl text-slate-600 mb-8 sm:mb-12 lg:mb-16 max-w-2xl mx-auto font-light px-4"
           >
             Turn ideas into scalable ventures — faster and smarter. Think of us as your{' '}
             <span className="font-semibold text-primary">"LinkedIn for startups."</span>
@@ -179,10 +179,10 @@ export default function Hero() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link
-                href="/register"
-                className="group relative px-10 py-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white text-base font-semibold tracking-wide transition-all duration-300 flex items-center space-x-2 min-h-[56px] overflow-hidden rounded-lg shadow-xl hover:shadow-2xl"
-              >
+                <Link
+                  href="/register"
+                  className="group relative px-6 sm:px-8 lg:px-10 py-4 sm:py-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 flex items-center space-x-2 min-h-[48px] sm:min-h-[56px] overflow-hidden rounded-lg shadow-xl hover:shadow-2xl"
+                >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-primary via-amber to-primary opacity-0 group-hover:opacity-20"
                   transition={{ duration: 0.3 }}
@@ -207,7 +207,7 @@ export default function Hero() {
             >
               <Link
                 href="#about"
-                className="px-10 py-5 bg-white/80 backdrop-blur-sm text-slate-900 text-base font-semibold border-2 border-slate-300 hover:border-primary transition-all duration-300 min-h-[56px] flex items-center rounded-lg shadow-lg hover:shadow-xl"
+                className="px-6 sm:px-8 lg:px-10 py-4 sm:py-5 bg-white/80 backdrop-blur-sm text-slate-900 text-sm sm:text-base font-semibold border-2 border-slate-300 hover:border-primary transition-all duration-300 min-h-[48px] sm:min-h-[56px] flex items-center rounded-lg shadow-lg hover:shadow-xl"
               >
                 Learn More
               </Link>
@@ -219,7 +219,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
-            className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto"
+            className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-2xl mx-auto px-4"
           >
             {[
               { value: '2,500+', label: 'Members' },
@@ -233,8 +233,8 @@ export default function Hero() {
                 transition={{ delay: 0.9 + i * 0.1 }}
                 className="text-center"
               >
-                <div className="text-3xl font-bold text-slate-900 mb-1">{stat.value}</div>
-                <div className="text-sm text-slate-600 font-light">{stat.label}</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mb-1">{stat.value}</div>
+                <div className="text-xs sm:text-sm text-slate-600 font-light">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

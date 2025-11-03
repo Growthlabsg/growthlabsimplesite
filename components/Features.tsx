@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { Network, Rocket, DollarSign, Users, ArrowUpRight, Briefcase, GraduationCap, Sparkles } from 'lucide-react'
 import { useState } from 'react'
+import Link from 'next/link'
 
 const features = [
   {
@@ -13,6 +14,7 @@ const features = [
     gradient: 'from-blue-500/20 via-primary/10 to-blue-500/20',
     iconColor: 'text-blue-600',
     iconBg: 'bg-blue-50',
+    href: '/connect',
   },
   {
     icon: Rocket,
@@ -22,6 +24,7 @@ const features = [
     gradient: 'from-purple-500/20 via-primary/10 to-purple-500/20',
     iconColor: 'text-purple-600',
     iconBg: 'bg-purple-50',
+    href: '/launch',
   },
   {
     icon: DollarSign,
@@ -31,6 +34,7 @@ const features = [
     gradient: 'from-green-500/20 via-primary/10 to-green-500/20',
     iconColor: 'text-green-600',
     iconBg: 'bg-green-50',
+    href: '/fund',
   },
   {
     icon: Users,
@@ -40,6 +44,7 @@ const features = [
     gradient: 'from-amber/20 via-primary/10 to-amber/20',
     iconColor: 'text-amber-600',
     iconBg: 'bg-amber-50',
+    href: '/grow',
   },
 ]
 
@@ -66,25 +71,26 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40, rotateX: -10 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        x: springX,
-        y: springY,
-        perspective: '1000px'
-      }}
-      whileHover={{ 
-        y: -12,
-        transition: { duration: 0.3 }
-      }}
-      className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-slate-200 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl cursor-pointer overflow-hidden"
-    >
+    <Link href={feature.href}>
+      <motion.div
+        initial={{ opacity: 0, y: 40, rotateX: -10 }}
+        whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          x: springX,
+          y: springY,
+          perspective: '1000px'
+        }}
+        whileHover={{ 
+          y: -12,
+          transition: { duration: 0.3 }
+        }}
+        className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl cursor-pointer overflow-hidden"
+      >
       {/* Animated gradient background */}
       <motion.div
         className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
@@ -120,17 +126,17 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
       </div>
 
       {/* Title */}
-      <h3 className="relative z-10 text-3xl sm:text-4xl font-bold text-slate-900 mb-3 text-center tracking-tight">
+      <h3 className="relative z-10 text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 sm:mb-3 text-center tracking-tight">
         {feature.title}
       </h3>
 
       {/* Subtitle */}
-      <h4 className="relative z-10 text-base font-semibold text-slate-600 mb-4 text-center">
+      <h4 className="relative z-10 text-sm sm:text-base font-semibold text-slate-600 mb-3 sm:mb-4 text-center">
         {feature.subtitle}
       </h4>
 
       {/* Description */}
-      <p className="relative z-10 text-slate-600 leading-relaxed text-center font-light mb-6">
+      <p className="relative z-10 text-sm sm:text-base text-slate-600 leading-relaxed text-center font-light mb-4 sm:mb-6">
         {feature.description}
       </p>
 
@@ -141,7 +147,8 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
         <span className="text-sm">Learn more</span>
         <ArrowUpRight size={16} />
       </motion.div>
-    </motion.div>
+      </motion.div>
+    </Link>
   )
 }
 
@@ -160,7 +167,7 @@ export default function Features() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="lg:col-span-2 relative"
           >
-            <span className="text-7xl sm:text-8xl font-bold text-slate-100 block">02</span>
+            <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-100 block">02</span>
             <motion.div
               className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
               initial={{ width: 0 }}
@@ -177,13 +184,13 @@ export default function Features() {
             transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
             className="lg:col-span-10"
           >
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 mb-4 sm:mb-6 tracking-tight">
               Why join GrowthLab?
             </h2>
-            <p className="text-2xl sm:text-3xl text-slate-700 max-w-3xl leading-relaxed font-light mb-4">
+            <p className="text-xl sm:text-2xl lg:text-3xl text-slate-700 max-w-3xl leading-relaxed font-light mb-3 sm:mb-4">
               Connect. Launch. Fund. Grow.
             </p>
-            <p className="text-lg text-slate-600 font-light">
+            <p className="text-base sm:text-lg text-slate-600 font-light">
               Everything you need to turn your idea into a scalable venture — all in one platform.
             </p>
           </motion.div>

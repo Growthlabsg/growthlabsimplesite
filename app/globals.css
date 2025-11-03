@@ -15,7 +15,13 @@
 
 html {
   scroll-behavior: smooth;
-  cursor: none; /* Hide default cursor */
+}
+
+/* Hide default cursor only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  html {
+    cursor: none;
+  }
 }
 
 body {
@@ -149,10 +155,27 @@ section {
   width: 100%;
 }
 
-/* Better mobile touch targets */
+/* Better mobile touch targets - ensure minimum 44px for accessibility */
+a, button, input[type="submit"], input[type="button"] {
+  min-height: 44px;
+}
+
+/* Additional mobile optimizations */
 @media (max-width: 640px) {
-  a, button {
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  /* Improve text readability on mobile */
+  p, span, div {
+    word-wrap: break-word;
+  }
+  
+  /* Ensure inputs are readable on mobile */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
     min-height: 44px;
-    min-width: 44px;
   }
 }

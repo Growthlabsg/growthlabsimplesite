@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   description: 'A global community-driven platform for entrepreneurs, founders, and builders. Scale your startup, connect with innovators, and grow anywhere.',
   keywords: ['startup', 'entrepreneurship', 'community', 'networking', 'innovation', 'growth'],
   authors: [{ name: 'GrowthLab' }],
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
   openGraph: {
     title: 'GrowthLab - Build. Connect. Scale.',
     description: 'A global community-driven platform for entrepreneurs, founders, and builders.',

@@ -60,7 +60,7 @@ export default function Announcements() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="lg:col-span-2 relative z-10"
           >
-            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">03</span>
+            <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-300 block leading-none">03</span>
             <motion.div
               className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
               initial={{ width: 0 }}
@@ -77,13 +77,13 @@ export default function Announcements() {
             transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
             className="lg:col-span-10"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <Megaphone className="text-primary" size={28} />
-              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 tracking-tight">
+            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+              <Megaphone className="text-primary" size={24} style={{ width: 'clamp(20px, 5vw, 28px)', height: 'clamp(20px, 5vw, 28px)' }} />
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 tracking-tight">
                 News & Announcements
               </h2>
             </div>
-            <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light">
+            <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light">
               Stay updated with the latest platform features, events, partnerships, and community updates.
             </p>
           </motion.div>

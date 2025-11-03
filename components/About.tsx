@@ -23,7 +23,7 @@ export default function About() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="lg:col-span-2 relative z-10"
           >
-            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">01</span>
+            <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-300 block leading-none">01</span>
             <motion.div
               className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
               initial={{ width: 0 }}
@@ -42,7 +42,7 @@ export default function About() {
           >
             <div className="flex items-center gap-3 mb-8">
               <Sparkles className="text-primary" size={24} />
-              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 tracking-tight">
                 What is GrowthLab?
               </h2>
             </div>
@@ -53,7 +53,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-xl sm:text-2xl text-slate-700 leading-relaxed font-light"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-light"
               >
                 GrowthLab is a <strong className="font-semibold text-slate-900 relative">
                   <span className="relative z-10">global startup ecosystem</span>
@@ -72,7 +72,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-xl sm:text-2xl text-slate-700 leading-relaxed font-light"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-light"
               >
                 It combines <strong className="font-semibold text-slate-900">community, education, funding, and technology</strong> to help early-stage entrepreneurs turn ideas into scalable ventures — faster and smarter.
               </motion.p>
@@ -82,7 +82,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xl sm:text-2xl text-slate-700 leading-relaxed font-light"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-light"
               >
                 Through <strong className="font-semibold text-slate-900">AI-driven tools, mentorship programs, startup resources, and a vibrant professional network</strong>, GrowthLab bridges the gap between innovation and opportunity.
               </motion.p>
@@ -138,10 +138,10 @@ export default function About() {
                   >
                     <Sparkles className="text-primary" size={20} />
                   </motion.div>
-                  <p className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-4 leading-tight">
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900 mb-4 leading-tight">
                     LinkedIn for startups.
                   </p>
-                  <p className="text-xl text-slate-700 font-light">
+                  <p className="text-base sm:text-lg lg:text-xl text-slate-700 font-light">
                     Where members network, build business pages, share updates, post jobs, raise funding, and discover partners worldwide.
                   </p>
                 </div>
