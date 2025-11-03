@@ -17,13 +17,18 @@ export default function Hero() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
   
-  // Disable scroll-based animations on mobile completely
+  // Always call hooks (Rules of Hooks) - but use static values on mobile
   const { scrollYProgress } = useScroll()
-  const opacity = isMobile ? 1 : useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = isMobile ? 1 : useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
-  const y = isMobile ? 0 : useTransform(scrollYProgress, [0, 0.5], [0, 50])
+  const opacityTransform = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const scaleTransform = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
+  const yTransform = useTransform(scrollYProgress, [0, 0.5], [0, 50])
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 }
-  const springY = isMobile ? 0 : useSpring(y, springConfig)
+  const springY = useSpring(yTransform, springConfig)
+  
+  // Use static values on mobile to disable animations
+  const opacity = isMobile ? 1 : opacityTransform
+  const scale = isMobile ? 1 : scaleTransform
+  const y = isMobile ? 0 : springY
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-slate-50 to-white pt-20 overflow-hidden">
@@ -101,7 +106,7 @@ export default function Hero() {
       </div>
 
       <motion.div
-        style={isMobile ? {} : { opacity, scale, y: springY }}
+        style={isMobile ? {} : { opacity, scale, y }}
         className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
       >
         <div className="text-center">
