@@ -122,43 +122,67 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-backdrop-filter: none !important;
   }
   
-  /* Reduce blur intensity on mobile */
-  [class*="blur-"] {
-    filter: blur(20px) !important; /* Reduced from blur-3xl (64px) */
+  /* Reduce blur intensity on mobile - only for background blurs */
+  .blur-3xl,
+  [class*="blur-3xl"] {
+    filter: blur(40px) !important; /* Reduced from 64px but still visible */
   }
   
-  /* Optimize transforms */
-  * {
-    will-change: auto;
+  .blur-2xl,
+  [class*="blur-2xl"] {
+    filter: blur(24px) !important; /* Reduced from 40px */
+  }
+  
+  /* Allow Framer Motion to control animations */
+  /* Don't override animation durations globally */
+  
+  /* Only optimize specific heavy elements */
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+  }
+}
+
+/* Additional mobile performance optimizations - only disable hover transforms */
+@media (hover: none) {
+  /* Only disable hover scale/transform on interactive elements */
+  a:hover,
+  button:hover {
+    transform: none !important;
+  }
+  
+  /* Keep mix-blend-mode but reduce usage */
+  .cursor-ring.hovered {
+    mix-blend-mode: normal !important;
+  }
+}
+
+/* Optimize animations for mobile - hardware acceleration */
+@media (max-width: 1024px) {
+  /* Enable GPU acceleration for animated elements */
+  [data-framer-component],
+  [class*="motion"] {
+    will-change: transform, opacity;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    perspective: none;
   }
   
-  /* Reduce animation complexity on mobile */
-  * {
-    animation-duration: 0.3s !important;
-    transition-duration: 0.2s !important;
+  /* Reduce reflows on scroll */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-/* Additional mobile performance optimizations */
-@media (hover: none) {
-  /* Disable hover effects on touch devices */
-  *:hover {
-    transform: none !important;
-  }
-  
-  /* Reduce GPU-intensive effects */
-  [class*="perspective"] {
-    perspective: none !important;
-  }
-  
-  /* Disable mix-blend-mode on mobile */
-  * {
-    mix-blend-mode: normal !important;
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

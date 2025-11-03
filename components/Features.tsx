@@ -88,7 +88,11 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
         initial={{ opacity: 0, y: isMobile ? 20 : 40, rotateX: isMobile ? 0 : -10 }}
         whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
         viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : index * 0.1, ease: 'easeOut' }}
+        transition={{ 
+          duration: isMobile ? 0.4 : 0.6, 
+          delay: isMobile ? index * 0.05 : index * 0.1, 
+          ease: 'easeOut' 
+        }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => !isMobile && setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
@@ -101,6 +105,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
           y: -12,
           transition: { duration: 0.3 }
         }}
+        whileTap={isMobile ? { scale: 0.98 } : {}}
         className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl cursor-pointer overflow-hidden"
       >
       {/* Animated gradient background */}

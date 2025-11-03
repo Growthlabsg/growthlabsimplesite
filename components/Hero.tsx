@@ -29,15 +29,21 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-slate-50 to-white pt-20 overflow-hidden">
       {/* Enhanced animated background elements */}
       <div className="absolute inset-0 overflow-hidden z-10">
-        {/* Gradient orbs - disabled animation on mobile */}
+        {/* Gradient orbs - simplified animation on mobile */}
         <motion.div
           className="absolute top-1/4 right-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full blur-3xl"
-          animate={isMobile ? {} : {
+          animate={isMobile ? {
+            opacity: [0.5, 0.7, 0.5],
+          } : {
             scale: [1, 1.3, 1],
             x: [0, 100, 0],
             y: [0, 50, 0],
           }}
-          transition={isMobile ? {} : {
+          transition={isMobile ? {
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          } : {
             duration: 20,
             repeat: Infinity,
             ease: 'easeInOut',
@@ -45,12 +51,18 @@ export default function Hero() {
         />
         <motion.div
           className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-amber/10 via-amber/5 to-transparent rounded-full blur-3xl"
-          animate={isMobile ? {} : {
+          animate={isMobile ? {
+            opacity: [0.5, 0.7, 0.5],
+          } : {
             scale: [1, 1.4, 1],
             x: [0, -80, 0],
             y: [0, -60, 0],
           }}
-          transition={isMobile ? {} : {
+          transition={isMobile ? {
+            duration: 10,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          } : {
             duration: 25,
             repeat: Infinity,
             ease: 'easeInOut',
@@ -92,7 +104,7 @@ export default function Hero() {
       </div>
 
       <motion.div
-        style={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity, scale, y: springY }}
+        style={isMobile ? {} : { opacity, scale, y: springY }}
         className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
       >
         <div className="text-center">
