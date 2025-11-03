@@ -30,21 +30,21 @@ const sportsClubFeatures = [
 const upcomingSportsEvents = [
   {
     sport: 'Football',
-    date: '2024-04-07',
+    date: '2025-12-06',
     time: '6:00 PM',
     location: 'Singapore Sports Hub',
     attendees: '20+',
   },
   {
     sport: 'Basketball',
-    date: '2024-04-14',
+    date: '2025-12-13',
     time: '7:00 PM',
     location: 'Community Center',
     attendees: '15+',
   },
   {
     sport: 'Badminton',
-    date: '2024-04-21',
+    date: '2025-12-20',
     time: '5:00 PM',
     location: 'Sports Complex',
     attendees: '12+',

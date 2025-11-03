@@ -6,8 +6,19 @@ import Link from 'next/link'
 
 const upcomingEvents = [
   {
+    title: 'ROOFTOP SUNSET MIXER – Startup Surge Kickoff',
+    date: '2025-11-07',
+    time: '6:30 PM - 9:00 PM',
+    location: 'Skysuites@Anson – 72nd Floor Sky Terrace',
+    type: 'Networking',
+    attendees: 'Coming soon',
+    description: 'Kick off Startup Surge Fridays with GrowthLab at Singapore\'s highest private rooftop mixer – panoramic CBD sunset, cold drinks, and real founders. BYOB. 72 floors above SG.',
+    link: 'https://luma.com/am60bizs',
+    featured: true,
+  },
+  {
     title: 'GrowthLab Monthly Networking Mixer',
-    date: '2024-04-05',
+    date: '2025-12-05',
     time: '6:00 PM - 8:00 PM',
     location: 'Singapore • Hybrid',
     type: 'Networking',
@@ -18,7 +29,7 @@ const upcomingEvents = [
   },
   {
     title: 'AI Tools Workshop for Startups',
-    date: '2024-04-12',
+    date: '2025-12-12',
     time: '2:00 PM - 4:00 PM',
     location: 'Online',
     type: 'Workshop',
@@ -29,7 +40,7 @@ const upcomingEvents = [
   },
   {
     title: 'Investor Pitch Practice Session',
-    date: '2024-04-18',
+    date: '2025-12-18',
     time: '10:00 AM - 12:00 PM',
     location: 'Singapore',
     type: 'Workshop',
@@ -39,7 +50,7 @@ const upcomingEvents = [
   },
   {
     title: 'Founder Stories: Scaling Your Startup',
-    date: '2024-04-25',
+    date: '2026-01-10',
     time: '7:00 PM - 9:00 PM',
     location: 'Hybrid',
     type: 'Talk',
@@ -49,7 +60,7 @@ const upcomingEvents = [
   },
   {
     title: 'Student Entrepreneurship Bootcamp',
-    date: '2024-05-02',
+    date: '2026-01-20',
     time: '9:00 AM - 5:00 PM',
     location: 'Singapore',
     type: 'Program',
@@ -58,8 +69,8 @@ const upcomingEvents = [
     link: 'https://lu.ma/growthlab.sg',
   },
   {
-    title: 'GrowthLab Conference 2024',
-    date: '2024-05-15',
+    title: 'GrowthLab Conference 2026',
+    date: '2026-02-15',
     time: 'All Day',
     location: 'Singapore',
     type: 'Conference',

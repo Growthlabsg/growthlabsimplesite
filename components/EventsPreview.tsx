@@ -6,6 +6,11 @@ import Link from 'next/link'
 
 const upcomingEvents = [
   {
+    title: 'ROOFTOP SUNSET MIXER – Startup Surge Kickoff',
+    date: '2025-11-07',
+    type: 'Networking',
+  },
+  {
     title: 'GrowthLab Monthly Networking Mixer',
     date: '2025-12-05',
     type: 'Networking',

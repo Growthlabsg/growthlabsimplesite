@@ -9,6 +9,19 @@ import type { TransformedEvent } from '@/lib/types/luma'
 // Fallback events in case API fails or is not configured
 const fallbackEvents: TransformedEvent[] = [
   {
+    id: '0',
+    title: 'ROOFTOP SUNSET MIXER – Startup Surge Kickoff',
+    date: '2025-11-07',
+    time: '6:30 PM - 9:00 PM',
+    location: 'Skysuites@Anson – 72nd Floor Sky Terrace',
+    type: 'Networking',
+    attendees: 'Coming soon',
+    description: 'Kick off Startup Surge Fridays with GrowthLab at Singapore\'s highest private rooftop mixer – panoramic CBD sunset, cold drinks, and real founders. BYOB. 72 floors above SG.',
+    link: 'https://luma.com/am60bizs',
+    imageUrl: null,
+    featured: true,
+  },
+  {
     id: '1',
     title: 'GrowthLab Monthly Networking Mixer',
     date: '2025-12-05',
