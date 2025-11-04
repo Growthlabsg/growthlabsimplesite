@@ -61,18 +61,20 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/growthlab-logo.png', sizes: 'any' },
-      { url: '/growthlab-logo.png', type: 'image/png', sizes: '48x48' },
-      { url: '/growthlab-logo.png', type: 'image/png', sizes: '72x72' },
-      { url: '/growthlab-logo.png', type: 'image/png', sizes: '96x96' },
-      { url: '/growthlab-logo.png', type: 'image/png', sizes: '144x144' },
-      { url: '/growthlab-logo.png', type: 'image/png', sizes: '192x192' },
-      { url: '/growthlab-logo.png', type: 'image/png', sizes: '512x512' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', sizes: 'any' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', type: 'image/png', sizes: '16x16' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', type: 'image/png', sizes: '32x32' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', type: 'image/png', sizes: '48x48' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', type: 'image/png', sizes: '72x72' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', type: 'image/png', sizes: '96x96' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', type: 'image/png', sizes: '144x144' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', type: 'image/png', sizes: '192x192' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', type: 'image/png', sizes: '512x512' },
     ],
     apple: [
-      { url: '/growthlab-logo.png', sizes: '180x180', type: 'image/png' },
+      { url: 'https://www.growthlab.sg/growthlab-logo.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/growthlab-logo.png',
+    shortcut: 'https://www.growthlab.sg/growthlab-logo.png',
   },
   appleWebApp: {
     capable: true,
@@ -220,9 +222,19 @@ export default function RootLayout({
     <html lang="en-SG" className={inter.variable}>
       <head>
         <link rel="manifest" href="/manifest.webmanifest" />
+        {/* Favicon for Google Search - must be first */}
+        <link rel="icon" href="https://www.growthlab.sg/growthlab-logo.png" type="image/png" />
+        <link rel="icon" href="/growthlab-logo.png" type="image/png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/growthlab-logo.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/growthlab-logo.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/growthlab-logo.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/growthlab-logo.png" />
         <link rel="icon" type="image/png" sizes="512x512" href="/growthlab-logo.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/growthlab-logo.png" />
+        <link rel="shortcut icon" href="https://www.growthlab.sg/growthlab-logo.png" type="image/png" />
+        {/* Favicon for legacy browsers and Google Search */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="https://www.growthlab.sg/growthlab-logo.png" sizes="any" />
         <HreflangTags />
         <SocialMediaMeta />
         <StructuredData data={[organizationSchema, localBusinessSchema, websiteSchema, softwareAppSchema, placeSchema, serviceAreaSchema, knowledgeGraphSchema]} />

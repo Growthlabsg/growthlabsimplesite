@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /growthlab-logo.png
+Allow: /favicon.ico
 
 # Disallow admin and API routes
 Disallow: /api/

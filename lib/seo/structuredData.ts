@@ -5,7 +5,13 @@ export interface OrganizationSchema {
   '@type': string
   name: string
   url: string
-  logo: string
+  logo: string | {
+    '@type': string
+    url: string
+    width?: number
+    height?: number
+  }
+  image?: string
   description: string
   contactPoint: {
     '@type': string
@@ -112,7 +118,13 @@ export function getOrganizationSchema(): OrganizationSchema {
     '@type': 'Organization',
     name: 'GrowthLab',
     url: 'https://www.growthlab.sg',
-    logo: 'https://www.growthlab.sg/growthlab-logo.png',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://www.growthlab.sg/growthlab-logo.png',
+      width: 516,
+      height: 484,
+    },
+    image: 'https://www.growthlab.sg/growthlab-logo.png',
     description: 'A global community-driven platform for entrepreneurs, founders, and builders. Scale your startup, connect with innovators, and grow anywhere.',
     contactPoint: {
       '@type': 'ContactPoint',
