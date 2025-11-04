@@ -62,6 +62,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/growthlab-logo.png', sizes: 'any' },
+      { url: '/growthlab-logo.png', type: 'image/png', sizes: '48x48' },
+      { url: '/growthlab-logo.png', type: 'image/png', sizes: '72x72' },
+      { url: '/growthlab-logo.png', type: 'image/png', sizes: '96x96' },
+      { url: '/growthlab-logo.png', type: 'image/png', sizes: '144x144' },
       { url: '/growthlab-logo.png', type: 'image/png', sizes: '192x192' },
       { url: '/growthlab-logo.png', type: 'image/png', sizes: '512x512' },
     ],
@@ -215,6 +219,10 @@ export default function RootLayout({
   return (
     <html lang="en-SG" className={inter.variable}>
       <head>
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/growthlab-logo.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/growthlab-logo.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/growthlab-logo.png" />
         <HreflangTags />
         <SocialMediaMeta />
         <StructuredData data={[organizationSchema, localBusinessSchema, websiteSchema, softwareAppSchema, placeSchema, serviceAreaSchema, knowledgeGraphSchema]} />

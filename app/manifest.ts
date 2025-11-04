@@ -9,8 +9,32 @@ export default function manifest(): MetadataRoute.Manifest {
     display: 'standalone',
     background_color: '#ffffff',
     theme_color: '#0f7377',
-    orientation: 'portrait-primary',
+    orientation: 'any',
     icons: [
+      {
+        src: '/growthlab-logo.png',
+        sizes: '48x48',
+        type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: '/growthlab-logo.png',
+        sizes: '72x72',
+        type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: '/growthlab-logo.png',
+        sizes: '96x96',
+        type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: '/growthlab-logo.png',
+        sizes: '144x144',
+        type: 'image/png',
+        purpose: 'any',
+      },
       {
         src: '/growthlab-logo.png',
         sizes: '192x192',
@@ -25,9 +49,15 @@ export default function manifest(): MetadataRoute.Manifest {
       },
       {
         src: '/growthlab-logo.png',
-        sizes: '180x180',
+        sizes: '192x192',
         type: 'image/png',
-        purpose: 'any',
+        purpose: 'maskable',
+      },
+      {
+        src: '/growthlab-logo.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
       },
     ],
     categories: ['business', 'social', 'networking', 'productivity'],
