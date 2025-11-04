@@ -3,6 +3,8 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Download, FileText, Video, BookOpen } from 'lucide-react'
+import StructuredData from '@/components/StructuredData'
+import { getCourseSchema, getItemListSchema } from '@/lib/seo/structuredData'
 
 
 const resources = [
@@ -33,9 +35,35 @@ const resources = [
 ]
 
 export default function ResourcesPage() {
+  // Generate Course and ItemList schemas for Generative Engine Optimization
+  const resourcesList = getItemListSchema({
+    name: 'GrowthLab Startup Resources',
+    description: 'Templates, guides, and resources for startup founders',
+    items: resources.map(resource => ({
+      name: resource.name,
+      description: resource.description,
+      url: `https://www.growthlab.sg/resources#${resource.name.toLowerCase().replace(/\s+/g, '-')}`,
+    })),
+  })
+
+  const fundingCourse = getCourseSchema({
+    name: 'Complete Guide to Raising Funding for Startups',
+    description: 'Learn the fundamentals of fundraising for startups, including pitch deck preparation, investor relations, and funding strategies.',
+    teaches: [
+      'Fundraising strategies',
+      'Pitch deck creation',
+      'Investor relations',
+      'Valuation methods',
+      'Due diligence preparation',
+    ],
+    level: 'Intermediate',
+  })
+
   return (
-    <main className="min-h-screen bg-white">
-      <Navbar />
+    <>
+      <StructuredData data={[resourcesList, fundingCourse]} />
+      <main className="min-h-screen bg-white">
+        <Navbar />
       <div className="pt-20 sm:pt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-16">
@@ -80,6 +108,7 @@ export default function ResourcesPage() {
       </div>
       <Footer />
     </main>
+    </>
   )
 }
 

@@ -4,10 +4,13 @@ import { motion } from 'framer-motion'
 import { Linkedin, Mail, Sparkles, Quote, Globe, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import GrowthLabLogo from './GrowthLabLogo'
+import FounderSchema from './FounderSchema'
 
 export default function Founder() {
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
+    <>
+      <FounderSchema />
+      <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -215,6 +218,7 @@ export default function Founder() {
         </div>
       </div>
     </section>
+    </>
   )
 }
 

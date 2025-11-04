@@ -2,6 +2,8 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Metadata } from 'next'
 import { Search, Book, FileText, Video, HelpCircle } from 'lucide-react'
+import StructuredData from '@/components/StructuredData'
+import { getArticleSchema, getItemListSchema } from '@/lib/seo/structuredData'
 
 export const metadata: Metadata = {
   title: 'Knowledge Base - GrowthLab',
@@ -32,9 +34,32 @@ const categories = [
 ]
 
 export default function KnowledgeBasePage() {
+  // Generate Article and ItemList schemas for Generative Engine Optimization
+  const knowledgeBaseArticle = getArticleSchema({
+    title: 'GrowthLab Knowledge Base',
+    description: 'Comprehensive help resources and guides for startup founders using GrowthLab platform',
+    url: 'https://www.growthlab.sg/knowledge-base',
+    datePublished: '2024-01-01T00:00:00Z',
+    dateModified: new Date().toISOString(),
+  })
+
+  const articlesList = getItemListSchema({
+    name: 'GrowthLab Knowledge Base Articles',
+    description: 'All available help articles and guides',
+    items: categories.flatMap(category => 
+      category.articles.map(article => ({
+        name: article,
+        description: `${article} - ${category.name}`,
+        url: `https://www.growthlab.sg/knowledge-base#${article.toLowerCase().replace(/\s+/g, '-')}`,
+      }))
+    ),
+  })
+
   return (
-    <main className="min-h-screen bg-white">
-      <Navbar />
+    <>
+      <StructuredData data={[knowledgeBaseArticle, articlesList]} />
+      <main className="min-h-screen bg-white">
+        <Navbar />
       <div className="pt-20 sm:pt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-16">
@@ -79,6 +104,7 @@ export default function KnowledgeBasePage() {
       </div>
       <Footer />
     </main>
+    </>
   )
 }
 

@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Sparkles, TrendingUp, Users, Globe } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import StructuredData from './StructuredData'
+import { getDefinitionSchema, getSpeakableSpecification } from '@/lib/seo/structuredData'
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false)
@@ -30,8 +32,26 @@ export default function Hero() {
   const scale = isMobile ? 1 : scaleTransform
   const y = isMobile ? 0 : springY
 
+  // Generate Definition and Speakable schemas for AEO (Answer Engine Optimization)
+  const growthLabDefinition = getDefinitionSchema({
+    name: 'GrowthLab',
+    description: 'A global startup ecosystem that empowers founders, investors, students, and innovators to connect, launch, and grow.',
+    definition: 'GrowthLab is a global startup ecosystem platform that combines community, education, funding, and technology to help early-stage entrepreneurs turn ideas into scalable ventures. Based in Singapore, serving 2,500+ members across 50+ countries.',
+    alternateNames: ['GrowthLab Singapore', 'GrowthLab Platform', 'GrowthLab Startup Community'],
+  })
+
+  const heroSpeakable = getSpeakableSpecification({
+    cssSelector: [
+      'h1',
+      '.hero-subtitle',
+      '.hero-description',
+    ],
+  })
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-slate-50 to-white pt-20 overflow-hidden">
+    <>
+      <StructuredData data={[growthLabDefinition, heroSpeakable]} />
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-slate-50 to-white pt-20 overflow-hidden">
       {/* Enhanced animated background elements */}
       <div className="absolute inset-0 overflow-hidden z-10">
         {/* Gradient orbs - completely static on mobile for performance */}
@@ -296,5 +316,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
     </section>
+    </>
   )
 }

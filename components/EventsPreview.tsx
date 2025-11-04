@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Calendar, ArrowRight, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
+import StructuredData from './StructuredData'
+import { getEventSchema } from '@/lib/seo/structuredData'
 
 const upcomingEvents = [
   {
@@ -28,8 +30,21 @@ const upcomingEvents = [
 ]
 
 export default function EventsPreview() {
+  // Generate Event schemas for SEO
+  const eventSchemas = upcomingEvents.map(event => 
+    getEventSchema({
+      title: event.title,
+      description: `Join us for ${event.title} - ${event.type} event on ${event.date}`,
+      date: event.date,
+      location: 'Singapore',
+      link: 'https://lu.ma/growthlab.sg',
+    })
+  )
+
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden">
+    <>
+      <StructuredData data={eventSchemas} />
+      <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl" />
@@ -129,6 +144,7 @@ export default function EventsPreview() {
         </motion.div>
       </div>
     </section>
+    </>
   )
 }
 

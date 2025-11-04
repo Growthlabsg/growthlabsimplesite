@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { UserPlus, FileText, Network, Rocket, TrendingUp, CheckCircle2 } from 'lucide-react'
+import StructuredData from './StructuredData'
+import { getHowToSchema } from '@/lib/seo/structuredData'
 
 const steps = [
   {
@@ -42,12 +44,23 @@ const steps = [
 ]
 
 export default function HowItWorks() {
+  // Generate HowTo schema for Generative Engine Optimization
+  const howToSchema = getHowToSchema(
+    steps.map(step => ({
+      title: step.title,
+      description: step.description,
+      features: step.features,
+    }))
+  )
+
   return (
-    <section id="how-it-works" className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl" />
-      </div>
+    <>
+      <StructuredData data={howToSchema} />
+      <section id="how-it-works" className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl" />
+        </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Numbered Section */}
@@ -174,6 +187,7 @@ export default function HowItWorks() {
         </motion.div>
       </div>
     </section>
+    </>
   )
 }
 

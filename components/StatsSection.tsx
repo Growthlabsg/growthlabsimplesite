@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Users, Globe, TrendingUp, Sparkles } from 'lucide-react'
 import AnimatedCounter from './AnimatedCounter'
+import StructuredData from './StructuredData'
+import { getStatisticalPopulationSchema } from '@/lib/seo/structuredData'
 
 const stats = [
   {
@@ -36,9 +38,23 @@ const stats = [
 ]
 
 export default function StatsSection() {
+  // Generate StatisticalPopulation schemas for AEO (Answer Engine Optimization)
+  const statsSchemas = stats.map(stat => getStatisticalPopulationSchema({
+    name: stat.label,
+    populationType: stat.label,
+    constraints: [
+      {
+        name: 'value',
+        value: stat.value,
+      },
+    ],
+  }))
+
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      <StructuredData data={statsSchemas} />
+      <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Numbered Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
           <motion.div
@@ -117,7 +133,8 @@ export default function StatsSection() {
             )
           })}
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   )
 }

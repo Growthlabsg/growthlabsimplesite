@@ -31,10 +31,9 @@ async function fetchEventsFromPublicCalendar() {
     if (jsonLdMatch) {
       try {
         const data = JSON.parse(jsonLdMatch[1])
-        // Parse structured data if available
-        console.log('Found JSON-LD data on calendar page')
+        // Parse structured data if available (implementation can be added later)
       } catch (e) {
-        console.warn('Could not parse JSON-LD data')
+        // Silently handle parse errors
       }
     }
 
@@ -42,7 +41,7 @@ async function fetchEventsFromPublicCalendar() {
     // The best approach is to use Luma's embed widget instead
     return []
   } catch (error) {
-    console.error('Error fetching public calendar:', error)
+    // Silently return empty array on error
     return []
   }
 }
@@ -125,8 +124,6 @@ export async function GET(request: NextRequest) {
     if (LUMA_API_KEY) {
       const url = `${LUMA_API_BASE_URL}/calendar/${LUMA_CALENDAR_SLUG}/events?limit=50&status=published`
       
-      console.log('Fetching events from Luma API:', { url, calendarSlug: LUMA_CALENDAR_SLUG })
-      
       const response = await fetch(url, {
         headers: {
           'x-luma-api-key': LUMA_API_KEY,
@@ -143,16 +140,11 @@ export async function GET(request: NextRequest) {
             .map(transformEvent)
             .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
-          console.log('Successfully fetched', transformedEvents.length, 'events from Luma API')
           return NextResponse.json({ events: transformedEvents })
         }
       } else {
         const errorText = await response.text()
-        console.error('Luma API error:', {
-          status: response.status,
-          statusText: response.statusText,
-          error: errorText
-        })
+        // Silently handle API errors and return fallback
       }
     }
 
@@ -173,10 +165,9 @@ export async function GET(request: NextRequest) {
       }
     }, { status: 200 })
   } catch (error) {
-    console.error('Error fetching Luma events:', error)
     const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-    return NextResponse.json({ 
-      events: [], 
+    return NextResponse.json({
+      events: [],
       error: `Internal server error: ${errorMessage}`,
       debug: { error: errorMessage }
     }, { status: 200 })

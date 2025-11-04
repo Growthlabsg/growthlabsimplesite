@@ -1,16 +1,40 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Metadata } from 'next'
+import StructuredData from '@/components/StructuredData'
+import { getArticleSchema } from '@/lib/seo/structuredData'
 
 export const metadata: Metadata = {
   title: 'About Us - GrowthLab',
-  description: 'Learn about GrowthLab, a global startup ecosystem empowering founders, investors, students, and innovators.',
+  description: 'Learn about GrowthLab, a global startup ecosystem empowering founders, investors, students, and innovators. 2,500+ members across 50+ countries. Founded in 2020.',
+  keywords: ['about GrowthLab', 'startup ecosystem', 'founder community', 'startup platform', 'entrepreneurship community'],
+  openGraph: {
+    title: 'About Us - GrowthLab',
+    description: 'Learn about GrowthLab, a global startup ecosystem empowering founders, investors, students, and innovators.',
+    type: 'website',
+    images: [{ url: 'https://www.growthlab.sg/growthlab-logo.png', width: 1200, height: 630 }],
+  },
+  alternates: {
+    canonical: 'https://www.growthlab.sg/about',
+  },
 }
 
 export default function AboutPage() {
+  // Generate Article schema for Generative Engine Optimization
+  const aboutArticle = getArticleSchema({
+    title: 'About GrowthLab - Singapore Startup Ecosystem',
+    description: 'Learn about GrowthLab, a global startup ecosystem empowering founders, investors, students, and innovators. Founded in 2020, serving 2,500+ members across 50+ countries.',
+    url: 'https://www.growthlab.sg/about',
+    datePublished: '2020-01-01T00:00:00Z',
+    dateModified: new Date().toISOString(),
+    author: 'GrowthLab',
+  })
+
   return (
-    <main className="min-h-screen bg-white">
-      <Navbar />
+    <>
+      <StructuredData data={aboutArticle} />
+      <main className="min-h-screen bg-white">
+        <Navbar />
       <div className="pt-20 sm:pt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-8 tracking-tight">About GrowthLab</h1>
@@ -40,6 +64,7 @@ export default function AboutPage() {
       </div>
       <Footer />
     </main>
+    </>
   )
 }
 

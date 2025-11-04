@@ -143,23 +143,19 @@ export function EventsPageClient() {
         const response = await fetch('/api/events')
         const data = await response.json()
         
-        console.log('API response:', data)
-        
         if (data.events && data.events.length > 0) {
           setEvents(data.events)
-          console.log('Successfully loaded', data.events.length, 'events from Luma')
         } else if (data.error) {
-          // Show error to user
-          console.error('Luma API error:', data.error, data.debug)
+          // Show error to user, use fallback events
           setError(data.error)
           setEvents(fallbackEvents)
         } else {
           setEvents(fallbackEvents)
         }
       } catch (err) {
-        console.error('Error fetching events:', err)
-        setError('Failed to load events. Check your console for details.')
-        setEvents(fallbackEvents) // Use fallback on error
+        // Silently use fallback events on error
+        setError('Unable to load events from Luma. Showing fallback events.')
+        setEvents(fallbackEvents)
       } finally {
         setLoading(false)
       }

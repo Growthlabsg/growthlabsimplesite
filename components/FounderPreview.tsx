@@ -4,10 +4,13 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import FounderSchema from './FounderSchema'
 
 export default function FounderPreview() {
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
+    <>
+      <FounderSchema />
+      <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl" />
@@ -67,6 +70,7 @@ export default function FounderPreview() {
         </div>
       </div>
     </section>
+    </>
   )
 }
 

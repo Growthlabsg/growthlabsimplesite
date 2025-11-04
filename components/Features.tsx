@@ -4,6 +4,8 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { Network, Rocket, DollarSign, Users, ArrowUpRight, Briefcase, GraduationCap, Sparkles } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import StructuredData from './StructuredData'
+import { getItemListSchema } from '@/lib/seo/structuredData'
 
 const features = [
   {
@@ -170,8 +172,36 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
 }
 
 export default function Features() {
+  // Generate ItemList schema for Generative Engine Optimization
+  const featuresListSchema = getItemListSchema({
+    name: 'GrowthLab Platform Features',
+    description: 'Comprehensive list of features available on the GrowthLab startup ecosystem platform',
+    items: features.map(feature => ({
+      name: feature.title,
+      description: feature.description,
+      url: `https://www.growthlab.sg${feature.href}`,
+    })),
+  })
+
+  const platformFeaturesListSchema = getItemListSchema({
+    name: 'GrowthLab Platform Capabilities',
+    description: 'Key platform capabilities and tools for startup founders',
+    items: [
+      { name: 'Professional Network', description: 'Connect with founders, investors & innovators' },
+      { name: 'Business Pages', description: 'Build & showcase your startup profile' },
+      { name: 'Share Updates', description: 'Post milestones, news & announcements' },
+      { name: 'Raise Funding', description: 'Access investors & funding opportunities' },
+      { name: 'Post Jobs', description: 'Discover talent & build your team' },
+      { name: 'Mentorship', description: 'Get guidance from experienced founders' },
+      { name: 'AI Tools', description: 'Leverage AI-driven startup resources' },
+      { name: 'Find Partners', description: 'Discover strategic partnerships' },
+    ],
+  })
+
   return (
-    <section id="features" className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-white overflow-hidden">
+    <>
+      <StructuredData data={[featuresListSchema, platformFeaturesListSchema]} />
+      <section id="features" className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-white overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50/30 to-white" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -271,5 +301,6 @@ export default function Features() {
         </motion.div>
       </div>
     </section>
+    </>
   )
 }

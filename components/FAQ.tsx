@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, HelpCircle, Mail, MessageCircle } from 'lucide-react'
+import StructuredData from './StructuredData'
+import { getFAQSchema, getQAPageSchema, getDefinitionSchema, getSpeakableSpecification } from '@/lib/seo/structuredData'
 
 const faqs = [
   {
@@ -19,7 +21,7 @@ const faqs = [
   },
   {
     question: 'How much does it cost to join GrowthLab?',
-    answer: 'We offer flexible membership tiers to suit different needs and budgets:\n\n• **Starter Tier (Free)**: Access to community forum, basic networking events, and resources\n• **Professional Tier ($99/month)**: Full community access, exclusive events, mentorship matching, priority support, business page features\n• **Enterprise Tier ($299/month)**: Everything in Professional, plus team access, advanced AI tools, dedicated support, and exclusive workshops\n• **Annual Plans**: Save up to 20% with annual subscriptions\n\nAll plans include access to our platform features (networking, business pages, job posting, funding resources) with member discounts. Contact us at hello@growthlab.sg for detailed pricing and corporate packages.',
+    answer: 'GrowthLab offers flexible membership tiers:\n\n• **Starter Tier**: Free - Access to community forum, basic networking events, and resources\n• **Professional Tier**: $99 per month - Full community access, exclusive events, mentorship matching, priority support, business page features\n• **Enterprise Tier**: $299 per month - Everything in Professional, plus team access, advanced AI tools, dedicated support, and exclusive workshops\n• **Annual Plans**: Save up to 20% with annual subscriptions\n\nAll plans include access to platform features (networking, business pages, job posting, funding resources). Contact hello@growthlab.sg for detailed pricing.',
   },
   {
     question: 'What is included in the membership?',
@@ -53,9 +55,34 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
+  
+  // Generate multiple schemas for enhanced AEO (Answer Engine Optimization)
+  const faqSchema = getFAQSchema(faqs)
+  const qaPageSchema = getQAPageSchema(faqs.map(faq => ({
+    question: faq.question,
+    answer: faq.answer,
+  })))
+  
+  // Generate Definition schema for "What is GrowthLab?"
+  const growthLabDefinition = getDefinitionSchema({
+    name: 'GrowthLab',
+    description: 'A global startup ecosystem that empowers founders, investors, students, and innovators to connect, launch, and grow.',
+    definition: 'GrowthLab is a global startup ecosystem platform that combines community, education, funding, and technology to help early-stage entrepreneurs turn ideas into scalable ventures. It functions like "LinkedIn for startups" with networking, business pages, job posting, and fundraising capabilities.',
+    alternateNames: ['GrowthLab Singapore', 'GrowthLab Platform', 'GrowthLab Startup Community'],
+  })
+
+  // Generate SpeakableSpecification for voice search
+  const speakableSchema = getSpeakableSpecification({
+    cssSelector: [
+      'h2:contains("FAQs")',
+      '.faq-question',
+      '.faq-answer',
+    ],
+  })
 
   return (
     <section id="faq" className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-white overflow-hidden">
+      <StructuredData data={[faqSchema, qaPageSchema, growthLabDefinition, speakableSchema]} />
       <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50/30 to-white" />
       
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,7 +167,7 @@ export default function FAQ() {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-6">
-                      <div className="text-base sm:text-lg text-slate-700 leading-relaxed font-light whitespace-pre-line">
+                      <div className="text-base sm:text-lg text-slate-700 leading-relaxed font-light whitespace-pre-line faq-answer">
                         {faq.answer}
                       </div>
                     </div>

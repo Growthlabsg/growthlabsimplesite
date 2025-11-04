@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { Quote, Star } from 'lucide-react'
+import StructuredData from './StructuredData'
+import { getReviewSchema, getAggregateRatingSchema } from '@/lib/seo/structuredData'
 
 const testimonials = [
   {
@@ -47,8 +49,15 @@ const testimonials = [
 ]
 
 export default function Testimonials() {
+  // Generate structured data for reviews and aggregate rating
+  const reviewSchemas = testimonials.map(review => getReviewSchema(review))
+  const aggregateRating = getAggregateRatingSchema(5, testimonials.length)
+  const allSchemas = [...reviewSchemas, aggregateRating]
+
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden">
+    <>
+      <StructuredData data={allSchemas} />
+      <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl" />
@@ -176,5 +185,6 @@ export default function Testimonials() {
         </motion.div>
       </div>
     </section>
+    </>
   )
 }
