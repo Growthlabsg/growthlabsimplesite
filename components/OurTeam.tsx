@@ -78,6 +78,20 @@ const teamMembers: TeamMember[] = [
       },
     ],
   },
+  {
+    id: 2,
+    name: 'Iniya Sundararajan',
+    role: 'Community Advisor',
+    bio: [
+      'Iniya Sundararajan is a dedicated community builder and advisor with a passion for fostering meaningful connections and empowering entrepreneurs. As GrowthLab\'s Community Advisor, she plays a pivotal role in nurturing the vibrant ecosystem of 2,500+ members across 50+ countries.',
+      'With a deep understanding of community dynamics and startup ecosystems, Iniya works closely with founders, investors, and innovators to create inclusive spaces where ideas flourish and relationships thrive. Her expertise in community engagement, event coordination, and member support has been instrumental in building GrowthLab into a trusted platform for startup professionals worldwide.',
+      'Iniya believes that strong communities are the foundation of successful startups. She focuses on creating authentic connections, facilitating knowledge sharing, and ensuring every member feels valued and supported in their entrepreneurial journey. Through her work, she helps transform GrowthLab from a platform into a true ecosystem where collaboration and growth go hand in hand.',
+    ],
+    quote: 'Community is not just about bringing people together—it\'s about creating an environment where every member can thrive, learn, and grow. At GrowthLab, we\'re building something more than a network; we\'re cultivating a movement of entrepreneurs who support and uplift each other.',
+    image: '/team-iniya-sundararajan.jpg',
+    linkedin: 'https://www.linkedin.com/in/iniya-sundararajan-54523a120',
+    email: 'iniya@growthlab.sg',
+  },
   // Add more team members here in the future
 ]
 
