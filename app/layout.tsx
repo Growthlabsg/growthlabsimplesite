@@ -19,6 +19,23 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 5,
   },
+  icons: {
+    icon: [
+      { url: '/growthlab-logo.png', sizes: 'any' },
+      { url: '/growthlab-logo.png', type: 'image/png', sizes: '192x192' },
+      { url: '/growthlab-logo.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/growthlab-logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/growthlab-logo.png',
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'GrowthLab',
+    startupImage: '/growthlab-logo.png',
+  },
   openGraph: {
     title: 'GrowthLab - Build. Connect. Scale.',
     description: 'A global community-driven platform for entrepreneurs, founders, and builders.',
@@ -26,11 +43,20 @@ export const metadata: Metadata = {
     siteName: 'GrowthLab',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: 'https://www.growthlab.sg/growthlab-logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'GrowthLab Logo',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'GrowthLab - Build. Connect. Scale.',
     description: 'A global community-driven platform for entrepreneurs, founders, and builders.',
+    images: ['https://www.growthlab.sg/growthlab-logo.png'],
   },
   robots: {
     index: true,
