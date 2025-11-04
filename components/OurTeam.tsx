@@ -23,6 +23,7 @@ interface TeamMember {
   email?: string
   portfolio?: string
   ventures?: Venture[]
+  isMainMember?: boolean // true for CEO/CTO, false for general team members
 }
 
 const teamMembers: TeamMember[] = [
@@ -30,6 +31,7 @@ const teamMembers: TeamMember[] = [
     id: 1,
     name: 'Arul Murugan',
     role: 'Founder & CEO',
+    isMainMember: true,
     bio: [
       'Arul Murugan is a passionate entrepreneur and startup ecosystem builder with a deep commitment to empowering founders, investors, students, and innovators worldwide. Through GrowthLab, he has created a comprehensive platform that combines community, education, funding, and technology to help early-stage entrepreneurs succeed.',
       'With a vision to create "LinkedIn for startups," Arul has built GrowthLab into a vibrant global ecosystem with 2,500+ members across 50+ countries. The platform facilitates networking, business development, funding opportunities, and access to essential startup resources—all in one place.',
@@ -82,6 +84,7 @@ const teamMembers: TeamMember[] = [
     id: 2,
     name: 'Ansh Garg',
     role: 'Chief Technology Officer',
+    isMainMember: true,
     bio: [
       'Ansh Garg is a visionary technologist and engineering leader with a passion for building scalable platforms that empower entrepreneurs. As GrowthLab\'s Chief Technology Officer, he leads the development of innovative solutions that power the "LinkedIn for startups" platform, enabling 2,500+ members to connect, launch, fund, and grow their ventures.',
       'With extensive expertise in software architecture, AI-driven systems, and cloud infrastructure, Ansh oversees the technical strategy that makes GrowthLab a seamless, intelligent platform. He is responsible for developing cutting-edge features including AI-powered matching, analytics dashboards, and automation tools that help startups accelerate their growth journey.',
@@ -96,6 +99,7 @@ const teamMembers: TeamMember[] = [
     id: 3,
     name: 'Iniya Sundararajan',
     role: 'Community Advisor',
+    isMainMember: false,
     bio: [
       'Iniya Sundararajan is a dedicated community builder and advisor with a passion for fostering meaningful connections and empowering entrepreneurs. As GrowthLab\'s Community Advisor, she plays a pivotal role in nurturing the vibrant ecosystem of 2,500+ members across 50+ countries.',
       'With a deep understanding of community dynamics and startup ecosystems, Iniya works closely with founders, investors, and innovators to create inclusive spaces where ideas flourish and relationships thrive. Her expertise in community engagement, event coordination, and member support has been instrumental in building GrowthLab into a trusted platform for startup professionals worldwide.',
@@ -158,9 +162,9 @@ export default function OurTeam() {
             </motion.div>
           </div>
 
-          {/* Team Members */}
+          {/* Team Members - Main Members Only (CEO, CTO) */}
           <div className="space-y-20 lg:space-y-24">
-            {teamMembers.map((member, memberIndex) => (
+            {teamMembers.filter(member => member.isMainMember !== false).map((member, memberIndex) => (
               <div key={member.id} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center pb-8 lg:pb-12">
                 {/* Image Section */}
                 <motion.div
