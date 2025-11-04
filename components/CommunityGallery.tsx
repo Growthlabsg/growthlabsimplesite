@@ -5,140 +5,19 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Users, TrendingUp, Rocket, Globe, ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
+import { galleryImages, getCategoryCounts, getImagesByCategory } from '@/lib/data/gallery'
 
+// Get category counts dynamically
+const categoryCounts = getCategoryCounts()
 const galleryCategories = [
-  { name: 'All', count: 15 },
-  { name: 'Events', count: 6 },
-  { name: 'Workshops', count: 4 },
-  { name: 'Networking', count: 5 },
+  { name: 'All', count: categoryCounts.All },
+  { name: 'Events', count: categoryCounts.Events },
+  { name: 'Workshops', count: categoryCounts.Workshops },
+  { name: 'Networking', count: categoryCounts.Networking },
 ]
 
-// Different images for each category
-const communityImages = [
-  // Events category
-  { 
-    id: 1, 
-    src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&auto=format&fit=crop&q=80', 
-    alt: 'GrowthLab Conference',
-    category: 'Events',
-    title: 'Annual Conference',
-    description: 'Keynote speakers and presentations',
-  },
-  { 
-    id: 2, 
-    src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Startup Pitch Event',
-    category: 'Events',
-    title: 'Pitch Competition',
-    description: 'Founders presenting their ideas',
-  },
-  { 
-    id: 3, 
-    src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Award Ceremony',
-    category: 'Events',
-    title: 'Award Night',
-    description: 'Celebrating achievements',
-  },
-  { 
-    id: 4, 
-    src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Panel Discussion',
-    category: 'Events',
-    title: 'Expert Panel',
-    description: 'Industry leaders sharing insights',
-  },
-  { 
-    id: 5, 
-    src: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Demo Day',
-    category: 'Events',
-    title: 'Demo Day',
-    description: 'Showcasing innovations',
-  },
-  { 
-    id: 6, 
-    src: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Launch Event',
-    category: 'Events',
-    title: 'Product Launch',
-    description: 'New startup launches',
-  },
-  // Workshops category
-  { 
-    id: 7, 
-    src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80', 
-    alt: 'AI Tools Workshop',
-    category: 'Workshops',
-    title: 'AI Tools Workshop',
-    description: 'Learning new technologies',
-  },
-  { 
-    id: 8, 
-    src: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Business Strategy Workshop',
-    category: 'Workshops',
-    title: 'Strategy Session',
-    description: 'Planning for growth',
-  },
-  { 
-    id: 9, 
-    src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Marketing Workshop',
-    category: 'Workshops',
-    title: 'Marketing Masterclass',
-    description: 'Digital marketing strategies',
-  },
-  { 
-    id: 10, 
-    src: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Funding Workshop',
-    category: 'Workshops',
-    title: 'Fundraising Workshop',
-    description: 'Pitch deck training',
-  },
-  // Networking category
-  { 
-    id: 11, 
-    src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Monthly Networking Mixer',
-    category: 'Networking',
-    title: 'Monthly Mixer',
-    description: 'Connecting founders',
-  },
-  { 
-    id: 12, 
-    src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Community Gathering',
-    category: 'Networking',
-    title: 'Community Meetup',
-    description: 'Building relationships',
-  },
-  { 
-    id: 13, 
-    src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Coffee Chat',
-    category: 'Networking',
-    title: 'Coffee Sessions',
-    description: 'Casual networking',
-  },
-  { 
-    id: 14, 
-    src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Investor Meetup',
-    category: 'Networking',
-    title: 'Investor Mixer',
-    description: 'Meeting investors',
-  },
-  { 
-    id: 15, 
-    src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&auto=format&fit=crop&q=80', 
-    alt: 'Founder Meetup',
-    category: 'Networking',
-    title: 'Founder Circle',
-    description: 'Peer connections',
-  },
-]
+// Use gallery data from lib/data/gallery.ts
+const communityImages = galleryImages
 
 export default function CommunityGallery() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -149,17 +28,7 @@ export default function CommunityGallery() {
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [0, -100])
 
-  const filteredImages = activeCategory === 'All' 
-    ? communityImages 
-    : communityImages.filter(img => img.category === activeCategory)
-
-  // Update counts based on actual filtered images
-  const categoryCounts = {
-    'All': communityImages.length,
-    'Events': communityImages.filter(img => img.category === 'Events').length,
-    'Workshops': communityImages.filter(img => img.category === 'Workshops').length,
-    'Networking': communityImages.filter(img => img.category === 'Networking').length,
-  }
+  const filteredImages = getImagesByCategory(activeCategory)
 
   // Handle image click - open modal with category images
   const handleImageClick = (imageId: number, category: string) => {
@@ -469,7 +338,7 @@ export default function CommunityGallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto"
             onClick={() => setIsModalOpen(false)}
           >
             {/* Close Button */}
@@ -478,10 +347,10 @@ export default function CommunityGallery() {
                 e.stopPropagation()
                 setIsModalOpen(false)
               }}
-              className="absolute top-4 right-4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm"
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
               aria-label="Close"
             >
-              <X className="text-white" size={24} />
+              <X className="text-white" size={20} />
             </button>
 
             {/* Navigation Arrows */}
@@ -492,20 +361,20 @@ export default function CommunityGallery() {
                     e.stopPropagation()
                     goToPrevious()
                   }}
-                  className="absolute left-4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm"
+                  className="absolute left-2 sm:left-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
                   aria-label="Previous"
                 >
-                  <ChevronLeft className="text-white" size={24} />
+                  <ChevronLeft className="text-white" size={20} />
                 </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation()
                     goToNext()
                   }}
-                  className="absolute right-4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm"
+                  className="absolute right-2 sm:right-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
                   aria-label="Next"
                 >
-                  <ChevronRight className="text-white" size={24} />
+                  <ChevronRight className="text-white" size={20} />
                 </button>
               </>
             )}
@@ -516,11 +385,11 @@ export default function CommunityGallery() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="relative max-w-6xl w-full max-h-[90vh] flex flex-col items-center"
+              className="relative max-w-6xl w-full max-h-[90vh] flex flex-col items-center overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Main Image */}
-              <div className="relative w-full aspect-video bg-black rounded-lg overflow-hidden mb-4">
+              <div className="relative w-full aspect-video bg-black rounded-lg overflow-hidden mb-3 sm:mb-4">
                 <Image
                   src={modalImages[currentImageIndex].src}
                   alt={modalImages[currentImageIndex].alt}
@@ -532,22 +401,22 @@ export default function CommunityGallery() {
               </div>
 
               {/* Image Info */}
-              <div className="text-center text-white mb-4">
-                <h3 className="text-2xl font-bold mb-2">{modalImages[currentImageIndex].title}</h3>
-                <p className="text-white/80 mb-2">{modalImages[currentImageIndex].description}</p>
-                <span className="inline-block px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-semibold">
+              <div className="text-center text-white mb-3 sm:mb-4 px-2">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2">{modalImages[currentImageIndex].title}</h3>
+                <p className="text-sm sm:text-base text-white/80 mb-2">{modalImages[currentImageIndex].description}</p>
+                <span className="inline-block px-2 sm:px-3 py-1 bg-primary/20 text-primary rounded-full text-xs sm:text-sm font-semibold">
                   {modalImages[currentImageIndex].category}
                 </span>
               </div>
 
               {/* Thumbnail Navigation */}
               {modalImages.length > 1 && (
-                <div className="flex items-center gap-2 overflow-x-auto pb-2 max-w-full">
+                <div className="flex items-center gap-2 overflow-x-auto pb-2 max-w-full px-2">
                   {modalImages.map((img, idx) => (
                     <button
                       key={img.id}
                       onClick={() => setCurrentImageIndex(idx)}
-                      className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                      className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all min-h-[44px] min-w-[44px] ${
                         idx === currentImageIndex
                           ? 'border-primary scale-110'
                           : 'border-transparent opacity-60 hover:opacity-100'
@@ -558,7 +427,7 @@ export default function CommunityGallery() {
                         alt={img.alt}
                         fill
                         className="object-cover"
-                        sizes="80px"
+                        sizes="(max-width: 640px) 64px, 80px"
                       />
                     </button>
                   ))}

@@ -1,9 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Linkedin, Mail, Sparkles, Users, Globe, ExternalLink } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Linkedin, Mail, Sparkles, Users, Globe, ExternalLink, X } from 'lucide-react'
 import Image from 'next/image'
 import GrowthLabLogo from './GrowthLabLogo'
+import { useState, useEffect } from 'react'
 
 interface Venture {
   name: string
@@ -114,6 +115,47 @@ const teamMembers: TeamMember[] = [
 ]
 
 export default function OurTeam() {
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // Handle member card click - open modal
+  const handleMemberClick = (member: TeamMember) => {
+    setSelectedMember(member)
+    setIsModalOpen(true)
+  }
+
+  // Close modal
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedMember(null)
+  }
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isModalOpen) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeModal()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isModalOpen])
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isModalOpen])
+
   return (
     <>
       <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
@@ -165,7 +207,13 @@ export default function OurTeam() {
           {/* Team Members - Main Members Only (CEO, CTO) */}
           <div className="space-y-20 lg:space-y-24">
             {teamMembers.filter(member => member.isMainMember !== false).map((member, memberIndex) => (
-              <div key={member.id} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center pb-8 lg:pb-12">
+              <motion.div 
+                key={member.id} 
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center pb-8 lg:pb-12 cursor-pointer"
+                onClick={() => handleMemberClick(member)}
+                whileHover={{ opacity: 0.95 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 {/* Image Section */}
                 <motion.div
                   initial={{ opacity: 0, x: -40 }}
@@ -313,7 +361,7 @@ export default function OurTeam() {
                     ))}
                   </div>
                 </motion.div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -357,6 +405,7 @@ export default function OurTeam() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="group cursor-pointer"
+                onClick={() => handleMemberClick(member)}
               >
                 <div className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
                   {/* Image */}
@@ -444,6 +493,152 @@ export default function OurTeam() {
           )}
         </div>
       </section>
+
+      {/* Team Member Profile Modal */}
+      <AnimatePresence>
+        {isModalOpen && selectedMember && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto"
+            onClick={closeModal}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
+              aria-label="Close"
+            >
+              <X className="text-white" size={20} />
+            </button>
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative max-w-4xl w-full bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl my-4 sm:my-8 max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header with Image */}
+              <div className="relative h-40 sm:h-48 lg:h-64 bg-gradient-to-br from-primary/20 to-amber/20">
+                <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-8">
+                  <div className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden border-2 sm:border-4 border-white shadow-xl">
+                    <Image
+                      src={selectedMember.image}
+                      alt={selectedMember.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 128px, (max-width: 1024px) 160px, 192px"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-4 sm:p-6 lg:p-8 xl:p-12">
+                {/* Name and Role */}
+                <div className="text-center mb-6 sm:mb-8">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 mb-2 tracking-tight">
+                    {selectedMember.name}
+                  </h2>
+                  <p className="text-lg sm:text-xl lg:text-2xl text-primary font-semibold mb-4 sm:mb-6">{selectedMember.role}</p>
+                  
+                  {/* Social Links */}
+                  <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    {selectedMember.linkedin && (
+                      <a
+                        href={selectedMember.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-all duration-300 group hover:scale-110 min-h-[44px] min-w-[44px]"
+                        aria-label="LinkedIn"
+                        title="LinkedIn"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Linkedin className="text-primary group-hover:text-white" size={20} />
+                      </a>
+                    )}
+                    {selectedMember.email && (
+                      <a
+                        href={`mailto:${selectedMember.email}`}
+                        className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-all duration-300 group hover:scale-110 min-h-[44px] min-w-[44px]"
+                        aria-label="Email"
+                        title="Email"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Mail className="text-primary group-hover:text-white" size={20} />
+                      </a>
+                    )}
+                    {selectedMember.portfolio && (
+                      <a
+                        href={selectedMember.portfolio}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-all duration-300 group hover:scale-110 min-h-[44px] min-w-[44px]"
+                        aria-label="Portfolio"
+                        title="Personal Portfolio"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Globe className="text-primary group-hover:text-white" size={20} />
+                      </a>
+                    )}
+                  </div>
+
+                  {/* Ventures */}
+                  {selectedMember.ventures && selectedMember.ventures.length > 0 && (
+                    <div className="mb-6 sm:mb-8">
+                      <p className="text-xs sm:text-sm font-semibold text-slate-600 mb-3 sm:mb-4 uppercase tracking-wider text-center">Ventures</p>
+                      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                        {selectedMember.ventures.map((venture, vIndex) => (
+                          <motion.a
+                            key={vIndex}
+                            href={venture.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group relative inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg hover:border-primary hover:shadow-md transition-all duration-300"
+                            title={venture.name}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <div className="flex items-center justify-center w-5 h-5 flex-shrink-0">
+                              {venture.icon || <Globe className="text-primary" size={16} />}
+                            </div>
+                            <span className="text-sm font-semibold text-slate-700 group-hover:text-primary transition-colors">
+                              {venture.name}
+                            </span>
+                            <ExternalLink className="text-slate-400 group-hover:text-primary transition-colors flex-shrink-0" size={12} />
+                          </motion.a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Quote */}
+                <div className="relative bg-gradient-to-br from-primary/10 via-amber/5 to-primary/10 border-l-4 border-primary p-4 sm:p-6 lg:p-8 rounded-r-xl sm:rounded-r-2xl mb-6 sm:mb-8">
+                  <p className="text-base sm:text-lg lg:text-xl text-slate-700 font-light leading-relaxed">
+                    "{selectedMember.quote}"
+                  </p>
+                </div>
+
+                {/* Bio */}
+                <div className="space-y-3 sm:space-y-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 sm:mb-4">About</h3>
+                  {selectedMember.bio.map((paragraph, index) => (
+                    <p key={index} className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-light">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
