@@ -358,7 +358,7 @@ export default function OurTeam() {
                     ))}
                   </div>
                 </motion.div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
