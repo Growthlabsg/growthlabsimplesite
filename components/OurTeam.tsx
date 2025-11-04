@@ -80,6 +80,20 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 2,
+    name: 'Ansh Garg',
+    role: 'Chief Technology Officer',
+    bio: [
+      'Ansh Garg is a visionary technologist and engineering leader with a passion for building scalable platforms that empower entrepreneurs. As GrowthLab\'s Chief Technology Officer, he leads the development of innovative solutions that power the "LinkedIn for startups" platform, enabling 2,500+ members to connect, launch, fund, and grow their ventures.',
+      'With extensive expertise in software architecture, AI-driven systems, and cloud infrastructure, Ansh oversees the technical strategy that makes GrowthLab a seamless, intelligent platform. He is responsible for developing cutting-edge features including AI-powered matching, analytics dashboards, and automation tools that help startups accelerate their growth journey.',
+      'Ansh believes that technology should be an enabler, not a barrier. His focus on creating intuitive, powerful tools ensures that founders can spend less time navigating complex systems and more time building their businesses. Under his leadership, GrowthLab continues to evolve as a platform that combines cutting-edge technology with user-centric design to deliver exceptional value to the global startup community.',
+    ],
+    quote: 'Technology at its best is invisible—it works seamlessly in the background so entrepreneurs can focus on what matters most: building, connecting, and growing. At GrowthLab, we\'re not just building a platform; we\'re creating the technological foundation for the next generation of startups.',
+    image: '/team-ansh-garg.jpg',
+    linkedin: 'https://www.linkedin.com/in/ansh-garg-877785136',
+    email: 'anshgarg@growthlab.sg',
+  },
+  {
+    id: 3,
     name: 'Iniya Sundararajan',
     role: 'Community Advisor',
     bio: [
