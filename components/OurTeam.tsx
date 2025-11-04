@@ -207,12 +207,9 @@ export default function OurTeam() {
           {/* Team Members - Main Members Only (CEO, CTO) */}
           <div className="space-y-20 lg:space-y-24">
             {teamMembers.filter(member => member.isMainMember !== false).map((member, memberIndex) => (
-              <motion.div 
+              <div 
                 key={member.id} 
-                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center pb-8 lg:pb-12 cursor-pointer"
-                onClick={() => handleMemberClick(member)}
-                whileHover={{ opacity: 0.95 }}
-                whileTap={{ scale: 0.98 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center pb-8 lg:pb-12"
               >
                 {/* Image Section */}
                 <motion.div
