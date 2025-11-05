@@ -14,6 +14,7 @@ import Benefits from '@/components/Benefits'
 import FounderPreview from '@/components/FounderPreview'
 import SportsClubPreview from '@/components/SportsClubPreview'
 import Testimonials from '@/components/Testimonials'
+import Partners from '@/components/Partners'
 import FAQ from '@/components/FAQ'
 import Footer from '@/components/Footer'
 
@@ -31,6 +32,7 @@ export default function Home() {
       <CommunityFeed />
       <EventsPreview />
       <StatsSection />
+      <Partners />
       <HowItWorks />
       <Benefits />
       <FounderPreview />
