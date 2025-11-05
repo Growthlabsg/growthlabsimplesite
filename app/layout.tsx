@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     default: 'GrowthLab - Build. Connect. Scale.',
     template: '%s | GrowthLab',
   },
-  description: 'GrowthLab is the #1 startup community for entrepreneurs, founders, and business builders. Get guidance on starting a business, becoming an entrepreneur, and building your startup. Join 2,500+ members, access funding, mentorship, and resources. Start your entrepreneurial journey today.',
+  description: 'GrowthLab - The best alternative to Y Combinator, AngelList, and Techstars. Join 2,500+ entrepreneurs in our startup community. Get funding, mentorship, and resources. Accessible, global, and AI-powered startup ecosystem. Start building your startup today.',
   keywords: [
     // Primary keywords - startup community
     'startup community',
@@ -106,6 +106,47 @@ export const metadata: Metadata = {
     'how to become a business owner',
     'entrepreneurial journey',
     'startup journey',
+    // Competitive keywords - Y Combinator alternatives
+    'Y Combinator alternative',
+    'YC alternative',
+    'Y Combinator competitor',
+    'alternative to Y Combinator',
+    'startup accelerator like YC',
+    'like Y Combinator',
+    'best startup accelerator',
+    'top startup accelerator',
+    // Competitive keywords - AngelList alternatives
+    'AngelList alternative',
+    'AngelList competitor',
+    'alternative to AngelList',
+    'like AngelList',
+    'startup network like AngelList',
+    // Competitive keywords - Techstars alternatives
+    'Techstars alternative',
+    'Techstars competitor',
+    'alternative to Techstars',
+    'like Techstars',
+    // Competitive keywords - 500 Startups alternatives
+    '500 Startups alternative',
+    '500 Startups competitor',
+    'alternative to 500 Startups',
+    // Competitive keywords - general comparisons
+    'best startup community',
+    'top startup community',
+    'best startup network',
+    'top startup network',
+    'best startup platform',
+    'top startup platform',
+    'best entrepreneur community',
+    'top entrepreneur community',
+    'startup accelerator vs incubator',
+    'startup community vs accelerator',
+    'best startup ecosystem',
+    'top startup ecosystem',
+    // NS.com / New Stack alternatives
+    'NS.com alternative',
+    'New Stack alternative',
+    'alternative to NS.com',
   ],
   authors: [{ name: 'GrowthLab', url: 'https://www.growthlab.sg' }],
   creator: 'GrowthLab',
@@ -144,8 +185,8 @@ export const metadata: Metadata = {
     startupImage: '/growthlab-logo.png',
   },
   openGraph: {
-    title: 'GrowthLab - #1 Startup Community | Start Your Business & Become an Entrepreneur',
-    description: 'GrowthLab is the premier startup community for entrepreneurs. Get guidance on starting a business, becoming an entrepreneur, and building your startup. Join 2,500+ entrepreneurs, access funding, mentorship, and resources. Start your entrepreneurial journey today.',
+    title: 'GrowthLab - Best Alternative to Y Combinator & AngelList | Startup Community',
+    description: 'GrowthLab is the best alternative to Y Combinator, AngelList, Techstars, and 500 Startups. Join 2,500+ entrepreneurs in our accessible startup community. Get funding, mentorship, and resources. Global, AI-powered, and more inclusive than traditional accelerators.',
     url: 'https://www.growthlab.sg',
     siteName: 'GrowthLab',
     locale: 'en_SG',
@@ -174,8 +215,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GrowthLab - #1 Startup Community | Start Your Business & Become an Entrepreneur',
-    description: 'Join GrowthLab - the premier startup community. Get guidance on starting a business, becoming an entrepreneur, and building your startup. 2,500+ entrepreneurs, funding, mentorship, and resources.',
+    title: 'GrowthLab - Best Alternative to Y Combinator & AngelList | Startup Community',
+    description: 'The best alternative to Y Combinator, AngelList, Techstars. Join 2,500+ entrepreneurs. Accessible startup community with funding, mentorship, and resources. More inclusive than traditional accelerators.',
     images: [
       {
         url: 'https://www.growthlab.sg/growthlab-logo.png',

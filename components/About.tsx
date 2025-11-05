@@ -56,7 +56,7 @@ export default function About() {
                 className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-light"
               >
                 GrowthLab is the leading <strong className="font-semibold text-slate-900 relative">
-                  <span className="relative z-10">startup community and entrepreneur network</span>
+                  <span className="relative z-10">alternative to Y Combinator, AngelList, Techstars, and 500 Startups</span>
                   <motion.span
                     className="absolute bottom-0 left-0 right-0 h-2 bg-primary/20 -z-0"
                     initial={{ width: 0 }}
@@ -64,7 +64,7 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.5 }}
                   />
-                </strong> for anyone looking to start a business, become an entrepreneur, or build their startup. We provide comprehensive guidance, resources, and support for your entrepreneurial journey.
+                </strong>. We're the best startup community and entrepreneur network for anyone looking to start a business, become an entrepreneur, or build their startup. Unlike exclusive accelerators, we provide accessible, comprehensive guidance, resources, and support for your entrepreneurial journey.
               </motion.p>
               
               <motion.p

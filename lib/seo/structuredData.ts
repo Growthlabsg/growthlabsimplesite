@@ -125,7 +125,7 @@ export function getOrganizationSchema(): OrganizationSchema {
       height: 484,
     },
     image: 'https://www.growthlab.sg/growthlab-logo.png',
-    description: 'GrowthLab is the #1 startup community for entrepreneurs, founders, and business builders. Get guidance on starting a business, becoming an entrepreneur, and building your startup. Join 2,500+ entrepreneurs, access funding, mentorship, and resources.',
+    description: 'GrowthLab is the best alternative to Y Combinator, AngelList, Techstars, and 500 Startups. The #1 startup community for entrepreneurs, founders, and business builders. Get guidance on starting a business, becoming an entrepreneur, and building your startup. Join 2,500+ entrepreneurs, access funding, mentorship, and resources. Accessible, global, and AI-powered startup ecosystem.',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+65-9737-1722',

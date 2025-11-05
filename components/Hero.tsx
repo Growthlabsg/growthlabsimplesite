@@ -190,19 +190,20 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-slate-700 mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed font-light px-4"
           >
-            GrowthLab is the #1 startup community for entrepreneurs, founders, and business builders. Get guidance on{' '}
+            The best alternative to Y Combinator, AngelList, and Techstars. GrowthLab is the{' '}
             <motion.span
               className="font-semibold text-slate-900 inline-block relative"
               whileHover={{ scale: 1.05 }}
             >
-              starting a business, becoming an entrepreneur, and building your startup
+              #1 startup community and entrepreneur network
               <motion.span
                 className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-primary via-amber to-primary rounded-full"
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.3 }}
               />
-            </motion.span>.
+            </motion.span>{' '}
+            for entrepreneurs, founders, and business builders. Get guidance on starting a business, becoming an entrepreneur, and building your startup.
           </motion.p>
 
           <motion.p
