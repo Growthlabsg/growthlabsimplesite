@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Analytics from '@/components/Analytics'
@@ -12,6 +12,12 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.growthlab.sg'),
@@ -54,11 +60,6 @@ export const metadata: Metadata = {
   },
   category: 'Business',
   classification: 'Business Networking Platform',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
   icons: {
     icon: [
       { url: 'https://www.growthlab.sg/growthlab-logo.png', sizes: 'any' },
