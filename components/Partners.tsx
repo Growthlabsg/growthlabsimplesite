@@ -1,12 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Handshake, Building2, GraduationCap } from 'lucide-react'
+import { Handshake, Building2, GraduationCap, Landmark } from 'lucide-react'
 import Image from 'next/image'
 
 interface Partner {
   name: string
-  type: 'corporate' | 'university'
+  type: 'corporate' | 'university' | 'government'
   logo?: string // Path to logo image in public folder
   website?: string
 }
@@ -26,6 +26,31 @@ const partners: Partner[] = [
     name: 'Alibaba Cloud',
     type: 'corporate',
     website: 'https://www.alibabacloud.com',
+  },
+  {
+    name: 'Enterprise Singapore',
+    type: 'government',
+    website: 'https://www.enterprisesg.gov.sg',
+  },
+  {
+    name: 'SGInnovate',
+    type: 'government',
+    website: 'https://www.sginnovate.com',
+  },
+  {
+    name: 'IMDA',
+    type: 'government',
+    website: 'https://www.imda.gov.sg',
+  },
+  {
+    name: 'ACE.SG',
+    type: 'government',
+    website: 'https://ace.sg',
+  },
+  {
+    name: 'National University of Singapore',
+    type: 'university',
+    website: 'https://www.nus.edu.sg',
   },
   {
     name: 'Singapore Management University',
@@ -68,10 +93,14 @@ export default function Partners() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 lg:gap-8"
         >
           {partners.map((partner, index) => {
-            const Icon = partner.type === 'university' ? GraduationCap : Building2
+            const Icon = partner.type === 'university' 
+              ? GraduationCap 
+              : partner.type === 'government' 
+              ? Landmark 
+              : Building2
             return (
               <motion.a
                 key={partner.name}
@@ -109,7 +138,11 @@ export default function Partners() {
 
                 {/* Type Badge */}
                 <span className="mt-2 px-2 py-1 text-[10px] sm:text-xs bg-slate-100 text-slate-600 rounded-full font-medium uppercase tracking-wider">
-                  {partner.type === 'university' ? 'University' : 'Corporate'}
+                  {partner.type === 'university' 
+                    ? 'University' 
+                    : partner.type === 'government' 
+                    ? 'Government' 
+                    : 'Corporate'}
                 </span>
               </motion.a>
             )
