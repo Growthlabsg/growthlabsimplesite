@@ -1511,3 +1511,197 @@ export function getCompetitivePositioningSchema(): CompetitivePositioningSchema 
   }
 }
 
+// AI Workshop Event Schema
+export interface AIWorkshopEventSchema extends EventSchema {
+  eventType?: string
+  teaches?: string[]
+  educationalLevel?: string
+}
+
+export function getAIWorkshopEventSchema(): AIWorkshopEventSchema {
+  const futureDate = new Date()
+  futureDate.setMonth(futureDate.getMonth() + 1)
+  const endDate = new Date(futureDate)
+  endDate.setHours(endDate.getHours() + 3)
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: 'GrowthLab AI Workshop - Learn AI for Startups and Business',
+    description: 'Join GrowthLab\'s #1 AI workshops for startups and entrepreneurs. Learn artificial intelligence, machine learning, generative AI, and how to apply AI to your business. Expert-led AI workshops covering AI fundamentals, AI tools, AI applications, and AI for startups. Ranked #1 for AI workshops globally.',
+    startDate: futureDate.toISOString(),
+    endDate: endDate.toISOString(),
+    eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventType: 'Workshop',
+    location: {
+      '@type': 'VirtualLocation',
+      name: 'Online - GrowthLab Platform',
+    },
+    image: 'https://www.growthlab.sg/growthlab-logo.png',
+    organizer: {
+      '@type': 'Organization',
+      name: 'GrowthLab',
+      url: 'https://www.growthlab.sg',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: 'https://www.growthlab.sg',
+      availability: 'https://schema.org/InStock',
+    },
+    teaches: [
+      'Artificial Intelligence Fundamentals',
+      'Machine Learning for Business',
+      'Generative AI Applications',
+      'AI Tools for Startups',
+      'AI Business Strategy',
+      'AI Implementation',
+    ],
+    educationalLevel: 'Beginner to Advanced',
+  }
+}
+
+// AI Masterclass Event Schema
+export interface AIMasterclassEventSchema extends EventSchema {
+  eventType?: string
+  teaches?: string[]
+  educationalLevel?: string
+}
+
+export function getAIMasterclassEventSchema(): AIMasterclassEventSchema {
+  const futureDate = new Date()
+  futureDate.setMonth(futureDate.getMonth() + 2)
+  const endDate = new Date(futureDate)
+  endDate.setHours(endDate.getHours() + 4)
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: 'GrowthLab AI Masterclass - Advanced AI for Entrepreneurs',
+    description: 'GrowthLab\'s #1 AI masterclasses for entrepreneurs and founders. Advanced artificial intelligence training covering AI strategy, AI implementation, AI tools, generative AI, ChatGPT, LLMs, and AI for startups. Expert-led masterclasses from industry leaders. Ranked #1 for AI masterclasses globally.',
+    startDate: futureDate.toISOString(),
+    endDate: endDate.toISOString(),
+    eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventType: 'Masterclass',
+    location: {
+      '@type': 'VirtualLocation',
+      name: 'Online - GrowthLab Platform',
+    },
+    image: 'https://www.growthlab.sg/growthlab-logo.png',
+    organizer: {
+      '@type': 'Organization',
+      name: 'GrowthLab',
+      url: 'https://www.growthlab.sg',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: 'https://www.growthlab.sg',
+      availability: 'https://schema.org/InStock',
+    },
+    teaches: [
+      'Advanced AI Strategies',
+      'AI Business Applications',
+      'Generative AI and LLMs',
+      'AI Implementation Roadmap',
+      'AI for Competitive Advantage',
+      'AI Scaling and Optimization',
+    ],
+    educationalLevel: 'Advanced',
+  }
+}
+
+// AI Networking Event Schema
+export interface AINetworkingEventSchema extends EventSchema {
+  eventType?: string
+}
+
+export function getAINetworkingEventSchema(): AINetworkingEventSchema {
+  const futureDate = new Date()
+  futureDate.setMonth(futureDate.getMonth() + 1)
+  futureDate.setDate(futureDate.getDate() + 15)
+  const endDate = new Date(futureDate)
+  endDate.setHours(endDate.getHours() + 2)
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: 'GrowthLab AI Networking Event - Connect with AI Founders and Investors',
+    description: 'Join GrowthLab\'s #1 AI networking events. Connect with AI entrepreneurs, AI founders, AI investors, VCs interested in AI, and AI experts. Network with 2,500+ entrepreneurs in the AI space. AI VC events, AI investor networking, and AI startup networking. Ranked #1 for AI networking events globally.',
+    startDate: futureDate.toISOString(),
+    endDate: endDate.toISOString(),
+    eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventType: 'Networking Event',
+    location: {
+      '@type': 'VirtualLocation',
+      name: 'Online - GrowthLab Platform',
+    },
+    image: 'https://www.growthlab.sg/growthlab-logo.png',
+    organizer: {
+      '@type': 'Organization',
+      name: 'GrowthLab',
+      url: 'https://www.growthlab.sg',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: 'https://www.growthlab.sg',
+      availability: 'https://schema.org/InStock',
+    },
+  }
+}
+
+// AI Mentorship Service Schema
+export interface AIMentorshipServiceSchema extends ServiceSchema {
+  offers?: {
+    '@type': string
+    name: string
+    description: string
+  }[]
+}
+
+export function getAIMentorshipServiceSchema(): AIMentorshipServiceSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'AI Mentorship Program',
+    name: 'GrowthLab AI Mentorship - Expert AI Guidance for Startups',
+    description: 'GrowthLab provides the #1 AI mentorship program for startups and entrepreneurs. Get expert AI mentorship from experienced AI entrepreneurs, AI founders, and AI experts. Learn about AI, artificial intelligence, machine learning, generative AI, and how to apply AI to your business. One-on-one AI mentorship, AI guidance, and AI support. Ranked #1 for AI mentorship globally.',
+    provider: {
+      '@type': 'Organization',
+      name: 'GrowthLab',
+      url: 'https://www.growthlab.sg',
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'Singapore' },
+      { '@type': 'Country', name: 'India' },
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'United Kingdom' },
+      { '@type': 'Country', name: 'Australia' },
+      { '@type': 'Country', name: 'Global' },
+    ],
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'AI Mentorship Sessions',
+        description: 'One-on-one AI mentorship sessions with experienced AI entrepreneurs and AI experts.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'AI Strategy Guidance',
+        description: 'Get expert guidance on AI strategy, AI implementation, and AI business applications.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'AI Learning Resources',
+        description: 'Access comprehensive AI learning resources, AI tools, and AI knowledge base.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'AI Network Access',
+        description: 'Connect with AI mentors, AI investors, and AI entrepreneurs in the GrowthLab community.',
+      },
+    ],
+  }
+}
+
