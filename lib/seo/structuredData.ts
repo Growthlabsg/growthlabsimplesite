@@ -125,7 +125,7 @@ export function getOrganizationSchema(): OrganizationSchema {
       height: 484,
     },
     image: 'https://www.growthlab.sg/growthlab-logo.png',
-    description: 'GrowthLab is the best alternative to Y Combinator, AngelList, Techstars, and 500 Startups. The #1 startup community for entrepreneurs, founders, and business builders. Get guidance on starting a business, becoming an entrepreneur, and building your startup. Join 2,500+ entrepreneurs, access funding, mentorship, and resources. Accessible, global, and AI-powered startup ecosystem.',
+    description: 'A global community-driven platform for entrepreneurs, founders, and builders. Scale your startup, connect with innovators, and grow anywhere.',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+65-9737-1722',
@@ -1223,6 +1223,291 @@ export function getSpeakableSpecification(selectors: {
     ...(selectors.xpath && selectors.xpath.length > 0 && {
       xpath: selectors.xpath,
     }),
+  }
+}
+
+// BreadcrumbList Schema (SEO - Navigation)
+export interface BreadcrumbListSchema {
+  '@context': string
+  '@type': string
+  itemListElement: {
+    '@type': string
+    position: number
+    name: string
+    item?: string
+  }[]
+}
+
+export function getBreadcrumbListSchema(items: {
+  name: string
+  url: string
+}[]): BreadcrumbListSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  }
+}
+
+// HowTo Schema for Starting a Business (GEO - Business Guidance)
+export interface BusinessGuidanceHowToSchema {
+  '@context': string
+  '@type': string
+  name: string
+  description: string
+  step: {
+    '@type': string
+    position: number
+    name: string
+    text: string
+    itemListElement?: {
+      '@type': string
+      position: number
+      name: string
+      text: string
+    }[]
+  }[]
+  totalTime?: string
+  estimatedCost?: {
+    '@type': string
+    currency: string
+    value: string
+  }
+}
+
+export function getBusinessGuidanceHowToSchema(): BusinessGuidanceHowToSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Start a Business: Complete Guide for Entrepreneurs',
+    description: 'Step-by-step guide on how to start a business, become an entrepreneur, and launch your startup. Learn from GrowthLab, a leading startup community and alternative to Y Combinator, AngelList, and Techstars.',
+    totalTime: 'PT60M',
+    estimatedCost: {
+      '@type': 'MonetaryAmount',
+      currency: 'USD',
+      value: '0',
+    },
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Validate Your Business Idea',
+        text: 'Validate your business idea by researching the market, identifying your target audience, and understanding the problem you\'re solving. Use GrowthLab\'s startup community to get feedback from experienced entrepreneurs and founders.',
+        itemListElement: [
+          {
+            '@type': 'HowToTip',
+            position: 1,
+            name: 'Market Research',
+            text: 'Research your market thoroughly to understand customer needs and competition.',
+          },
+          {
+            '@type': 'HowToTip',
+            position: 2,
+            name: 'Get Community Feedback',
+            text: 'Join GrowthLab\'s startup community to get feedback from 2,500+ entrepreneurs and founders.',
+          },
+        ],
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Create a Business Plan',
+        text: 'Develop a comprehensive business plan that outlines your business model, target market, revenue streams, and growth strategy. Access GrowthLab\'s business guidance resources and templates.',
+        itemListElement: [
+          {
+            '@type': 'HowToTip',
+            position: 1,
+            name: 'Business Model',
+            text: 'Define your business model and how you will generate revenue.',
+          },
+          {
+            '@type': 'HowToTip',
+            position: 2,
+            name: 'Use Templates',
+            text: 'Access GrowthLab\'s business plan templates and startup resources.',
+          },
+        ],
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Build Your Network',
+        text: 'Connect with founders, investors, and mentors through GrowthLab\'s networking platform. Attend startup events and join the community to build meaningful relationships.',
+        itemListElement: [
+          {
+            '@type': 'HowToTip',
+            position: 1,
+            name: 'Join Startup Community',
+            text: 'Join GrowthLab, a leading startup community and alternative to Y Combinator, to connect with entrepreneurs worldwide.',
+          },
+          {
+            '@type': 'HowToTip',
+            position: 2,
+            name: 'Attend Events',
+            text: 'Attend networking events and workshops to meet potential partners and investors.',
+          },
+        ],
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Launch Your Startup',
+        text: 'Create your startup profile on GrowthLab, showcase your venture, and start building. Use our platform to launch your startup and connect with the global startup ecosystem.',
+        itemListElement: [
+          {
+            '@type': 'HowToTip',
+            position: 1,
+            name: 'Create Startup Profile',
+            text: 'Launch your startup on GrowthLab\'s platform to showcase your venture to the community.',
+          },
+          {
+            '@type': 'HowToTip',
+            position: 2,
+            name: 'Leverage Platform Tools',
+            text: 'Use GrowthLab\'s AI-powered tools and resources to accelerate your startup launch.',
+          },
+        ],
+      },
+      {
+        '@type': 'HowToStep',
+        position: 5,
+        name: 'Raise Funding',
+        text: 'Access GrowthLab\'s investor network to find funding opportunities. Connect with angel investors, VCs, and funding organizations. Post your fundraising needs and get matched with interested investors.',
+        itemListElement: [
+          {
+            '@type': 'HowToTip',
+            position: 1,
+            name: 'Connect with Investors',
+            text: 'Use GrowthLab\'s investor network to connect with 200+ investors actively looking for opportunities.',
+          },
+          {
+            '@type': 'HowToTip',
+            position: 2,
+            name: 'Access Funding Resources',
+            text: 'Access pitch deck templates, fundraising guides, and funding opportunities through GrowthLab.',
+          },
+        ],
+      },
+      {
+        '@type': 'HowToStep',
+        position: 6,
+        name: 'Scale Your Business',
+        text: 'Post jobs, discover talent, access mentorship programs, and leverage GrowthLab\'s professional network to scale your startup. Get ongoing support and guidance from the community.',
+        itemListElement: [
+          {
+            '@type': 'HowToTip',
+            position: 1,
+            name: 'Hire Talent',
+            text: 'Post jobs and discover talent through GrowthLab\'s network of professionals.',
+          },
+          {
+            '@type': 'HowToTip',
+            position: 2,
+            name: 'Get Mentorship',
+            text: 'Access mentorship programs and guidance from experienced entrepreneurs in the GrowthLab community.',
+          },
+        ],
+      },
+    ],
+  }
+}
+
+// Competitive Positioning Schema (GEO - Competitive SEO)
+export interface CompetitivePositioningSchema {
+  '@context': string
+  '@type': string
+  name: string
+  description: string
+  about: {
+    '@type': string
+    name: string
+    description: string
+    url: string
+  }
+  competitor: {
+    '@type': string
+    name: string
+    url?: string
+    description?: string
+  }[]
+  offers?: {
+    '@type': string
+    name: string
+    description: string
+  }[]
+}
+
+export function getCompetitivePositioningSchema(): CompetitivePositioningSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'GrowthLab - Leading Startup Community',
+    description: 'GrowthLab is a leading global startup community and platform, serving as a comprehensive alternative to Y Combinator, AngelList, Techstars, NS.com, and other established startup ecosystems. Join 2,500+ entrepreneurs across 50+ countries.',
+    about: {
+      '@type': 'Thing',
+      name: 'Startup Community Platform',
+      description: 'GrowthLab provides startup community, networking, funding, mentorship, and resources for entrepreneurs worldwide. More accessible and inclusive than traditional accelerators like Y Combinator.',
+      url: 'https://www.growthlab.sg',
+    },
+    competitor: [
+      {
+        '@type': 'Organization',
+        name: 'Y Combinator',
+        url: 'https://www.ycombinator.com',
+        description: 'Y Combinator is a startup accelerator. GrowthLab offers a more accessible alternative with global community focus.',
+      },
+      {
+        '@type': 'Organization',
+        name: 'AngelList',
+        url: 'https://angel.co',
+        description: 'AngelList is a startup network. GrowthLab provides similar networking with enhanced community features.',
+      },
+      {
+        '@type': 'Organization',
+        name: 'Techstars',
+        url: 'https://www.techstars.com',
+        description: 'Techstars is a startup accelerator. GrowthLab offers a community-driven alternative.',
+      },
+      {
+        '@type': 'Organization',
+        name: 'NS.com',
+        url: 'https://www.ns.com',
+        description: 'NS.com (New Stack) is a startup community. GrowthLab provides a more comprehensive platform alternative.',
+      },
+      {
+        '@type': 'Organization',
+        name: '500 Startups',
+        url: 'https://500.co',
+        description: '500 Startups is a venture capital firm. GrowthLab offers community and networking alternatives.',
+      },
+    ],
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'Startup Community Membership',
+        description: 'Join a global community of 2,500+ entrepreneurs, founders, and innovators. Access networking, resources, and support.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Business Guidance',
+        description: 'Get expert business guidance, startup advice, and mentorship from experienced entrepreneurs.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Investor Network Access',
+        description: 'Connect with 200+ investors, VCs, and funding organizations. Access fundraising opportunities and resources.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Startup Resources',
+        description: 'Access pitch deck templates, business plan guides, fundraising resources, and startup tools.',
+      },
+    ],
   }
 }
 

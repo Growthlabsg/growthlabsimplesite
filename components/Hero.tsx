@@ -51,7 +51,7 @@ export default function Hero() {
   return (
     <>
       <StructuredData data={[growthLabDefinition, heroSpeakable]} />
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-slate-50 to-white pt-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-slate-50 to-white pt-20 overflow-hidden">
       {/* Enhanced animated background elements */}
       <div className="absolute inset-0 overflow-hidden z-10">
         {/* Gradient orbs - completely static on mobile for performance */}
@@ -62,32 +62,32 @@ export default function Hero() {
           </>
         ) : (
           <>
-            <motion.div
+        <motion.div
               className="absolute top-1/4 right-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full blur-3xl"
-              animate={{
-                scale: [1, 1.3, 1],
-                x: [0, 100, 0],
-                y: [0, 50, 0],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            />
-            <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        <motion.div
               className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-gradient-to-br from-amber/10 via-amber/5 to-transparent rounded-full blur-3xl"
-              animate={{
-                scale: [1, 1.4, 1],
-                x: [0, -80, 0],
-                y: [0, -60, 0],
-              }}
-              transition={{
-                duration: 25,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            />
+          animate={{
+            scale: [1, 1.4, 1],
+            x: [0, -80, 0],
+            y: [0, -60, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
           </>
         )}
         
@@ -190,20 +190,19 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-slate-700 mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed font-light px-4"
           >
-            The best alternative to Y Combinator, AngelList, and Techstars. GrowthLab is the{' '}
+            GrowthLab is a global startup ecosystem that empowers founders, investors, students, and innovators to{' '}
             <motion.span
               className="font-semibold text-slate-900 inline-block relative"
               whileHover={{ scale: 1.05 }}
             >
-              #1 startup community and entrepreneur network
+              connect, launch, and grow
               <motion.span
                 className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-primary via-amber to-primary rounded-full"
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.3 }}
               />
-            </motion.span>{' '}
-            for entrepreneurs, founders, and business builders. Get guidance on starting a business, becoming an entrepreneur, and building your startup.
+            </motion.span>.
           </motion.p>
 
           <motion.p
@@ -212,10 +211,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
             className="text-base sm:text-lg lg:text-xl text-slate-600 mb-8 sm:mb-12 lg:mb-16 max-w-2xl mx-auto font-light px-4"
           >
-            Join 2,500+ entrepreneurs in our startup community. Whether you're{' '}
-            <span className="font-semibold text-primary">starting something on your own</span>,{' '}
-            <span className="font-semibold text-primary">looking for business guidance</span>, or{' '}
-            <span className="font-semibold text-primary">ready to become an entrepreneur</span> — we provide the resources, network, and support you need.
+            Turn ideas into scalable ventures — faster and smarter. Think of us as your{' '}
+            <span className="font-semibold text-primary">"LinkedIn for startups."</span>
           </motion.p>
 
           {/* Enhanced Interactive CTAs */}
@@ -229,10 +226,10 @@ export default function Hero() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-                <Link
-                  href="/register"
+              <Link
+                href="/register"
                   className="group relative px-6 sm:px-8 lg:px-10 py-4 sm:py-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 flex items-center space-x-2 min-h-[48px] sm:min-h-[56px] overflow-hidden rounded-lg shadow-xl hover:shadow-2xl"
-                >
+              >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-primary via-amber to-primary opacity-0 group-hover:opacity-20"
                   transition={{ duration: 0.3 }}

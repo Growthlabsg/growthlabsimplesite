@@ -4,9 +4,10 @@ import './globals.css'
 import Analytics from '@/components/Analytics'
 import Providers from './providers'
 import StructuredData from '@/components/StructuredData'
-import { getOrganizationSchema, getLocalBusinessSchema, getWebsiteSchema, getSoftwareApplicationSchema, getPlaceSchema, getServiceAreaSchema, getKnowledgeGraphSchema } from '@/lib/seo/structuredData'
+import { getOrganizationSchema, getLocalBusinessSchema, getWebsiteSchema, getSoftwareApplicationSchema, getPlaceSchema, getServiceAreaSchema, getKnowledgeGraphSchema, getBusinessGuidanceHowToSchema, getCompetitivePositioningSchema, getBreadcrumbListSchema } from '@/lib/seo/structuredData'
 import HreflangTags from './hreflang'
 import SocialMediaMeta from '@/components/SocialMediaMeta'
+import HiddenSEOContent from '@/components/HiddenSEOContent'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -25,9 +26,9 @@ export const metadata: Metadata = {
     default: 'GrowthLab - Build. Connect. Scale.',
     template: '%s | GrowthLab',
   },
-  description: 'GrowthLab - The best alternative to Y Combinator, AngelList, and Techstars. Join 2,500+ entrepreneurs in our startup community. Get funding, mentorship, and resources. Accessible, global, and AI-powered startup ecosystem. Start building your startup today.',
+  description: 'A global community-driven platform for entrepreneurs, founders, and builders. Based in Singapore, serving Southeast Asia and beyond. Scale your startup, connect with innovators, and grow anywhere. Join 2,500+ members across 50+ countries.',
   keywords: [
-    // Primary keywords - startup community
+    // Primary - Startup Community
     'startup community',
     'entrepreneur community',
     'startup ecosystem',
@@ -36,7 +37,9 @@ export const metadata: Metadata = {
     'startup network',
     'entrepreneur network',
     'business network',
-    // Starting a business
+    'startup platform',
+    'entrepreneur platform',
+    // Starting a Business
     'how to start a business',
     'starting a business',
     'start your own business',
@@ -47,7 +50,12 @@ export const metadata: Metadata = {
     'how to start a startup',
     'starting a company',
     'start your own company',
-    // Business guidance
+    'how to launch a startup',
+    'launching a startup',
+    'starting a venture',
+    'how to build a business',
+    'building a business from scratch',
+    // Business Guidance
     'business guidance',
     'startup guidance',
     'entrepreneur guidance',
@@ -59,7 +67,11 @@ export const metadata: Metadata = {
     'entrepreneur resources',
     'startup resources',
     'business resources',
-    // Core terms
+    'help starting a business',
+    'guide to starting a business',
+    'startup help',
+    'entrepreneur help',
+    // Core Terms
     'startup',
     'entrepreneurship',
     'entrepreneur',
@@ -75,7 +87,8 @@ export const metadata: Metadata = {
     'India startup',
     'India entrepreneur',
     'startup community India',
-    // Networking and growth
+    'global startup network',
+    // Networking and Growth
     'networking',
     'business networking',
     'startup networking',
@@ -83,30 +96,16 @@ export const metadata: Metadata = {
     'growth',
     'startup growth',
     'business growth',
-    // Funding and resources
+    // Funding and Resources
     'fundraising',
     'startup funding',
     'business funding',
     'venture capital',
     'startup accelerator',
     'investor network',
-    // Platform features
-    'entrepreneur platform',
-    'startup platform',
-    'business platform',
-    'global startup network',
     'startup directory',
     'business directory',
-    // Additional long-tail
-    'community for entrepreneurs',
-    'community for startups',
-    'community for founders',
-    'help starting a business',
-    'guide to starting a business',
-    'how to become a business owner',
-    'entrepreneurial journey',
-    'startup journey',
-    // Competitive keywords - Y Combinator alternatives
+    // Competitive Keywords - Y Combinator alternatives
     'Y Combinator alternative',
     'YC alternative',
     'Y Combinator competitor',
@@ -115,22 +114,23 @@ export const metadata: Metadata = {
     'like Y Combinator',
     'best startup accelerator',
     'top startup accelerator',
-    // Competitive keywords - AngelList alternatives
+    // Competitive Keywords - AngelList alternatives
     'AngelList alternative',
     'AngelList competitor',
     'alternative to AngelList',
     'like AngelList',
     'startup network like AngelList',
-    // Competitive keywords - Techstars alternatives
+    // Competitive Keywords - Techstars alternatives
     'Techstars alternative',
     'Techstars competitor',
     'alternative to Techstars',
     'like Techstars',
-    // Competitive keywords - 500 Startups alternatives
-    '500 Startups alternative',
-    '500 Startups competitor',
-    'alternative to 500 Startups',
-    // Competitive keywords - general comparisons
+    // Competitive Keywords - NS.com alternatives
+    'NS.com alternative',
+    'New Stack alternative',
+    'alternative to NS.com',
+    'NS alternative',
+    // Competitive Keywords - general comparisons
     'best startup community',
     'top startup community',
     'best startup network',
@@ -143,10 +143,15 @@ export const metadata: Metadata = {
     'startup community vs accelerator',
     'best startup ecosystem',
     'top startup ecosystem',
-    // NS.com / New Stack alternatives
-    'NS.com alternative',
-    'New Stack alternative',
-    'alternative to NS.com',
+    // Additional long-tail
+    'community for entrepreneurs',
+    'community for startups',
+    'community for founders',
+    'how to become a business owner',
+    'entrepreneurial journey',
+    'startup journey',
+    'startup support',
+    'entrepreneur support',
   ],
   authors: [{ name: 'GrowthLab', url: 'https://www.growthlab.sg' }],
   creator: 'GrowthLab',
@@ -185,8 +190,8 @@ export const metadata: Metadata = {
     startupImage: '/growthlab-logo.png',
   },
   openGraph: {
-    title: 'GrowthLab - Best Alternative to Y Combinator & AngelList | Startup Community',
-    description: 'GrowthLab is the best alternative to Y Combinator, AngelList, Techstars, and 500 Startups. Join 2,500+ entrepreneurs in our accessible startup community. Get funding, mentorship, and resources. Global, AI-powered, and more inclusive than traditional accelerators.',
+    title: 'GrowthLab - Build. Connect. Scale. | Singapore Startup Community',
+    description: 'A global community-driven platform for entrepreneurs, founders, and builders. Based in Singapore, serving 2,500+ members across 50+ countries. Connect, launch, fund, and grow your startup.',
     url: 'https://www.growthlab.sg',
     siteName: 'GrowthLab',
     locale: 'en_SG',
@@ -215,8 +220,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GrowthLab - Best Alternative to Y Combinator & AngelList | Startup Community',
-    description: 'The best alternative to Y Combinator, AngelList, Techstars. Join 2,500+ entrepreneurs. Accessible startup community with funding, mentorship, and resources. More inclusive than traditional accelerators.',
+    title: 'GrowthLab - Build. Connect. Scale. | Singapore Startup Community',
+    description: 'A global community-driven platform for entrepreneurs, founders, and builders. Based in Singapore, serving 2,500+ members across 50+ countries. Join us!',
     images: [
       {
         url: 'https://www.growthlab.sg/growthlab-logo.png',
@@ -319,6 +324,11 @@ export default function RootLayout({
   const placeSchema = getPlaceSchema()
   const serviceAreaSchema = getServiceAreaSchema()
   const knowledgeGraphSchema = getKnowledgeGraphSchema()
+  const businessGuidanceHowTo = getBusinessGuidanceHowToSchema()
+  const competitivePositioning = getCompetitivePositioningSchema()
+  const homeBreadcrumb = getBreadcrumbListSchema([
+    { name: 'Home', url: 'https://www.growthlab.sg' },
+  ])
 
   return (
     <html lang="en-SG" className={inter.variable}>
@@ -339,11 +349,12 @@ export default function RootLayout({
         <link rel="icon" href="https://www.growthlab.sg/growthlab-logo.png" sizes="any" />
         <HreflangTags />
         <SocialMediaMeta />
-        <StructuredData data={[organizationSchema, localBusinessSchema, websiteSchema, softwareAppSchema, placeSchema, serviceAreaSchema, knowledgeGraphSchema]} />
+        <StructuredData data={[organizationSchema, localBusinessSchema, websiteSchema, softwareAppSchema, placeSchema, serviceAreaSchema, knowledgeGraphSchema, businessGuidanceHowTo, competitivePositioning, homeBreadcrumb]} />
       </head>
       <body>
         <Providers>
           {children}
+          <HiddenSEOContent />
         </Providers>
         <Analytics />
       </body>
