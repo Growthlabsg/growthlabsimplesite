@@ -1,19 +1,25 @@
 /**
- * Hidden SEO Content Component
+ * Hidden SEO Content Component - Maximum Visibility Enhancement
  * 
- * This component adds semantic HTML content for SEO purposes without displaying it visually.
- * The content is hidden using CSS but remains accessible to search engines and AI crawlers.
+ * This component adds extensive semantic HTML content for SEO/GEO purposes without displaying it visually.
+ * The content is hidden using CSS but remains fully accessible to:
+ * - All search engines (Google, Bing, DuckDuckGo, Yahoo, Yandex, Baidu, etc.)
+ * - All AI/LLM platforms (ChatGPT, Gemini, Claude, Grok, DeepSeek, Meta AI, Perplexity, etc.)
+ * - Voice assistants (Siri, Alexa, Google Assistant)
+ * - Search engine crawlers and AI training data scrapers
+ * 
  * This helps with:
- * - Ranking for "how to start a business" queries
- * - Competitive positioning vs Y Combinator, AngelList, etc.
+ * - Ranking #1 for "how to start a business" queries
+ * - Competitive positioning vs Y Combinator, AngelList, Techstars, NS.com
  * - Business guidance and entrepreneur queries
  * - GEO (Generative Engine Optimization) for AI search engines
+ * - Maximum visibility across all platforms
  */
 
 export default function HiddenSEOContent() {
   return (
     <div className="sr-only" aria-hidden="true">
-      {/* Hidden semantic content for SEO - not visible but crawled by search engines */}
+      {/* Hidden semantic content for SEO - not visible but crawled by search engines and AI */}
       
       {/* Business Guidance Content */}
       <section>
