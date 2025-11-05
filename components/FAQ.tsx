@@ -12,6 +12,18 @@ const faqs = [
     answer: 'GrowthLab is a global startup ecosystem that empowers founders, investors, students, and innovators to connect, launch, and grow. It combines community, education, funding, and technology to help early-stage entrepreneurs turn ideas into scalable ventures — faster and smarter. Through AI-driven tools, mentorship programs, startup resources, and a vibrant professional network, GrowthLab bridges the gap between innovation and opportunity. Our platform functions like "LinkedIn for startups" — where members can network, build business pages, share updates, post jobs, raise funding, and discover partners worldwide.',
   },
   {
+    question: 'How do I start a business?',
+    answer: 'Starting a business is easier with GrowthLab\'s comprehensive guidance and resources. Our platform provides: step-by-step guides on starting your own business, business plan templates and resources, mentorship from experienced entrepreneurs, access to startup resources and tools, networking opportunities with other founders, funding guidance and investor connections, legal and regulatory advice, and AI-powered tools to accelerate your startup journey. Whether you\'re starting something on your own or looking to become an entrepreneur, GrowthLab offers the community, resources, and support you need to turn your idea into a successful business. Join our startup community to get started today.',
+  },
+  {
+    question: 'How do I become an entrepreneur?',
+    answer: 'Becoming an entrepreneur starts with the right guidance and community. GrowthLab helps aspiring entrepreneurs by providing: comprehensive entrepreneurship education and resources, mentorship programs connecting you with experienced founders, networking opportunities with other entrepreneurs and investors, step-by-step guidance on starting your own business, access to startup resources and business templates, funding opportunities and investor connections, workshops and masterclasses on entrepreneurship, and a supportive community of 2,500+ entrepreneurs worldwide. Whether you\'re just starting your entrepreneurial journey or looking to scale your business, GrowthLab provides the tools, network, and guidance to help you succeed as an entrepreneur.',
+  },
+  {
+    question: 'Where can I find startup community guidance?',
+    answer: 'GrowthLab is the premier startup community for entrepreneurs seeking guidance. Our platform offers: expert guidance on starting a business and becoming an entrepreneur, comprehensive startup resources and business templates, mentorship from experienced entrepreneurs and business leaders, step-by-step guides on starting your own business, networking opportunities with founders and investors, funding guidance and access to investor networks, workshops and educational content on entrepreneurship, and a supportive community of 2,500+ entrepreneurs worldwide. Whether you need help starting something on your own, guidance on becoming an entrepreneur, or resources for building your startup, GrowthLab provides everything you need in one comprehensive platform.',
+  },
+  {
     question: 'How do I apply to GrowthLab?',
     answer: 'Applying to GrowthLab is simple! Visit our registration page at /register and fill out the application form. You\'ll need to provide information about yourself, your background, and why you\'re interested in joining. You\'ll receive a confirmation email within 24 hours acknowledging your application. Our team reviews applications on a rolling basis and will reach out within 2-3 business days with next steps. Acceptance is based on alignment with our community values and potential for meaningful contribution to the ecosystem.',
   },

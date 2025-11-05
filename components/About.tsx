@@ -55,8 +55,8 @@ export default function About() {
                 transition={{ duration: 0.6 }}
                 className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-light"
               >
-                GrowthLab is a <strong className="font-semibold text-slate-900 relative">
-                  <span className="relative z-10">global startup ecosystem</span>
+                GrowthLab is the leading <strong className="font-semibold text-slate-900 relative">
+                  <span className="relative z-10">startup community and entrepreneur network</span>
                   <motion.span
                     className="absolute bottom-0 left-0 right-0 h-2 bg-primary/20 -z-0"
                     initial={{ width: 0 }}
@@ -64,7 +64,7 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.5 }}
                   />
-                </strong> that empowers founders, investors, students, and innovators to connect, launch, and grow.
+                </strong> for anyone looking to start a business, become an entrepreneur, or build their startup. We provide comprehensive guidance, resources, and support for your entrepreneurial journey.
               </motion.p>
               
               <motion.p
@@ -74,7 +74,7 @@ export default function About() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-light"
               >
-                It combines <strong className="font-semibold text-slate-900">community, education, funding, and technology</strong> to help early-stage entrepreneurs turn ideas into scalable ventures — faster and smarter.
+                Whether you're <strong className="font-semibold text-slate-900">starting something on your own</strong>, need <strong className="font-semibold text-slate-900">business guidance</strong>, or want to <strong className="font-semibold text-slate-900">become an entrepreneur</strong>, GrowthLab combines community, education, funding, and technology to help you turn ideas into scalable ventures — faster and smarter.
               </motion.p>
               
               <motion.p
@@ -84,7 +84,7 @@ export default function About() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-light"
               >
-                Through <strong className="font-semibold text-slate-900">AI-driven tools, mentorship programs, startup resources, and a vibrant professional network</strong>, GrowthLab bridges the gap between innovation and opportunity.
+                Through <strong className="font-semibold text-slate-900">AI-driven tools, mentorship programs, startup resources, business guidance, and a vibrant professional network of 2,500+ entrepreneurs</strong>, GrowthLab bridges the gap between innovation and opportunity, helping you start your own business and succeed as an entrepreneur.
               </motion.p>
 
               {/* Platform Features */}

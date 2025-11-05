@@ -190,12 +190,12 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-slate-700 mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed font-light px-4"
           >
-            GrowthLab is a global startup ecosystem that empowers founders, investors, students, and innovators to{' '}
+            GrowthLab is the #1 startup community for entrepreneurs, founders, and business builders. Get guidance on{' '}
             <motion.span
               className="font-semibold text-slate-900 inline-block relative"
               whileHover={{ scale: 1.05 }}
             >
-              connect, launch, and grow
+              starting a business, becoming an entrepreneur, and building your startup
               <motion.span
                 className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-primary via-amber to-primary rounded-full"
                 initial={{ scaleX: 0 }}
@@ -211,8 +211,10 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
             className="text-base sm:text-lg lg:text-xl text-slate-600 mb-8 sm:mb-12 lg:mb-16 max-w-2xl mx-auto font-light px-4"
           >
-            Turn ideas into scalable ventures — faster and smarter. Think of us as your{' '}
-            <span className="font-semibold text-primary">"LinkedIn for startups."</span>
+            Join 2,500+ entrepreneurs in our startup community. Whether you're{' '}
+            <span className="font-semibold text-primary">starting something on your own</span>,{' '}
+            <span className="font-semibold text-primary">looking for business guidance</span>, or{' '}
+            <span className="font-semibold text-primary">ready to become an entrepreneur</span> — we provide the resources, network, and support you need.
           </motion.p>
 
           {/* Enhanced Interactive CTAs */}
