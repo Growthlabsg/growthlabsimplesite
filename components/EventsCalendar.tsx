@@ -1,93 +1,106 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Calendar, Clock, MapPin, Users, ExternalLink, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
+import { motion } from "framer-motion";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Users,
+  ExternalLink,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
 
 const upcomingEvents = [
   {
-    title: 'ROOFTOP SUNSET MIXER – Startup Surge Kickoff',
-    date: '2025-11-07',
-    time: '6:30 PM - 9:00 PM',
-    location: 'Skysuites@Anson – 72nd Floor Sky Terrace',
-    type: 'Networking',
-    attendees: 'Coming soon',
-    description: 'Kick off Startup Surge Fridays with GrowthLab at Singapore\'s highest private rooftop mixer – panoramic CBD sunset, cold drinks, and real founders. BYOB. 72 floors above SG.',
-    link: 'https://luma.com/am60bizs',
+    title: "ROOFTOP SUNSET MIXER – Startup Surge Kickoff",
+    date: "2025-11-07",
+    time: "6:30 PM - 9:00 PM",
+    location: "Skysuites@Anson – 72nd Floor Sky Terrace",
+    type: "Networking",
+    attendees: "Coming soon",
+    description:
+      "Kick off Startup Surge Fridays with GrowthLab at Singapore's highest private rooftop mixer – panoramic CBD sunset, cold drinks, and real founders. BYOB. 72 floors above SG.",
+    link: "https://luma.com/am60bizs",
     featured: true,
   },
   {
-    title: 'GrowthLab Monthly Networking Mixer',
-    date: '2025-12-05',
-    time: '6:00 PM - 8:00 PM',
-    location: 'Singapore • Hybrid',
-    type: 'Networking',
-    attendees: '50+',
-    description: 'Join fellow founders, investors, and innovators for our monthly networking event.',
-    link: 'https://lu.ma/growthlab.sg',
+    title: "GrowthLab Monthly Networking Mixer",
+    date: "2025-12-05",
+    time: "6:00 PM - 8:00 PM",
+    location: "Singapore • Hybrid",
+    type: "Networking",
+    attendees: "50+",
+    description:
+      "Join fellow founders, investors, and innovators for our monthly networking event.",
+    link: "https://lu.ma/growthlab.sg",
     featured: true,
   },
   {
-    title: 'AI Tools Workshop for Startups',
-    date: '2025-12-12',
-    time: '2:00 PM - 4:00 PM',
-    location: 'Online',
-    type: 'Workshop',
-    attendees: '30+',
-    description: 'Learn how to leverage AI tools to accelerate your startup journey.',
-    link: 'https://lu.ma/growthlab.sg',
+    title: "AI Tools Workshop for Startups",
+    date: "2025-12-12",
+    time: "2:00 PM - 4:00 PM",
+    location: "Online",
+    type: "Workshop",
+    attendees: "30+",
+    description:
+      "Learn how to leverage AI tools to accelerate your startup journey.",
+    link: "https://lu.ma/growthlab.sg",
     featured: true,
   },
   {
-    title: 'Investor Pitch Practice Session',
-    date: '2025-12-18',
-    time: '10:00 AM - 12:00 PM',
-    location: 'Singapore',
-    type: 'Workshop',
-    attendees: '25+',
-    description: 'Practice your pitch and get feedback from experienced investors.',
-    link: 'https://lu.ma/growthlab.sg',
+    title: "Investor Pitch Practice Session",
+    date: "2025-12-18",
+    time: "10:00 AM - 12:00 PM",
+    location: "Singapore",
+    type: "Workshop",
+    attendees: "25+",
+    description:
+      "Practice your pitch and get feedback from experienced investors.",
+    link: "https://lu.ma/growthlab.sg",
   },
   {
-    title: 'Founder Stories: Scaling Your Startup',
-    date: '2026-01-10',
-    time: '7:00 PM - 9:00 PM',
-    location: 'Hybrid',
-    type: 'Talk',
-    attendees: '100+',
-    description: 'Hear from successful founders about their scaling journey.',
-    link: 'https://lu.ma/growthlab.sg',
+    title: "Founder Stories: Scaling Your Startup",
+    date: "2026-01-10",
+    time: "7:00 PM - 9:00 PM",
+    location: "Hybrid",
+    type: "Talk",
+    attendees: "100+",
+    description: "Hear from successful founders about their scaling journey.",
+    link: "https://lu.ma/growthlab.sg",
   },
   {
-    title: 'Student Entrepreneurship Bootcamp',
-    date: '2026-01-20',
-    time: '9:00 AM - 5:00 PM',
-    location: 'Singapore',
-    type: 'Program',
-    attendees: '40+',
-    description: 'A full-day bootcamp for student entrepreneurs to launch their ideas.',
-    link: 'https://lu.ma/growthlab.sg',
+    title: "Student Entrepreneurship Bootcamp",
+    date: "2026-01-20",
+    time: "9:00 AM - 5:00 PM",
+    location: "Singapore",
+    type: "Program",
+    attendees: "40+",
+    description:
+      "A full-day bootcamp for student entrepreneurs to launch their ideas.",
+    link: "https://lu.ma/growthlab.sg",
   },
   {
-    title: 'GrowthLab Conference 2026',
-    date: '2026-02-15',
-    time: 'All Day',
-    location: 'Singapore',
-    type: 'Conference',
-    attendees: '500+',
-    description: 'Our annual conference featuring 50+ speakers, workshops, and networking.',
-    link: 'https://lu.ma/growthlab.sg',
+    title: "GrowthLab Conference 2026",
+    date: "2026-02-15",
+    time: "All Day",
+    location: "Singapore",
+    type: "Conference",
+    attendees: "500+",
+    description:
+      "Our annual conference featuring 50+ speakers, workshops, and networking.",
+    link: "https://lu.ma/growthlab.sg",
     featured: true,
   },
-]
+];
 
 const eventTypeColors = {
-  Networking: 'bg-blue-100 text-blue-700 border-blue-200',
-  Workshop: 'bg-purple-100 text-purple-700 border-purple-200',
-  Talk: 'bg-amber-100 text-amber-700 border-amber-200',
-  Program: 'bg-green-100 text-green-700 border-green-200',
-  Conference: 'bg-primary/10 text-primary border-primary/30',
-}
+  Networking: "bg-blue-100 text-blue-700 border-blue-200",
+  Workshop: "bg-purple-100 text-purple-700 border-purple-200",
+  Talk: "bg-amber-100 text-amber-700 border-amber-200",
+  Program: "bg-green-100 text-green-700 border-green-200",
+  Conference: "bg-primary/10 text-primary border-primary/30",
+};
 
 export default function EventsCalendar() {
   return (
@@ -103,11 +116,13 @@ export default function EventsCalendar() {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="lg:col-span-2 relative z-10"
           >
-            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">05</span>
+            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">
+              05
+            </span>
             <motion.div
               className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
               initial={{ width: 0 }}
@@ -120,8 +135,8 @@ export default function EventsCalendar() {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
             className="lg:col-span-10"
           >
             <div className="flex items-center gap-3 mb-6">
@@ -131,7 +146,8 @@ export default function EventsCalendar() {
               </h2>
             </div>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light">
-              Join our events, workshops, and networking sessions to connect, learn, and grow with the community.
+              Join our events, workshops, and networking sessions to connect,
+              learn, and grow with the community.
             </p>
           </motion.div>
         </div>
@@ -146,7 +162,7 @@ export default function EventsCalendar() {
                 key={event.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="group relative bg-white rounded-2xl p-8 border border-slate-200 hover:border-primary/50 transition-all duration-500 hover:shadow-xl overflow-hidden"
@@ -157,8 +173,8 @@ export default function EventsCalendar() {
                 {/* Shine effect */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '200%', opacity: 1 }}
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "200%", opacity: 1 }}
                   transition={{ duration: 0.6 }}
                 />
 
@@ -167,7 +183,9 @@ export default function EventsCalendar() {
                   <div className="flex items-center justify-between mb-4">
                     <span
                       className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
-                        eventTypeColors[event.type as keyof typeof eventTypeColors]
+                        eventTypeColors[
+                          event.type as keyof typeof eventTypeColors
+                        ]
                       }`}
                     >
                       {event.type}
@@ -185,14 +203,16 @@ export default function EventsCalendar() {
                         {new Date(event.date).getDate()}
                       </span>
                       <span className="text-xs font-medium text-primary">
-                        {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                        {new Date(event.date).toLocaleDateString("en-US", {
+                          month: "short",
+                        })}
                       </span>
                     </div>
                     <div className="flex-1">
                       <p className="text-sm text-slate-600 font-medium">
-                        {new Date(event.date).toLocaleDateString('en-US', {
-                          weekday: 'long',
-                          year: 'numeric',
+                        {new Date(event.date).toLocaleDateString("en-US", {
+                          weekday: "long",
+                          year: "numeric",
                         })}
                       </p>
                       <p className="text-xs text-slate-500 flex items-center gap-1.5 mt-1">
@@ -208,7 +228,9 @@ export default function EventsCalendar() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-600 leading-relaxed font-light mb-6">{event.description}</p>
+                  <p className="text-slate-600 leading-relaxed font-light mb-6">
+                    {event.description}
+                  </p>
 
                   {/* Location & CTA */}
                   <div className="flex items-center justify-between pt-4 border-t border-slate-200">
@@ -223,7 +245,10 @@ export default function EventsCalendar() {
                       className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all"
                     >
                       Register
-                      <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
+                      <ExternalLink
+                        size={18}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
                     </a>
                   </div>
                 </div>
@@ -252,7 +277,9 @@ export default function EventsCalendar() {
                   <div className="flex items-center justify-between mb-3">
                     <span
                       className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${
-                        eventTypeColors[event.type as keyof typeof eventTypeColors]
+                        eventTypeColors[
+                          event.type as keyof typeof eventTypeColors
+                        ]
                       }`}
                     >
                       {event.type}
@@ -270,7 +297,9 @@ export default function EventsCalendar() {
                         {new Date(event.date).getDate()}
                       </span>
                       <span className="text-[10px] font-medium text-primary">
-                        {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                        {new Date(event.date).toLocaleDateString("en-US", {
+                          month: "short",
+                        })}
                       </span>
                     </div>
                     <div className="flex-1">
@@ -286,7 +315,9 @@ export default function EventsCalendar() {
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-lg font-bold text-slate-900 mb-2 line-clamp-2">{event.title}</h4>
+                  <h4 className="text-lg font-bold text-slate-900 mb-2 line-clamp-2">
+                    {event.title}
+                  </h4>
                   <p className="text-sm text-slate-600 font-light mb-4 leading-relaxed line-clamp-2">
                     {event.description}
                   </p>
@@ -299,7 +330,10 @@ export default function EventsCalendar() {
                     className="text-sm text-primary font-medium hover:gap-2 inline-flex items-center gap-1.5 transition-all"
                   >
                     View Details
-                    <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
+                    <ExternalLink
+                      size={14}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
                   </a>
                 </div>
               </motion.div>
@@ -327,6 +361,5 @@ export default function EventsCalendar() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-

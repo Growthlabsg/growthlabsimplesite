@@ -1,83 +1,108 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function CursorFollower() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
-  const [isTouchDevice, setIsTouchDevice] = useState(true) // Default to true to prevent flash
+  const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(true);
+  const innerCursorRef = useRef<HTMLDivElement>(null);
+  const outerCursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Enhanced touch device detection - check immediately
     const checkTouchDevice = () => {
       return (
-        'ontouchstart' in window || 
+        "ontouchstart" in window ||
         navigator.maxTouchPoints > 0 ||
-        (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches) ||
-        (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(hover: none)').matches)
-      )
-    }
-    
-    const touchDevice = checkTouchDevice()
-    setIsTouchDevice(touchDevice)
+        (typeof window !== "undefined" &&
+          window.matchMedia &&
+          window.matchMedia("(pointer: coarse)").matches) ||
+        (typeof window !== "undefined" &&
+          window.matchMedia &&
+          window.matchMedia("(hover: none)").matches)
+      );
+    };
+
+    const touchDevice = checkTouchDevice();
+    setIsTouchDevice(touchDevice);
 
     // Only add mouse event listeners on non-touch devices
-    if (touchDevice) return
+    if (touchDevice) return;
 
     const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
+      // Direct DOM manipulation for zero-latency cursor following
+      const x = e.clientX;
+      const y = e.clientY;
 
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
+      // Instant inner cursor update
+      if (innerCursorRef.current) {
+        innerCursorRef.current.style.transform = `translate3d(${x - 8}px, ${
+          y - 8
+        }px, 0)`;
+      }
 
-    window.addEventListener('mousemove', updateMousePosition)
-    document.addEventListener('mouseenter', handleMouseEnter)
-    document.addEventListener('mouseleave', handleMouseLeave)
+      // Slightly delayed outer cursor for smooth trailing effect
+      if (outerCursorRef.current) {
+        outerCursorRef.current.style.transform = `translate3d(${x - 20}px, ${
+          y - 20
+        }px, 0)`;
+      }
+    };
+
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => setIsHovering(false);
+
+    // Use passive listeners for better performance
+    window.addEventListener("mousemove", updateMousePosition, {
+      passive: true,
+    });
+    document.addEventListener("mouseenter", handleMouseEnter);
+    document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      window.removeEventListener('mousemove', updateMousePosition)
-      document.removeEventListener('mouseenter', handleMouseEnter)
-      document.removeEventListener('mouseleave', handleMouseLeave)
-    }
-  }, [])
+      window.removeEventListener("mousemove", updateMousePosition);
+      document.removeEventListener("mouseenter", handleMouseEnter);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
 
   // Don't render cursor follower on touch devices
-  if (isTouchDevice) return null
+  if (isTouchDevice) return null;
 
   return (
     <>
-      <motion.div
-        className="fixed pointer-events-none z-[9999] mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 500,
-          damping: 28,
+      {/* Inner cursor - instant following with direct DOM manipulation */}
+      <div
+        ref={innerCursorRef}
+        className="fixed pointer-events-none z-[9999] mix-blend-difference top-0 left-0"
+        style={{
+          transform: "translate3d(-8px, -8px, 0)",
+          willChange: "transform",
         }}
       >
         <div className="w-4 h-4 bg-white rounded-full" />
-      </motion.div>
+      </div>
+
+      {/* Outer cursor - smooth scaling with Framer Motion, position via CSS */}
       <motion.div
-        className="fixed pointer-events-none z-[9998] mix-blend-difference"
+        ref={outerCursorRef}
+        className="fixed pointer-events-none z-[9998] mix-blend-difference top-0 left-0"
+        style={{
+          transform: "translate3d(-20px, -20px, 0)",
+          willChange: "transform",
+        }}
         animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
           scale: isHovering ? 1.5 : 1,
         }}
         transition={{
-          type: 'spring',
-          stiffness: 300,
-          damping: 20,
+          type: "spring",
+          stiffness: 500,
+          damping: 30,
         }}
       >
         <div className="w-10 h-10 border-2 border-white/30 rounded-full" />
       </motion.div>
     </>
-  )
+  );
 }
-

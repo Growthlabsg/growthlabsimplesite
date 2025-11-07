@@ -1,99 +1,128 @@
-'use client'
+"use client";
 
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { Users, TrendingUp, Rocket, Globe, ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react'
-import Image from 'next/image'
-import { galleryImages, getCategoryCounts, getImagesByCategory } from '@/lib/data/gallery'
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  Users,
+  TrendingUp,
+  Rocket,
+  Globe,
+  ArrowRight,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import Image from "next/image";
+import {
+  galleryImages,
+  getCategoryCounts,
+  getImagesByCategory,
+} from "@/lib/data/gallery";
 
 // Get category counts dynamically
-const categoryCounts = getCategoryCounts()
+const categoryCounts = getCategoryCounts();
 const galleryCategories = [
-  { name: 'All', count: categoryCounts.All },
-  { name: 'Events', count: categoryCounts.Events },
-  { name: 'Workshops', count: categoryCounts.Workshops },
-  { name: 'Networking', count: categoryCounts.Networking },
-]
+  { name: "All", count: categoryCounts.All },
+  { name: "Events", count: categoryCounts.Events },
+  { name: "Workshops", count: categoryCounts.Workshops },
+  { name: "Networking", count: categoryCounts.Networking },
+];
 
 // Use gallery data from lib/data/gallery.ts
-const communityImages = galleryImages
+const communityImages = galleryImages;
 
 export default function CommunityGallery() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const [activeCategory, setActiveCategory] = useState<string>('All')
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedImageId, setSelectedImageId] = useState<number | null>(null)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100])
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImageId, setSelectedImageId] = useState<number | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
-  const filteredImages = getImagesByCategory(activeCategory)
+  const filteredImages = getImagesByCategory(activeCategory);
 
   // Handle image click - open modal with category images
   const handleImageClick = (imageId: number, category: string) => {
-    setSelectedImageId(imageId)
-    const categoryImages = communityImages.filter(img => img.category === category)
-    const index = categoryImages.findIndex(img => img.id === imageId)
-    setCurrentImageIndex(index >= 0 ? index : 0)
-    setIsModalOpen(true)
-  }
+    setSelectedImageId(imageId);
+    const categoryImages = communityImages.filter(
+      (img) => img.category === category
+    );
+    const index = categoryImages.findIndex((img) => img.id === imageId);
+    setCurrentImageIndex(index >= 0 ? index : 0);
+    setIsModalOpen(true);
+  };
 
   // Get images for modal (same category as selected image)
   const modalImages = selectedImageId
-    ? communityImages.filter(img => {
-        const selectedImage = communityImages.find(i => i.id === selectedImageId)
-        return selectedImage && img.category === selectedImage.category
+    ? communityImages.filter((img) => {
+        const selectedImage = communityImages.find(
+          (i) => i.id === selectedImageId
+        );
+        return selectedImage && img.category === selectedImage.category;
       })
-    : []
+    : [];
 
   // Navigation functions
   const goToPrevious = () => {
     setCurrentImageIndex((prev) => {
-      if (modalImages.length === 0) return 0
-      return prev === 0 ? modalImages.length - 1 : prev - 1
-    })
-  }
+      if (modalImages.length === 0) return 0;
+      return prev === 0 ? modalImages.length - 1 : prev - 1;
+    });
+  };
 
   const goToNext = () => {
     setCurrentImageIndex((prev) => {
-      if (modalImages.length === 0) return 0
-      return prev === modalImages.length - 1 ? 0 : prev + 1
-    })
-  }
+      if (modalImages.length === 0) return 0;
+      return prev === modalImages.length - 1 ? 0 : prev + 1;
+    });
+  };
 
   // Keyboard navigation
   useEffect(() => {
-    if (!isModalOpen || modalImages.length === 0) return
+    if (!isModalOpen || modalImages.length === 0) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsModalOpen(false)
-      } else if (e.key === 'ArrowLeft') {
-        setCurrentImageIndex((prev) => (prev === 0 ? modalImages.length - 1 : prev - 1))
-      } else if (e.key === 'ArrowRight') {
-        setCurrentImageIndex((prev) => (prev === modalImages.length - 1 ? 0 : prev + 1))
+      if (e.key === "Escape") {
+        setIsModalOpen(false);
+      } else if (e.key === "ArrowLeft") {
+        setCurrentImageIndex((prev) =>
+          prev === 0 ? modalImages.length - 1 : prev - 1
+        );
+      } else if (e.key === "ArrowRight") {
+        setCurrentImageIndex((prev) =>
+          prev === modalImages.length - 1 ? 0 : prev + 1
+        );
       }
-    }
+    };
 
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isModalOpen, modalImages.length])
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen, modalImages.length]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isModalOpen])
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
 
   return (
-    <section id="community" className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden">
+    <section
+      id="community"
+      className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden"
+    >
       {/* Background Video - Subtle */}
       <div className="absolute inset-0 w-full h-full z-0">
         <video
@@ -102,7 +131,7 @@ export default function CommunityGallery() {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-15"
-          style={{ filter: 'brightness(1.1) contrast(1.05)' }}
+          style={{ filter: "brightness(1.1) contrast(1.05)" }}
         >
           <source src="/gallery-background.mp4" type="video/mp4" />
           <source src="/gallery-background.webm" type="video/webm" />
@@ -115,56 +144,69 @@ export default function CommunityGallery() {
 
       {/* Background decoration */}
       <div className="absolute inset-0 z-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber/5 rounded-full" />
       </div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Numbered Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-12">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="lg:col-span-2 relative z-10"
+            style={{
+              willChange: "transform, opacity",
+              backfaceVisibility: "hidden",
+              transform: "translateZ(0)",
+            }}
           >
-            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">04</span>
-            <motion.div
-              className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
-              initial={{ width: 0 }}
-              whileInView={{ width: 64 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            />
+            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">
+              04
+            </span>
+            <div className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber" />
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="lg:col-span-10"
+            style={{
+              willChange: "transform, opacity",
+              backfaceVisibility: "hidden",
+              transform: "translateZ(0)",
+            }}
           >
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-4 tracking-tight">
               Community Gallery
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light mb-4">
-              Join 2,500+ founders, investors, students, and innovators from around the world.
+              Join 2,500+ founders, investors, students, and innovators from
+              around the world.
             </p>
             <p className="text-lg text-slate-500 font-light">
-              See our community in action through events, workshops, and networking sessions.
+              See our community in action through events, workshops, and
+              networking sessions.
             </p>
           </motion.div>
         </div>
 
         {/* Category Filter */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex flex-wrap items-center gap-3 mb-12"
+          style={{
+            willChange: "transform, opacity",
+            backfaceVisibility: "hidden",
+            transform: "translateZ(0)",
+          }}
         >
           {galleryCategories.map((category) => (
             <button
@@ -172,17 +214,18 @@ export default function CommunityGallery() {
               onClick={() => setActiveCategory(category.name)}
               className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 min-h-[44px] ${
                 activeCategory === category.name
-                  ? 'bg-primary text-white shadow-lg scale-105'
-                  : 'bg-white text-slate-700 border border-slate-200 hover:border-primary/50 hover:bg-slate-50'
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white text-slate-700 border border-slate-200"
               }`}
             >
-              {category.name} ({categoryCounts[category.name as keyof typeof categoryCounts]})
+              {category.name} (
+              {categoryCounts[category.name as keyof typeof categoryCounts]})
             </button>
           ))}
         </motion.div>
 
         {/* Enhanced Interactive Image Grid */}
-        <motion.div 
+        <motion.div
           layout
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16"
         >
@@ -191,69 +234,45 @@ export default function CommunityGallery() {
               <motion.div
                 key={image.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5, delay: index * 0.03 }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                onClick={() => handleImageClick(image.id, image.category)}
-                whileHover={{ 
-                  scale: 1.08,
-                  z: 50,
-                  transition: { duration: 0.3 }
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.05,
+                  ease: "easeOut",
                 }}
-                className="relative aspect-square overflow-hidden bg-gray-100 cursor-pointer group rounded-xl hover:rounded-2xl hover:shadow-2xl transition-all duration-500"
-                style={{ perspective: '1000px' }}
+                onClick={() => handleImageClick(image.id, image.category)}
+                className="relative aspect-square overflow-hidden bg-gray-100 cursor-pointer group rounded-xl shadow-lg transition-all duration-300"
+                style={{
+                  willChange: "transform, opacity",
+                  backfaceVisibility: "hidden",
+                  transform: "translateZ(0)",
+                }}
               >
-                <motion.img
+                <Image
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover"
-                  animate={{
-                    scale: hoveredIndex === index ? 1.2 : 1,
-                  }}
-                  transition={{ duration: 0.5 }}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 />
-                
+
                 {/* Gradient overlay */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
-                  animate={{
-                    opacity: hoveredIndex === index ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Category badge */}
                 <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-slate-900">
+                  <span className="px-2.5 py-1 bg-white/90 rounded-full text-xs font-semibold text-slate-900">
                     {image.category}
                   </span>
                 </div>
 
                 {/* Content on hover */}
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 p-4 text-white"
-                  animate={{
-                    opacity: hoveredIndex === index ? 1 : 0,
-                    y: hoveredIndex === index ? 0 : 20,
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
                   <h4 className="text-sm font-bold mb-1">{image.title}</h4>
                   <p className="text-xs text-white/80">{image.description}</p>
-                </motion.div>
-                
-                {/* Shine effect on hover */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                  initial={{ x: '-100%' }}
-                  animate={{
-                    x: hoveredIndex === index ? '200%' : '-100%',
-                  }}
-                  transition={{ duration: 0.6 }}
-                />
+                </div>
               </motion.div>
             ))}
           </AnimatePresence>
@@ -261,73 +280,90 @@ export default function CommunityGallery() {
 
         {/* Stats Bar */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+          style={{
+            willChange: "transform, opacity",
+            backfaceVisibility: "hidden",
+            transform: "translateZ(0)",
+          }}
         >
           {[
-            { icon: Users, value: '2,500+', label: 'Active Members' },
-            { icon: TrendingUp, value: '1,200+', label: 'Startups' },
-            { icon: Rocket, value: '50+', label: 'Events Monthly' },
-            { icon: Globe, value: '50+', label: 'Countries' },
+            { icon: Users, value: "2,500+", label: "Active Members" },
+            { icon: TrendingUp, value: "1,200+", label: "Startups" },
+            { icon: Rocket, value: "50+", label: "Events Monthly" },
+            { icon: Globe, value: "50+", label: "Countries" },
           ].map((stat, index) => {
-            const Icon = stat.icon
+            const Icon = stat.icon;
             return (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center p-6 bg-white rounded-xl border border-slate-200 hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                  ease: "easeOut",
+                }}
+                className="text-center p-6 bg-white rounded-xl border border-slate-200 shadow-lg transition-all duration-300"
+                style={{
+                  willChange: "transform, opacity",
+                  backfaceVisibility: "hidden",
+                  transform: "translateZ(0)",
+                }}
               >
                 <Icon className="mx-auto mb-3 text-primary" size={28} />
-                <div className="text-2xl font-bold text-slate-900 mb-1">{stat.value}</div>
-                <div className="text-sm text-slate-600 font-light">{stat.label}</div>
+                <div className="text-2xl font-bold text-slate-900 mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-slate-600 font-light">
+                  {stat.label}
+                </div>
               </motion.div>
-            )
+            );
           })}
         </motion.div>
 
         {/* Enhanced CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center"
+          style={{
+            willChange: "transform, opacity",
+            backfaceVisibility: "hidden",
+            transform: "translateZ(0)",
+          }}
         >
-          <motion.div
-            whileHover={{ scale: 1.02, y: -4 }}
-            className="relative inline-block bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-12 sm:p-16 shadow-2xl overflow-hidden"
-          >
+          <div className="relative inline-block bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-12 sm:p-16 shadow-2xl overflow-hidden transition-transform duration-300 hover:scale-105">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-amber/10 to-primary/20 opacity-50" />
-            
+
             <div className="relative z-10">
-              <motion.h3
-                className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight"
-                animate={{ opacity: [1, 0.9, 1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
+              <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
                 Ready to Join the Ecosystem?
-              </motion.h3>
+              </h3>
               <p className="text-white/90 mb-10 text-lg sm:text-xl font-light max-w-md mx-auto">
-                Connect with founders, investors, and innovators. Launch your startup faster.
+                Connect with founders, investors, and innovators. Launch your
+                startup faster.
               </p>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <div className="transition-transform duration-300 hover:scale-105">
                 <Link
                   href="/register"
-                  className="inline-flex items-center gap-2 px-10 py-4 bg-white text-slate-900 rounded-lg font-semibold hover:bg-slate-50 transition-all duration-300 min-h-[56px] shadow-xl"
+                  className="inline-flex items-center gap-2 px-10 py-4 bg-white text-slate-900 rounded-lg font-semibold transition-all duration-300 min-h-[56px] shadow-xl"
                 >
                   Join GrowthLab Now
                   <ArrowRight size={20} />
                 </Link>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
 
@@ -344,8 +380,8 @@ export default function CommunityGallery() {
             {/* Close Button */}
             <button
               onClick={(e) => {
-                e.stopPropagation()
-                setIsModalOpen(false)
+                e.stopPropagation();
+                setIsModalOpen(false);
               }}
               className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
               aria-label="Close"
@@ -358,8 +394,8 @@ export default function CommunityGallery() {
               <>
                 <button
                   onClick={(e) => {
-                    e.stopPropagation()
-                    goToPrevious()
+                    e.stopPropagation();
+                    goToPrevious();
                   }}
                   className="absolute left-2 sm:left-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
                   aria-label="Previous"
@@ -368,8 +404,8 @@ export default function CommunityGallery() {
                 </button>
                 <button
                   onClick={(e) => {
-                    e.stopPropagation()
-                    goToNext()
+                    e.stopPropagation();
+                    goToNext();
                   }}
                   className="absolute right-2 sm:right-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
                   aria-label="Next"
@@ -402,8 +438,12 @@ export default function CommunityGallery() {
 
               {/* Image Info */}
               <div className="text-center text-white mb-3 sm:mb-4 px-2">
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2">{modalImages[currentImageIndex].title}</h3>
-                <p className="text-sm sm:text-base text-white/80 mb-2">{modalImages[currentImageIndex].description}</p>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2">
+                  {modalImages[currentImageIndex].title}
+                </h3>
+                <p className="text-sm sm:text-base text-white/80 mb-2">
+                  {modalImages[currentImageIndex].description}
+                </p>
                 <span className="inline-block px-2 sm:px-3 py-1 bg-primary/20 text-primary rounded-full text-xs sm:text-sm font-semibold">
                   {modalImages[currentImageIndex].category}
                 </span>
@@ -418,8 +458,8 @@ export default function CommunityGallery() {
                       onClick={() => setCurrentImageIndex(idx)}
                       className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all min-h-[44px] min-w-[44px] ${
                         idx === currentImageIndex
-                          ? 'border-primary scale-110'
-                          : 'border-transparent opacity-60 hover:opacity-100'
+                          ? "border-primary scale-110"
+                          : "border-transparent opacity-60 hover:opacity-100"
                       }`}
                     >
                       <Image
@@ -445,5 +485,5 @@ export default function CommunityGallery() {
         )}
       </AnimatePresence>
     </section>
-  )
+  );
 }

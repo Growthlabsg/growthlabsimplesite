@@ -1,53 +1,57 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Megaphone, Calendar, Sparkles, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
+import { motion } from "framer-motion";
+import { Megaphone, Calendar, Sparkles, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const announcements = [
   {
-    type: 'new',
-    title: 'GrowthLab Platform 3.0 Launch',
-    description: 'Introducing AI-powered matching, enhanced business pages, and improved networking features.',
-    date: '2025-12-10',
-    category: 'Platform Update',
-    link: '/updates/platform-3.0',
+    type: "new",
+    title: "GrowthLab Platform 3.0 Launch",
+    description:
+      "Introducing AI-powered matching, enhanced business pages, and improved networking features.",
+    date: "2025-12-10",
+    category: "Platform Update",
+    link: "/updates/platform-3.0",
     featured: true,
   },
   {
-    type: 'announcement',
-    title: 'GrowthLab Conference 2026',
-    description: 'Join us for our annual conference featuring 50+ speakers, workshops, and networking sessions.',
-    date: '2026-01-25',
-    category: 'Event',
-    link: 'https://lu.ma/growthlab.sg',
+    type: "announcement",
+    title: "GrowthLab Conference 2026",
+    description:
+      "Join us for our annual conference featuring 50+ speakers, workshops, and networking sessions.",
+    date: "2026-01-25",
+    category: "Event",
+    link: "https://lu.ma/growthlab.sg",
     featured: true,
   },
   {
-    type: 'announcement',
-    title: 'New Partnership: Business in a Box',
-    description: 'Exclusive discounts on startup services including legal, accounting, and marketing support.',
-    date: '2025-12-08',
-    category: 'Partnership',
-    link: '/partners',
+    type: "announcement",
+    title: "New Partnership: Business in a Box",
+    description:
+      "Exclusive discounts on startup services including legal, accounting, and marketing support.",
+    date: "2025-12-08",
+    category: "Partnership",
+    link: "/partners",
   },
   {
-    type: 'new',
-    title: 'Student Program Launch',
-    description: 'Special student membership tier with discounted pricing and exclusive mentorship programs.',
-    date: '2026-01-15',
-    category: 'Program',
-    link: '/students',
+    type: "new",
+    title: "Student Program Launch",
+    description:
+      "Special student membership tier with discounted pricing and exclusive mentorship programs.",
+    date: "2026-01-15",
+    category: "Program",
+    link: "/students",
   },
-]
+];
 
 export default function Announcements() {
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl" />
+    <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden framer-motion-optimized">
+      {/* Background decoration - simple gradients without blur */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber/5 rounded-full" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,11 +60,18 @@ export default function Announcements() {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="lg:col-span-2 relative z-10"
+            style={{
+              willChange: "transform, opacity",
+              backfaceVisibility: "hidden",
+              transform: "translateZ(0)",
+            }}
           >
-            <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-300 block leading-none">03</span>
+            <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-300 block leading-none">
+              03
+            </span>
             <motion.div
               className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
               initial={{ width: 0 }}
@@ -73,18 +84,31 @@ export default function Announcements() {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
             className="lg:col-span-10"
+            style={{
+              willChange: "transform, opacity",
+              backfaceVisibility: "hidden",
+              transform: "translateZ(0)",
+            }}
           >
             <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-              <Megaphone className="text-primary" size={24} style={{ width: 'clamp(20px, 5vw, 28px)', height: 'clamp(20px, 5vw, 28px)' }} />
+              <Megaphone
+                className="text-primary"
+                size={24}
+                style={{
+                  width: "clamp(20px, 5vw, 28px)",
+                  height: "clamp(20px, 5vw, 28px)",
+                }}
+              />
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 tracking-tight">
                 News & Announcements
               </h2>
             </div>
             <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light">
-              Stay updated with the latest platform features, events, partnerships, and community updates.
+              Stay updated with the latest platform features, events,
+              partnerships, and community updates.
             </p>
           </motion.div>
         </div>
@@ -96,35 +120,34 @@ export default function Announcements() {
             .map((announcement, index) => (
               <motion.div
                 key={announcement.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative bg-white rounded-2xl p-8 border border-slate-200 hover:border-primary/50 transition-all duration-500 hover:shadow-xl overflow-hidden"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: "easeOut",
+                }}
+                className="relative bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-lg overflow-hidden group"
+                style={{
+                  willChange: "transform, opacity",
+                  backfaceVisibility: "hidden",
+                  transform: "translateZ(0)",
+                }}
               >
-                {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-amber/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                {/* Shine effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '200%', opacity: 1 }}
-                  transition={{ duration: 0.6 }}
-                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-amber/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10">
                   {/* Badge */}
                   <div className="flex items-center gap-3 mb-4">
                     <span
                       className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${
-                        announcement.type === 'new'
-                          ? 'bg-primary/10 text-primary'
-                          : 'bg-amber/10 text-amber'
+                        announcement.type === "new"
+                          ? "bg-primary/10 text-primary"
+                          : "bg-amber/10 text-amber"
                       }`}
                     >
-                      {announcement.type === 'new' ? (
+                      {announcement.type === "new" ? (
                         <>
                           <Sparkles size={12} />
                           New
@@ -136,7 +159,9 @@ export default function Announcements() {
                         </>
                       )}
                     </span>
-                    <span className="text-xs text-slate-500 font-medium">{announcement.category}</span>
+                    <span className="text-xs text-slate-500 font-medium">
+                      {announcement.category}
+                    </span>
                   </div>
 
                   {/* Title */}
@@ -145,16 +170,18 @@ export default function Announcements() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-600 leading-relaxed font-light mb-6">{announcement.description}</p>
+                  <p className="text-slate-600 leading-relaxed font-light mb-6">
+                    {announcement.description}
+                  </p>
 
                   {/* Footer */}
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-500 font-medium flex items-center gap-2">
                       <Calendar size={14} />
-                      {new Date(announcement.date).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric',
+                      {new Date(announcement.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
                       })}
                     </span>
                     <Link
@@ -162,7 +189,7 @@ export default function Announcements() {
                       className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all"
                     >
                       Learn More
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight size={18} />
                     </Link>
                   </div>
                 </div>
@@ -177,12 +204,20 @@ export default function Announcements() {
             .map((announcement, index) => (
               <motion.div
                 key={announcement.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -4 }}
-                className="group relative bg-white rounded-xl p-6 border border-slate-200 hover:border-primary/30 transition-all duration-300 hover:shadow-lg overflow-hidden"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: "easeOut",
+                }}
+                className="relative bg-white rounded-xl p-6 border border-slate-200 shadow-lg overflow-hidden group"
+                style={{
+                  willChange: "transform, opacity",
+                  backfaceVisibility: "hidden",
+                  transform: "translateZ(0)",
+                }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -190,12 +225,12 @@ export default function Announcements() {
                   <div className="flex items-center gap-2 mb-3">
                     <span
                       className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold ${
-                        announcement.type === 'new'
-                          ? 'bg-primary/10 text-primary'
-                          : 'bg-amber/10 text-amber'
+                        announcement.type === "new"
+                          ? "bg-primary/10 text-primary"
+                          : "bg-amber/10 text-amber"
                       }`}
                     >
-                      {announcement.type === 'new' ? (
+                      {announcement.type === "new" ? (
                         <>
                           <Sparkles size={10} />
                           New
@@ -207,10 +242,14 @@ export default function Announcements() {
                         </>
                       )}
                     </span>
-                    <span className="text-xs text-slate-500">{announcement.category}</span>
+                    <span className="text-xs text-slate-500">
+                      {announcement.category}
+                    </span>
                   </div>
 
-                  <h4 className="text-lg font-bold text-slate-900 mb-2">{announcement.title}</h4>
+                  <h4 className="text-lg font-bold text-slate-900 mb-2">
+                    {announcement.title}
+                  </h4>
                   <p className="text-sm text-slate-600 font-light mb-4 leading-relaxed">
                     {announcement.description}
                   </p>
@@ -218,9 +257,9 @@ export default function Announcements() {
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-slate-500 flex items-center gap-1.5">
                       <Calendar size={12} />
-                      {new Date(announcement.date).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
+                      {new Date(announcement.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
                       })}
                     </span>
                     <Link
@@ -228,7 +267,7 @@ export default function Announcements() {
                       className="text-sm text-primary font-medium hover:gap-2 inline-flex items-center gap-1.5 transition-all"
                     >
                       Read More
-                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight size={14} />
                     </Link>
                   </div>
                 </div>
@@ -238,11 +277,16 @@ export default function Announcements() {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 40, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="mt-16 text-center"
+          style={{
+            willChange: "transform, opacity",
+            backfaceVisibility: "hidden",
+            transform: "translateZ(0)",
+          }}
         >
           <Link
             href="/announcements"
@@ -254,6 +298,5 @@ export default function Announcements() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-

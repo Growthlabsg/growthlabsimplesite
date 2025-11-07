@@ -1,98 +1,109 @@
-'use client'
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react'
-import Image from 'next/image'
-import { galleryImages, getCategoryCounts } from '@/lib/data/gallery'
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { galleryImages, getCategoryCounts } from "@/lib/data/gallery";
 
 // Get category counts dynamically
-const categoryCounts = getCategoryCounts()
+const categoryCounts = getCategoryCounts();
 const galleryCategories = [
-  { name: 'All', count: categoryCounts.All },
-  { name: 'Events', count: categoryCounts.Events },
-  { name: 'Workshops', count: categoryCounts.Workshops },
-  { name: 'Networking', count: categoryCounts.Networking },
-]
+  { name: "All", count: categoryCounts.All },
+  { name: "Events", count: categoryCounts.Events },
+  { name: "Workshops", count: categoryCounts.Workshops },
+  { name: "Networking", count: categoryCounts.Networking },
+];
 
 // Use gallery data from lib/data/gallery.ts
-const communityImages = galleryImages
+const communityImages = galleryImages;
 
 export default function CommunityGalleryCompact() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedImageId, setSelectedImageId] = useState<number | null>(null)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImageId, setSelectedImageId] = useState<number | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Handle image click - open modal with category images
   const handleImageClick = (imageId: number, category: string) => {
-    setSelectedImageId(imageId)
-    const categoryImages = communityImages.filter(img => img.category === category)
-    const index = categoryImages.findIndex(img => img.id === imageId)
-    setCurrentImageIndex(index >= 0 ? index : 0)
-    setIsModalOpen(true)
-  }
+    setSelectedImageId(imageId);
+    const categoryImages = communityImages.filter(
+      (img) => img.category === category
+    );
+    const index = categoryImages.findIndex((img) => img.id === imageId);
+    setCurrentImageIndex(index >= 0 ? index : 0);
+    setIsModalOpen(true);
+  };
 
   // Get images for modal (same category as selected image)
   const modalImages = selectedImageId
-    ? communityImages.filter(img => {
-        const selectedImage = communityImages.find(i => i.id === selectedImageId)
-        return selectedImage && img.category === selectedImage.category
+    ? communityImages.filter((img) => {
+        const selectedImage = communityImages.find(
+          (i) => i.id === selectedImageId
+        );
+        return selectedImage && img.category === selectedImage.category;
       })
-    : []
+    : [];
 
   // Navigation functions
   const goToPrevious = () => {
     setCurrentImageIndex((prev) => {
-      if (modalImages.length === 0) return 0
-      return prev === 0 ? modalImages.length - 1 : prev - 1
-    })
-  }
+      if (modalImages.length === 0) return 0;
+      return prev === 0 ? modalImages.length - 1 : prev - 1;
+    });
+  };
 
   const goToNext = () => {
     setCurrentImageIndex((prev) => {
-      if (modalImages.length === 0) return 0
-      return prev === modalImages.length - 1 ? 0 : prev + 1
-    })
-  }
+      if (modalImages.length === 0) return 0;
+      return prev === modalImages.length - 1 ? 0 : prev + 1;
+    });
+  };
 
   // Keyboard navigation
   useEffect(() => {
-    if (!isModalOpen || modalImages.length === 0) return
+    if (!isModalOpen || modalImages.length === 0) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsModalOpen(false)
-      } else if (e.key === 'ArrowLeft') {
-        setCurrentImageIndex((prev) => (prev === 0 ? modalImages.length - 1 : prev - 1))
-      } else if (e.key === 'ArrowRight') {
-        setCurrentImageIndex((prev) => (prev === modalImages.length - 1 ? 0 : prev + 1))
+      if (e.key === "Escape") {
+        setIsModalOpen(false);
+      } else if (e.key === "ArrowLeft") {
+        setCurrentImageIndex((prev) =>
+          prev === 0 ? modalImages.length - 1 : prev - 1
+        );
+      } else if (e.key === "ArrowRight") {
+        setCurrentImageIndex((prev) =>
+          prev === modalImages.length - 1 ? 0 : prev + 1
+        );
       }
-    }
+    };
 
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isModalOpen, modalImages.length])
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen, modalImages.length]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isModalOpen])
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
 
   return (
-    <section id="community" className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden">
+    <section
+      id="community"
+      className="framer-motion-optimized relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden"
+    >
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber/5 rounded-full" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -101,11 +112,13 @@ export default function CommunityGalleryCompact() {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="lg:col-span-2 relative z-10"
           >
-            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">04</span>
+            <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">
+              04
+            </span>
             <motion.div
               className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
               initial={{ width: 0 }}
@@ -118,18 +131,20 @@ export default function CommunityGalleryCompact() {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
             className="lg:col-span-10"
           >
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-4 tracking-tight">
               Community Gallery
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light mb-4">
-              Join 2,500+ founders, investors, students, and innovators from around the world.
+              Join 2,500+ founders, investors, students, and innovators from
+              around the world.
             </p>
             <p className="text-lg text-slate-500 font-light">
-              See our community in action through events, workshops, and networking sessions.
+              See our community in action through events, workshops, and
+              networking sessions.
             </p>
           </motion.div>
         </div>
@@ -139,37 +154,32 @@ export default function CommunityGalleryCompact() {
           {communityImages.map((image, index) => (
             <motion.div
               key={image.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => handleImageClick(image.id, image.category)}
-              whileHover={{ 
-                scale: 1.08,
-                transition: { duration: 0.3 }
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: "easeOut",
               }}
-              className="relative aspect-square overflow-hidden bg-gray-100 cursor-pointer group rounded-xl hover:rounded-2xl hover:shadow-2xl transition-all duration-500"
+              onClick={() => handleImageClick(image.id, image.category)}
+              className="relative aspect-square overflow-hidden bg-gray-100 cursor-pointer group rounded-xl shadow-lg"
+              style={{
+                willChange: "transform, opacity",
+                backfaceVisibility: "hidden",
+                transform: "translateZ(0)",
+              }}
             >
-              <motion.img
+              <Image
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover"
-                animate={{
-                  scale: hoveredIndex === index ? 1.2 : 1,
-                }}
-                transition={{ duration: 0.5 }}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
               />
-              
+
               {/* Gradient overlay */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
-                animate={{
-                  opacity: hoveredIndex === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               {/* Category badge */}
               <div className="absolute top-3 left-3">
@@ -179,17 +189,10 @@ export default function CommunityGalleryCompact() {
               </div>
 
               {/* Content on hover */}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 p-4 text-white"
-                animate={{
-                  opacity: hoveredIndex === index ? 1 : 0,
-                  y: hoveredIndex === index ? 0 : 20,
-                }}
-                transition={{ duration: 0.3 }}
-              >
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h4 className="text-sm font-bold mb-1">{image.title}</h4>
                 <p className="text-xs text-white/80">{image.description}</p>
-              </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -207,7 +210,10 @@ export default function CommunityGalleryCompact() {
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl min-h-[56px] group"
           >
             View Full Gallery
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight
+              size={20}
+              className="group-hover:translate-x-1 transition-transform"
+            />
           </Link>
         </motion.div>
       </div>
@@ -225,8 +231,8 @@ export default function CommunityGalleryCompact() {
             {/* Close Button */}
             <button
               onClick={(e) => {
-                e.stopPropagation()
-                setIsModalOpen(false)
+                e.stopPropagation();
+                setIsModalOpen(false);
               }}
               className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
               aria-label="Close"
@@ -239,8 +245,8 @@ export default function CommunityGalleryCompact() {
               <>
                 <button
                   onClick={(e) => {
-                    e.stopPropagation()
-                    goToPrevious()
+                    e.stopPropagation();
+                    goToPrevious();
                   }}
                   className="absolute left-2 sm:left-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
                   aria-label="Previous"
@@ -249,8 +255,8 @@ export default function CommunityGalleryCompact() {
                 </button>
                 <button
                   onClick={(e) => {
-                    e.stopPropagation()
-                    goToNext()
+                    e.stopPropagation();
+                    goToNext();
                   }}
                   className="absolute right-2 sm:right-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm min-h-[44px] min-w-[44px]"
                   aria-label="Next"
@@ -283,8 +289,12 @@ export default function CommunityGalleryCompact() {
 
               {/* Image Info */}
               <div className="text-center text-white mb-3 sm:mb-4 px-2">
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2">{modalImages[currentImageIndex].title}</h3>
-                <p className="text-sm sm:text-base text-white/80 mb-2">{modalImages[currentImageIndex].description}</p>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2">
+                  {modalImages[currentImageIndex].title}
+                </h3>
+                <p className="text-sm sm:text-base text-white/80 mb-2">
+                  {modalImages[currentImageIndex].description}
+                </p>
                 <span className="inline-block px-2 sm:px-3 py-1 bg-primary/20 text-primary rounded-full text-xs sm:text-sm font-semibold">
                   {modalImages[currentImageIndex].category}
                 </span>
@@ -299,8 +309,8 @@ export default function CommunityGalleryCompact() {
                       onClick={() => setCurrentImageIndex(idx)}
                       className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all min-h-[44px] min-w-[44px] ${
                         idx === currentImageIndex
-                          ? 'border-primary scale-110'
-                          : 'border-transparent opacity-60 hover:opacity-100'
+                          ? "border-primary scale-110"
+                          : "border-transparent opacity-60 hover:opacity-100"
                       }`}
                     >
                       <Image
@@ -326,6 +336,5 @@ export default function CommunityGalleryCompact() {
         )}
       </AnimatePresence>
     </section>
-  )
+  );
 }
-

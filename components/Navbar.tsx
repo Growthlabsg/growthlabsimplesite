@@ -1,58 +1,137 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { Menu, X, ChevronDown } from 'lucide-react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import GrowthLabLogo from './GrowthLabLogo'
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
+import { Menu, X, ChevronDown } from "lucide-react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import GrowthLabLogo from "./GrowthLabLogo";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false)
-  const moreMenuRef = useRef<HTMLDivElement>(null)
-  const { scrollY } = useScroll()
-  const backgroundColor = useTransform(scrollY, [0, 50], ['rgba(255,255,255,0.8)', 'rgba(255,255,255,0.95)'])
-  const blur = useTransform(scrollY, [0, 50], ['blur(8px)', 'blur(12px)'])
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+  const moreMenuRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 50],
+    ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.95)"]
+  );
+  const blur = useTransform(scrollY, [0, 50], ["blur(8px)", "blur(12px)"]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Handle hash scrolling on page load and navigation
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash.substring(1);
+      if (hash && pathname === "/") {
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      }
+    };
+
+    // Handle on mount and path changes
+    handleHashScroll();
+
+    // Handle browser back/forward with hash
+    window.addEventListener("hashchange", handleHashScroll);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashScroll);
+    };
+  }, [pathname]);
 
   // Close more menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (moreMenuRef.current && !moreMenuRef.current.contains(event.target as Node)) {
-        setIsMoreMenuOpen(false)
+      if (
+        moreMenuRef.current &&
+        !moreMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsMoreMenuOpen(false);
       }
-    }
+    };
     if (isMoreMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener("mousedown", handleClickOutside);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMoreMenuOpen]);
+
+  // Helper function to handle navigation
+  const handleNavigation = (href: string, event?: React.MouseEvent) => {
+    // Close mobile menu
+    setIsMobileMenuOpen(false);
+    setIsMoreMenuOpen(false);
+
+    // Handle hash links (anchor links)
+    if (href.startsWith("/#")) {
+      const hash = href.substring(2); // Remove '/#'
+
+      // If we're already on the home page, just scroll and update URL
+      if (pathname === "/" || window.location.pathname === "/") {
+        if (event) {
+          event.preventDefault();
+        }
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          // Update URL to show hash
+          window.history.pushState(null, "", `/#${hash}`);
+        }
+      } else {
+        // For cross-page navigation, let Next.js handle it naturally
+        // The hash will be in the URL and browser will scroll automatically
+        if (event) {
+          event.preventDefault();
+        }
+        // Navigate with hash in URL
+        router.push(`/#${hash}`);
+      }
+    } else {
+      // Regular route navigation
+      if (event) {
+        event.preventDefault();
+      }
+      router.push(href);
     }
-  }, [isMoreMenuOpen])
+  };
 
   // Essential navigation items - kept in main nav
   const mainNavItems = [
-    { name: 'About', href: '#about' },
-    { name: 'Features', href: '#features' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'Feed', href: '/feed' },
-    { name: 'Events', href: '/events' },
-  ]
+    { name: "About", href: "/#about" },
+    { name: "Features", href: "/#features" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Feed", href: "/feed" },
+    { name: "Events", href: "/events" },
+  ];
 
   // Secondary items - moved to dropdown
   const moreItems = [
-    { name: 'Our Team', href: '/founder' },
-    { name: 'Sports Club', href: '/sports-club' },
-    { name: 'FAQ', href: '#faq' },
-  ]
+    { name: "Our Team", href: "/founder" },
+    { name: "Sports Club", href: "/sports-club" },
+    { name: "FAQ", href: "/#faq" },
+  ];
 
   return (
     <>
@@ -63,7 +142,10 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo with animation */}
-            <Link href="/" className="flex items-center space-x-3 group min-h-[44px]">
+            <Link
+              href="/"
+              className="flex items-center space-x-3 group min-h-[44px]"
+            >
               <GrowthLabLogo size={56} />
               <motion.span
                 className="text-xl font-semibold text-slate-900 tracking-tight"
@@ -82,21 +164,21 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <Link
-                    href={item.href}
+                  <button
+                    onClick={(e) => handleNavigation(item.href, e)}
                     className="relative text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors duration-300 min-h-[44px] flex items-center group"
                   >
                     {item.name}
                     <motion.span
                       className="absolute bottom-0 left-0 h-0.5 bg-primary"
                       initial={{ width: 0 }}
-                      whileHover={{ width: '100%' }}
+                      whileHover={{ width: "100%" }}
                       transition={{ duration: 0.3 }}
                     />
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
-              
+
               {/* More Dropdown */}
               <div className="relative" ref={moreMenuRef}>
                 <button
@@ -104,12 +186,14 @@ export default function Navbar() {
                   className="flex items-center gap-1 text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors duration-300 min-h-[44px] group"
                 >
                   More
-                  <ChevronDown 
-                    size={16} 
-                    className={`transition-transform duration-300 ${isMoreMenuOpen ? 'rotate-180' : ''}`}
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform duration-300 ${
+                      isMoreMenuOpen ? "rotate-180" : ""
+                    }`}
                   />
                 </button>
-                
+
                 <AnimatePresence>
                   {isMoreMenuOpen && (
                     <motion.div
@@ -120,14 +204,13 @@ export default function Navbar() {
                       className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-slate-200 overflow-hidden z-50"
                     >
                       {moreItems.map((item) => (
-                        <Link
+                        <button
                           key={item.name}
-                          href={item.href}
-                          onClick={() => setIsMoreMenuOpen(false)}
-                          className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                          onClick={(e) => handleNavigation(item.href, e)}
+                          className="block w-full text-left px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
                         >
                           {item.name}
-                        </Link>
+                        </button>
                       ))}
                     </motion.div>
                   )}
@@ -135,7 +218,7 @@ export default function Navbar() {
               </div>
 
               <div className="h-5 w-px bg-slate-300 mx-2" />
-              
+
               <Link
                 href="/login"
                 className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors duration-300 min-h-[44px] flex items-center"
@@ -180,7 +263,7 @@ export default function Navbar() {
           {isMobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden bg-white border-t border-slate-200 overflow-hidden"
             >
@@ -192,13 +275,12 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block text-slate-700 font-medium hover:text-slate-900 transition-colors py-3 min-h-[44px] flex items-center"
+                    <button
+                      onClick={(e) => handleNavigation(item.href, e)}
+                      className="w-full text-left text-slate-700 font-medium hover:text-slate-900 transition-colors py-3 min-h-[44px] flex items-center"
                     >
                       {item.name}
-                    </Link>
+                    </button>
                   </motion.div>
                 ))}
                 <div className="pt-2 pb-2 border-t border-slate-200 mt-2">
@@ -210,15 +292,16 @@ export default function Navbar() {
                       key={item.name}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (mainNavItems.length + index) * 0.05 }}
+                      transition={{
+                        delay: (mainNavItems.length + index) * 0.05,
+                      }}
                     >
-                      <Link
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="block text-slate-600 font-normal hover:text-slate-900 transition-colors py-2.5 min-h-[44px] flex items-center pl-4"
+                      <button
+                        onClick={(e) => handleNavigation(item.href, e)}
+                        className="w-full text-left text-slate-600 font-normal hover:text-slate-900 transition-colors py-2.5 min-h-[44px] flex items-center pl-4"
                       >
                         {item.name}
-                      </Link>
+                      </button>
                     </motion.div>
                   ))}
                 </div>
@@ -226,14 +309,14 @@ export default function Navbar() {
                   <Link
                     href="/login"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-slate-700 font-medium hover:text-slate-900 transition-colors py-3 min-h-[44px] flex items-center"
+                    className="text-slate-700 font-medium hover:text-slate-900 transition-colors py-3 min-h-[44px] flex items-center"
                   >
                     Log In
                   </Link>
                   <Link
                     href="/register"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block w-full text-center px-6 py-3 bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors min-h-[44px] flex items-center justify-center rounded-lg"
+                    className="w-full text-center px-6 py-3 bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors min-h-[44px] flex items-center justify-center rounded-lg"
                   >
                     Start Building
                   </Link>
@@ -244,5 +327,5 @@ export default function Navbar() {
         </AnimatePresence>
       </motion.nav>
     </>
-  )
+  );
 }
