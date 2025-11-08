@@ -178,7 +178,7 @@ function RegisterForm() {
       const requestPayload = {
         fullName: formData.fullName.trim(),
         email: formData.email.trim().toLowerCase(),
-        userType:f০rmData.userType,
+        userType:formData.userType,
         password: formData.password,
         phoneNumber: `+${formData.countryCode.trim()}${formData.phoneNumber.trim()}`,
         socialMediaUrl: formData.socialMediaUrl.trim() || undefined,
