@@ -21,9 +21,9 @@ import { useRouter } from "next/navigation";
 
 const roles = [
   { id: "founder", label: "Founder", icon: Rocket },
-  { id: "professional", label: "Professional", icon: Briefcase },
-  { id: "student", label: "Student", icon: User },
-  { id: "recruiter", label: "Recruiter", icon: Building2 },
+  { id: "investor", label: "Professional", icon: Briefcase },
+  { id: "enterprise", label: "Student", icon: User },
+  { id: "other", label: "Recruiter", icon: Building2 },
 ];
 
 function RegisterForm() {
@@ -99,7 +99,7 @@ function RegisterForm() {
     if (!formData.userType) {
       return "Please select your role";
     }
-    const validUserTypes = ["founder", "professional", "student", "recruiter"];
+    const validUserTypes = ["founder", "investor", "enterprise", "other"];
     if (!validUserTypes.includes(formData.userType)) {
       return "Please select a valid role";
     }
@@ -178,7 +178,7 @@ function RegisterForm() {
       const requestPayload = {
         fullName: formData.fullName.trim(),
         email: formData.email.trim().toLowerCase(),
-        userType:"founder",
+        userType:f০rmData.userType,
         password: formData.password,
         phoneNumber: `+${formData.countryCode.trim()}${formData.phoneNumber.trim()}`,
         socialMediaUrl: formData.socialMediaUrl.trim() || undefined,
