@@ -95,9 +95,7 @@ function RegisterForm() {
       return "Phone number is required";
     }
     const cleanPhone = formData.phoneNumber.replace(/[^\d]/g, "");
-    if (cleanPhone.length !== 10) {
-      return "Phone number must be exactly 10 digits";
-    }
+  
 
     // Validate user type (Required)
     if (!formData.userType) {
