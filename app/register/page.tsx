@@ -510,9 +510,9 @@ function RegisterForm() {
                         value={formData.countryCode}
                         onChange={handleChange}
                         className="w-full pl-6 pr-2 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-center"
-                        placeholder="91"
+                        placeholder="65"
                         required
-                        minLength={2}
+                        minLength={1}
                         maxLength={2}
                         pattern="[0-9]{2}"
                       />
