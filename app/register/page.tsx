@@ -186,7 +186,7 @@ function RegisterForm() {
 
       console.log("Request payload:", requestPayload); // Debug log
 
-      // Call registration API
+      // Call registration APII
       const response = await fetch(
         "https://growthlabserver.vercel.app/api/auth/register",
         {
