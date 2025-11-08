@@ -536,15 +536,15 @@ function RegisterForm() {
                         placeholder="1234567890"
                         required
                         minLength={10}
-                        maxLength={10}
+                        maxLength={20}
                         pattern="[0-9]{10}"
                       />
                     </div>
                   </div>
                 </div>
                 <p className="mt-1 text-xs text-gray-500">
-                  Country code (2 digits) + Phone number (10 digits) - e.g., +91
-                  for India, +1 for USA
+                  Country code (2 digits) + Phone number - e.g., +65
+                  for Singapore, +1 for USA
                 </p>
               </div>
 
