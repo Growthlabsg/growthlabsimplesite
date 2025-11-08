@@ -86,9 +86,7 @@ function RegisterForm() {
       return "Country code is required";
     }
     const cleanCountryCode = formData.countryCode.replace(/[^\d]/g, "");
-    if (cleanCountryCode.length !== 2) {
-      return "Country code must be exactly 2 digits";
-    }
+    
 
     // Validate phone number (Required)
     if (!formData.phoneNumber || !formData.phoneNumber.trim()) {
@@ -535,7 +533,7 @@ function RegisterForm() {
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="1234567890"
                         required
-                        minLength={1}
+         
                         maxLength={20}
                         pattern="[0-9]{10}"
                       />
