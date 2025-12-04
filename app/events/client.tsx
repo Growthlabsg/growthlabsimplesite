@@ -19,22 +19,22 @@ import type { TransformedEvent } from "@/lib/types/luma";
 const fallbackEvents: TransformedEvent[] = [
   {
     id: "0",
-    title: "ROOFTOP SUNSET MIXER – Startup Surge Kickoff",
-    date: "2025-11-07",
-    time: "6:30 PM - 9:00 PM",
-    location: "Skysuites@Anson – 72nd Floor Sky Terrace",
+    title: "ROOFTOP CHRISTMAS MIXER – Startup Surge Holiday Edition",
+    date: "2025-12-19",
+    time: "5:00 PM - 9:00 PM",
+    location: "Skysuites@Anson – 73rd Floor Sky Terrace",
     type: "Networking",
     attendees: "Coming soon",
     description:
-      "Kick off Startup Surge Fridays with GrowthLab at Singapore's highest private rooftop mixer – panoramic CBD sunset, cold drinks, and real founders. BYOB. 72 floors above SG.",
-    link: "https://luma.com/am60bizs",
+      "Celebrate the holiday season with the GrowthLab community at Singapore’s highest private rooftop  73 floors up with panoramic night views, festive vibes, and ice-cold drinks on us.This Christmas edition of Startup Surge Fridays brings founders, builders, and investors together for a relaxed, high-energy networking mixer with a holiday twist.",
+    link: "https://luma.com/wris178p",
     imageUrl: null,
     featured: true,
   },
   {
     id: "1",
     title: "GrowthLab Monthly Networking Mixer",
-    date: "2025-12-05",
+    date: "2025-11-05",
     time: "6:00 PM - 8:00 PM",
     location: "Singapore • Hybrid",
     type: "Networking",
@@ -48,7 +48,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: "2",
     title: "AI Tools Workshop for Startups",
-    date: "2025-12-12",
+    date: "2025-11-12",
     time: "2:00 PM - 4:00 PM",
     location: "Online",
     type: "Workshop",
@@ -62,7 +62,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: "3",
     title: "Investor Pitch Practice Session",
-    date: "2025-12-18",
+    date: "2025-11-18",
     time: "10:00 AM - 12:00 PM",
     location: "Singapore",
     type: "Workshop",
@@ -76,7 +76,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: "4",
     title: "Founder Stories: Scaling Your Startup",
-    date: "2026-01-10",
+    date: "2025-10-10",
     time: "7:00 PM - 9:00 PM",
     location: "Hybrid",
     type: "Talk",
@@ -89,7 +89,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: "5",
     title: "Student Entrepreneurship Bootcamp",
-    date: "2026-01-20",
+    date: "2025-10-20",
     time: "9:00 AM - 5:00 PM",
     location: "Singapore",
     type: "Program",
@@ -102,8 +102,8 @@ const fallbackEvents: TransformedEvent[] = [
   },
   {
     id: "6",
-    title: "GrowthLab Conference 2026",
-    date: "2026-02-15",
+    title: "GrowthLab Conference 2025",
+    date: "2025-09-15",
     time: "All Day",
     location: "Singapore",
     type: "Conference",
@@ -116,8 +116,8 @@ const fallbackEvents: TransformedEvent[] = [
   },
   {
     id: "7",
-    title: "Q1 2026 Networking Mixer",
-    date: "2026-03-15",
+    title: "Q3 2025 Networking Mixer",
+    date: "2025-08-15",
     time: "6:00 PM - 8:00 PM",
     location: "Singapore",
     type: "Networking",
@@ -130,7 +130,7 @@ const fallbackEvents: TransformedEvent[] = [
   {
     id: "8",
     title: "Startup Fundraising Workshop",
-    date: "2026-04-10",
+    date: "2025-07-10",
     time: "2:00 PM - 4:00 PM",
     location: "Online",
     type: "Workshop",

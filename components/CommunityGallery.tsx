@@ -17,21 +17,24 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  ImageIcon,
 } from "lucide-react";
 import Image from "next/image";
 import {
   galleryImages,
-  getCategoryCounts,
-  getImagesByCategory,
+  getUniqueEventCounts,
+  getUniqueEvents,
+  getImagesByEventTitle,
+  getEventImageCount,
 } from "@/lib/data/gallery";
 
-// Get category counts dynamically
-const categoryCounts = getCategoryCounts();
+// Get unique event counts dynamically
+const eventCounts = getUniqueEventCounts();
 const galleryCategories = [
-  { name: "All", count: categoryCounts.All },
-  { name: "Events", count: categoryCounts.Events },
-  { name: "Workshops", count: categoryCounts.Workshops },
-  { name: "Networking", count: categoryCounts.Networking },
+  { name: "All", count: eventCounts.All },
+  { name: "Events", count: eventCounts.Events },
+  { name: "Workshops", count: eventCounts.Workshops },
+  { name: "Networking", count: eventCounts.Networking },
 ];
 
 // Use gallery data from lib/data/gallery.ts
@@ -41,32 +44,28 @@ export default function CommunityGallery() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImageId, setSelectedImageId] = useState<number | null>(null);
+  const [selectedEventTitle, setSelectedEventTitle] = useState<string | null>(
+    null
+  );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
-  const filteredImages = getImagesByCategory(activeCategory);
+  // Get unique events (one thumbnail per event)
+  const uniqueEvents = getUniqueEvents(
+    activeCategory === "All" ? undefined : activeCategory
+  );
 
-  // Handle image click - open modal with category images
-  const handleImageClick = (imageId: number, category: string) => {
-    setSelectedImageId(imageId);
-    const categoryImages = communityImages.filter(
-      (img) => img.category === category
-    );
-    const index = categoryImages.findIndex((img) => img.id === imageId);
-    setCurrentImageIndex(index >= 0 ? index : 0);
+  // Handle event click - open modal with all images from that event
+  const handleEventClick = (eventTitle: string) => {
+    setSelectedEventTitle(eventTitle);
+    setCurrentImageIndex(0);
     setIsModalOpen(true);
   };
 
-  // Get images for modal (same category as selected image)
-  const modalImages = selectedImageId
-    ? communityImages.filter((img) => {
-        const selectedImage = communityImages.find(
-          (i) => i.id === selectedImageId
-        );
-        return selectedImage && img.category === selectedImage.category;
-      })
+  // Get images for modal (all images from selected event)
+  const modalImages = selectedEventTitle
+    ? getImagesByEventTitle(selectedEventTitle)
     : [];
 
   // Navigation functions
@@ -218,63 +217,82 @@ export default function CommunityGallery() {
                   : "bg-white text-slate-700 border border-slate-200"
               }`}
             >
-              {category.name} (
-              {categoryCounts[category.name as keyof typeof categoryCounts]})
+              {category.name} ({category.count})
             </button>
           ))}
         </motion.div>
 
-        {/* Enhanced Interactive Image Grid */}
+        {/* Enhanced Interactive Image Grid - One thumbnail per event */}
         <motion.div
           layout
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16"
         >
           <AnimatePresence mode="wait">
-            {filteredImages.map((image, index) => (
-              <motion.div
-                key={image.id}
-                layout
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.05,
-                  ease: "easeOut",
-                }}
-                onClick={() => handleImageClick(image.id, image.category)}
-                className="relative aspect-square overflow-hidden bg-gray-100 cursor-pointer group rounded-xl shadow-lg transition-all duration-300"
-                style={{
-                  willChange: "transform, opacity",
-                  backfaceVisibility: "hidden",
-                  transform: "translateZ(0)",
-                }}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                />
+            {uniqueEvents.map((event, index) => {
+              const imageCount = getEventImageCount(event.title);
+              return (
+                <motion.div
+                  key={event.id}
+                  layout
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.05,
+                    ease: "easeOut",
+                  }}
+                  onClick={() => handleEventClick(event.title)}
+                  className="relative aspect-[4/3] overflow-hidden bg-gray-100 cursor-pointer group rounded-xl shadow-lg transition-all duration-300"
+                  style={{
+                    willChange: "transform, opacity",
+                    backfaceVisibility: "hidden",
+                    transform: "translateZ(0)",
+                  }}
+                >
+                  <Image
+                    src={event.src}
+                    alt={event.alt}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    priority={index < 4}
+                    loading={index < 4 ? "eager" : "lazy"}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDBAMBAAAAAAAAAAAAAQIDAAQRBRIhMQYTQWH/xAAVAQEBAAAAAAAAAAAAAAAAAAADBP/EABkRAAIDAQAAAAAAAAAAAAAAAAECABEhQf/aAAwDAQACEQMRAD8AzjT9W1G0s4ra3vpooI12xxpIQqj9A6FWE+t6lLLI7X1yWdizHz5OSeTSlKljMxgTp0s/c/k//9k="
+                    quality={85}
+                  />
 
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Gradient overlay - always visible at bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* Category badge */}
-                <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 bg-white/90 rounded-full text-xs font-semibold text-slate-900">
-                    {image.category}
-                  </span>
-                </div>
+                  {/* Category badge */}
+                  <div className="absolute top-3 left-3">
+                    <span className="px-2.5 py-1 bg-white/90 rounded-full text-xs font-semibold text-slate-900">
+                      {event.category}
+                    </span>
+                  </div>
 
-                {/* Content on hover */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                  <h4 className="text-sm font-bold mb-1">{image.title}</h4>
-                  <p className="text-xs text-white/80">{image.description}</p>
-                </div>
-              </motion.div>
-            ))}
+                  {/* Photo count badge */}
+                  <div className="absolute top-3 right-3">
+                    <span className="px-2.5 py-1 bg-black/60 backdrop-blur-sm rounded-full text-xs font-semibold text-white flex items-center gap-1.5">
+                      <ImageIcon size={12} />
+                      {imageCount} {imageCount === 1 ? "photo" : "photos"}
+                    </span>
+                  </div>
+
+                  {/* Content - always visible */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <h4 className="text-base font-bold mb-1 line-clamp-2">
+                      {event.title}
+                    </h4>
+                    <p className="text-xs text-white/80">
+                      {event.date} • {event.location}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
 

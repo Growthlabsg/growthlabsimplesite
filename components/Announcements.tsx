@@ -7,43 +7,76 @@ import Link from "next/link";
 const announcements = [
   {
     type: "new",
-    title: "GrowthLab Platform 3.0 Launch",
+    title: "GrowthLab Platform Launch – New Year 2026",
     description:
-      "Introducing AI-powered matching, enhanced business pages, and improved networking features.",
-    date: "2025-12-10",
-    category: "Platform Update",
-    link: "/updates/platform-3.0",
+      "Ring in 2026 with the official launch of GrowthLab's new platform! AI-powered matching, enhanced business pages, and improved networking features to supercharge  startup ecosystem worldwide.",
+    date: "2025-12-31",
+    category: "Platform Launch",
+    link: "https://luma.com/growthlab.sg",
     featured: true,
   },
   {
     type: "announcement",
-    title: "GrowthLab Conference 2026",
+    title: "ROOFTOP CHRISTMAS MIXER – Startup Surge Holiday Edition",
     description:
-      "Join us for our annual conference featuring 50+ speakers, workshops, and networking sessions.",
-    date: "2026-01-25",
+      "Join us 73 floors up at Skysuites@Anson for panoramic night views, festive vibes, and ice-cold drinks. Founder intros, speed networking, and a group Christmas photo with the skyline. $10 entry includes drinks & Christmas treats.",
+    date: "2025-12-19",
     category: "Event",
-    link: "https://lu.ma/growthlab.sg",
+    link: "https://luma.com/wris178p",
     featured: true,
-  },
-  {
-    type: "announcement",
-    title: "New Partnership: Business in a Box",
-    description:
-      "Exclusive discounts on startup services including legal, accounting, and marketing support.",
-    date: "2025-12-08",
-    category: "Partnership",
-    link: "/partners",
   },
   {
     type: "new",
-    title: "Student Program Launch",
+    title: "GrowthLab Job Portal Launch",
     description:
-      "Special student membership tier with discounted pricing and exclusive mentorship programs.",
+      "Connecting startups with top talent! Our new Job Portal will help founders find the right team members and job seekers discover exciting opportunities in the startup ecosystem.",
     date: "2026-01-15",
-    category: "Program",
-    link: "/students",
+    category: "Platform Launch",
+    link: "",
+    featured: false,
   },
 ];
+
+// const announcementsDummy = [
+//   {
+//     type: "new",
+//     title: "GrowthLab Platform 3.0 Launch",
+//     description:
+//       "Introducing AI-powered matching, enhanced business pages, and improved networking features.",
+//     date: "2025-12-10",
+//     category: "Platform Update",
+//     link: "/updates/platform-3.0",
+//     featured: true,
+//   },
+//   {
+//     type: "announcement",
+//     title: "GrowthLab Conference 2026",
+//     description:
+//       "Join us for our annual conference featuring 50+ speakers, workshops, and networking sessions.",
+//     date: "2026-01-25",
+//     category: "Event",
+//     link: "https://lu.ma/growthlab.sg",
+//     featured: true,
+//   },
+//   {
+//     type: "announcement",
+//     title: "New Partnership: Business in a Box",
+//     description:
+//       "Exclusive discounts on startup services including legal, accounting, and marketing support.",
+//     date: "2025-12-08",
+//     category: "Partnership",
+//     link: "/partners",
+//   },
+//   {
+//     type: "new",
+//     title: "Student Program Launch",
+//     description:
+//       "Special student membership tier with discounted pricing and exclusive mentorship programs.",
+//     date: "2026-01-15",
+//     category: "Program",
+//     link: "/students",
+//   },
+// ];
 
 export default function Announcements() {
   return (
@@ -184,13 +217,17 @@ export default function Announcements() {
                         year: "numeric",
                       })}
                     </span>
-                    <Link
-                      href={announcement.link}
-                      className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all"
-                    >
-                      Learn More
-                      <ArrowRight size={18} />
-                    </Link>
+                    {announcement.link && (
+                      <Link
+                        href={announcement.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all"
+                      >
+                        Learn More
+                        <ArrowRight size={18} />
+                      </Link>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -262,13 +299,17 @@ export default function Announcements() {
                         day: "numeric",
                       })}
                     </span>
-                    <Link
-                      href={announcement.link}
-                      className="text-sm text-primary font-medium hover:gap-2 inline-flex items-center gap-1.5 transition-all"
-                    >
-                      Read More
-                      <ArrowRight size={14} />
-                    </Link>
+                    {announcement.link && (
+                      <Link
+                        href={announcement.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-primary font-medium hover:gap-2 inline-flex items-center gap-1.5 transition-all"
+                      >
+                        Read More
+                        <ArrowRight size={14} />
+                      </Link>
+                    )}
                   </div>
                 </div>
               </motion.div>
