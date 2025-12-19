@@ -823,7 +823,7 @@ function RegisterForm() {
               <p className="text-gray-600">
                 Already have an account?{" "}
                 <Link
-                  href="/login"
+                  href="https://app.growthlab.sg/login"
                   className="text-primary font-semibold hover:underline"
                 >
                   Sign in

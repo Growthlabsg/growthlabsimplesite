@@ -89,7 +89,7 @@ export default function FundPage() {
                   <ArrowRight size={20} />
                 </Link>
                 <Link
-                  href="/login"
+                  href="https://app.growthlab.sg/login"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold border-2 border-slate-300 rounded-lg hover:border-primary transition-colors min-h-[48px]"
                 >
                   Sign In

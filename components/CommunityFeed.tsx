@@ -436,7 +436,7 @@ export default function CommunityFeed() {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-4">
             <Link
-              href="/login"
+              href="https://app.growthlab.sg/login"
               className="px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl min-h-[56px]"
             >
               Create Post
