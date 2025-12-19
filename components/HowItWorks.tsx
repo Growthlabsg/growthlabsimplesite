@@ -244,7 +244,7 @@ export default function HowItWorks() {
                 Join GrowthLab today and start building your startup ecosystem.
               </p>
               <motion.a
-                href="/register"
+                href="https://app.growthlab.sg/signup"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-block px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl min-h-[48px] flex items-center"

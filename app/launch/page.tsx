@@ -1,43 +1,56 @@
-'use client'
+"use client";
 
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import { Rocket, FileText, Sparkles, GraduationCap, Briefcase, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import {
+  Rocket,
+  FileText,
+  Sparkles,
+  GraduationCap,
+  Briefcase,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const features = [
   {
     icon: FileText,
-    title: 'Business Pages',
-    description: 'Create and customize your startup business page. Showcase your product, team, milestones, and updates. Build credibility and attract investors, partners, and customers.',
+    title: "Business Pages",
+    description:
+      "Create and customize your startup business page. Showcase your product, team, milestones, and updates. Build credibility and attract investors, partners, and customers.",
   },
   {
     icon: Rocket,
-    title: 'Startup Resources',
-    description: 'Access comprehensive startup resources including business templates, legal guides, marketing tools, pitch deck templates, and operational checklists to accelerate your launch.',
+    title: "Startup Resources",
+    description:
+      "Access comprehensive startup resources including business templates, legal guides, marketing tools, pitch deck templates, and operational checklists to accelerate your launch.",
   },
   {
     icon: Sparkles,
-    title: 'AI-Driven Tools',
-    description: 'Leverage AI-powered tools for market analysis, business plan generation, competitive research, and personalized growth recommendations tailored to your startup.',
+    title: "AI-Driven Tools",
+    description:
+      "Leverage AI-powered tools for market analysis, business plan generation, competitive research, and personalized growth recommendations tailored to your startup.",
   },
   {
     icon: GraduationCap,
-    title: 'Mentorship Programs',
-    description: 'Connect with experienced founders and industry experts through our mentorship matching program. Get guidance on product development, fundraising, and scaling strategies.',
+    title: "Mentorship Programs",
+    description:
+      "Connect with experienced founders and industry experts through our mentorship matching program. Get guidance on product development, fundraising, and scaling strategies.",
   },
   {
     icon: Briefcase,
-    title: 'Share Updates',
-    description: 'Keep your network informed with regular updates about your progress, milestones, partnerships, and achievements. Build anticipation and attract opportunities.',
+    title: "Share Updates",
+    description:
+      "Keep your network informed with regular updates about your progress, milestones, partnerships, and achievements. Build anticipation and attract opportunities.",
   },
   {
     icon: Rocket,
-    title: 'Launch Support',
-    description: 'Access launch checklists, go-to-market strategies, beta testing platforms, and marketing resources to ensure a successful product launch.',
+    title: "Launch Support",
+    description:
+      "Access launch checklists, go-to-market strategies, beta testing platforms, and marketing resources to ensure a successful product launch.",
   },
-]
+];
 
 export default function LaunchPage() {
   return (
@@ -62,18 +75,20 @@ export default function LaunchPage() {
                 Build & Share Your Startup
               </h1>
               <p className="text-xl sm:text-2xl text-slate-700 mb-8 leading-relaxed font-light">
-                Create business pages, share startup updates, and showcase your venture. Access AI-driven tools, mentorship programs, and startup resources to accelerate your launch.
+                Create business pages, share startup updates, and showcase your
+                venture. Access AI-driven tools, mentorship programs, and
+                startup resources to accelerate your launch.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="/register"
+                  href="https://app.growthlab.sg/signup"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors min-h-[48px]"
                 >
                   Start Building
                   <ArrowRight size={20} />
                 </Link>
                 <Link
-                  href="/login"
+                  href="https://app.growthlab.sg/login"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold border-2 border-slate-300 rounded-lg hover:border-primary transition-colors min-h-[48px]"
                 >
                   Sign In
@@ -91,12 +106,13 @@ export default function LaunchPage() {
                 Everything You Need to Launch
               </h2>
               <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-light">
-                Comprehensive tools and resources to turn your idea into a launched startup
+                Comprehensive tools and resources to turn your idea into a
+                launched startup
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {features.map((feature, index) => {
-                const Icon = feature.icon
+                const Icon = feature.icon;
                 return (
                   <motion.div
                     key={feature.title}
@@ -109,10 +125,14 @@ export default function LaunchPage() {
                     <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
                       <Icon className="text-purple-600" size={28} />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                    <p className="text-slate-600 leading-relaxed font-light">{feature.description}</p>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed font-light">
+                      {feature.description}
+                    </p>
                   </motion.div>
-                )
+                );
               })}
             </div>
           </div>
@@ -125,10 +145,11 @@ export default function LaunchPage() {
               Ready to Launch Your Startup?
             </h2>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed font-light">
-              Join thousands of founders building and launching their ventures on GrowthLab.
+              Join thousands of founders building and launching their ventures
+              on GrowthLab.
             </p>
             <Link
-              href="/register"
+              href="https://app.growthlab.sg/signup"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors min-h-[56px]"
             >
               Create Your Startup Page
@@ -139,6 +160,5 @@ export default function LaunchPage() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }
-

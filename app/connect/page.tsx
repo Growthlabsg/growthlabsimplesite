@@ -1,43 +1,57 @@
-'use client'
+"use client";
 
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import { Network, Users, Search, MessageCircle, Sparkles, Globe, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import {
+  Network,
+  Users,
+  Search,
+  MessageCircle,
+  Sparkles,
+  Globe,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const features = [
   {
     icon: Network,
-    title: 'Professional Networking',
-    description: 'Build meaningful connections with founders, investors, students, and innovators from around the world. Our platform functions like LinkedIn for startups, helping you grow your professional network.',
+    title: "Professional Networking",
+    description:
+      "Build meaningful connections with founders, investors, students, and innovators from around the world. Our platform functions like LinkedIn for startups, helping you grow your professional network.",
   },
   {
     icon: Search,
-    title: 'AI-Powered Matching',
-    description: 'Our intelligent matching algorithm connects you with the right people based on your interests, goals, industry, and stage. Find co-founders, mentors, investors, and partners effortlessly.',
+    title: "AI-Powered Matching",
+    description:
+      "Our intelligent matching algorithm connects you with the right people based on your interests, goals, industry, and stage. Find co-founders, mentors, investors, and partners effortlessly.",
   },
   {
     icon: Users,
-    title: 'Community Groups',
-    description: 'Join industry-specific groups, location-based communities, and interest-based circles. Participate in discussions, share insights, and collaborate with like-minded entrepreneurs.',
+    title: "Community Groups",
+    description:
+      "Join industry-specific groups, location-based communities, and interest-based circles. Participate in discussions, share insights, and collaborate with like-minded entrepreneurs.",
   },
   {
     icon: MessageCircle,
-    title: 'Direct Messaging',
-    description: 'Start conversations with anyone in the network. Send messages, schedule meetings, and build relationships through our secure messaging platform integrated with video calls.',
+    title: "Direct Messaging",
+    description:
+      "Start conversations with anyone in the network. Send messages, schedule meetings, and build relationships through our secure messaging platform integrated with video calls.",
   },
   {
     icon: Sparkles,
-    title: 'Interest-Based Discovery',
-    description: 'Discover people based on shared interests, complementary skills, or mutual connections. Expand your network with relevant, high-quality connections.',
+    title: "Interest-Based Discovery",
+    description:
+      "Discover people based on shared interests, complementary skills, or mutual connections. Expand your network with relevant, high-quality connections.",
   },
   {
     icon: Globe,
-    title: 'Global Reach',
-    description: 'Connect with entrepreneurs, investors, and innovators from 50+ countries. Break down geographical barriers and build a truly global network.',
+    title: "Global Reach",
+    description:
+      "Connect with entrepreneurs, investors, and innovators from 50+ countries. Break down geographical barriers and build a truly global network.",
   },
-]
+];
 
 export default function ConnectPage() {
   return (
@@ -62,11 +76,13 @@ export default function ConnectPage() {
                 Network & Build Relationships
               </h1>
               <p className="text-xl sm:text-2xl text-slate-700 mb-8 leading-relaxed font-light">
-                Connect with founders, investors, students, and innovators worldwide. Build meaningful relationships through our LinkedIn-style networking platform with AI-powered matching.
+                Connect with founders, investors, students, and innovators
+                worldwide. Build meaningful relationships through our
+                LinkedIn-style networking platform with AI-powered matching.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="/register"
+                  href="https://app.growthlab.sg/signup"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors min-h-[48px]"
                 >
                   Join Now
@@ -91,12 +107,13 @@ export default function ConnectPage() {
                 How We Help You Connect
               </h2>
               <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-light">
-                Everything you need to build and grow your professional network in the startup ecosystem
+                Everything you need to build and grow your professional network
+                in the startup ecosystem
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {features.map((feature, index) => {
-                const Icon = feature.icon
+                const Icon = feature.icon;
                 return (
                   <motion.div
                     key={feature.title}
@@ -109,10 +126,14 @@ export default function ConnectPage() {
                     <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
                       <Icon className="text-blue-600" size={28} />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                    <p className="text-slate-600 leading-relaxed font-light">{feature.description}</p>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed font-light">
+                      {feature.description}
+                    </p>
                   </motion.div>
-                )
+                );
               })}
             </div>
           </div>
@@ -125,10 +146,11 @@ export default function ConnectPage() {
               Ready to Build Your Network?
             </h2>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed font-light">
-              Join 2,500+ members already connecting, networking, and growing together on GrowthLab.
+              Join 2,500+ members already connecting, networking, and growing
+              together on GrowthLab.
             </p>
             <Link
-              href="/register"
+              href="https://app.growthlab.sg/signup"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors min-h-[56px]"
             >
               Get Started Free
@@ -139,6 +161,5 @@ export default function ConnectPage() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }
-

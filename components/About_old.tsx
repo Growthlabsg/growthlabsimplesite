@@ -196,7 +196,7 @@ export default function About2() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    href="/register"
+                    href="https://app.growthlab.sg/signup"
                     className="group relative inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white text-base font-semibold tracking-wide hover:from-slate-800 hover:via-slate-700 hover:to-slate-800 transition-all duration-300 min-h-[56px] rounded-lg shadow-xl hover:shadow-2xl overflow-hidden"
                   >
                     <span className="relative z-10">JOIN GROWTHLAB</span>

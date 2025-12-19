@@ -246,7 +246,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
-                  href="/register"
+                  href="https://app.growthlab.sg/signup"
                   className="group relative px-6 sm:px-8 lg:px-10 py-4 sm:py-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 flex items-center space-x-2 min-h-[48px] sm:min-h-[56px] overflow-hidden rounded-lg shadow-xl hover:shadow-2xl"
                 >
                   <motion.div

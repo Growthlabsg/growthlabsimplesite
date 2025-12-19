@@ -1,43 +1,57 @@
-'use client'
+"use client";
 
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import { Users, Briefcase, TrendingUp, GraduationCap, Target, Zap, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import {
+  Users,
+  Briefcase,
+  TrendingUp,
+  GraduationCap,
+  Target,
+  Zap,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const features = [
   {
     icon: Briefcase,
-    title: 'Job Board',
-    description: 'Post job openings and discover top talent. Find co-founders, engineers, marketers, and other professionals who can help scale your startup.',
+    title: "Job Board",
+    description:
+      "Post job openings and discover top talent. Find co-founders, engineers, marketers, and other professionals who can help scale your startup.",
   },
   {
     icon: Users,
-    title: 'Talent Discovery',
-    description: 'Access a pool of skilled professionals actively looking for opportunities. Filter by skills, experience, location, and startup stage preferences.',
+    title: "Talent Discovery",
+    description:
+      "Access a pool of skilled professionals actively looking for opportunities. Filter by skills, experience, location, and startup stage preferences.",
   },
   {
     icon: GraduationCap,
-    title: 'Mentorship Programs',
-    description: 'Connect with experienced founders and industry experts who can provide guidance on scaling, operations, marketing, fundraising, and strategic growth.',
+    title: "Mentorship Programs",
+    description:
+      "Connect with experienced founders and industry experts who can provide guidance on scaling, operations, marketing, fundraising, and strategic growth.",
   },
   {
     icon: TrendingUp,
-    title: 'Growth Analytics',
-    description: 'Track your startup\'s growth metrics, benchmark against peers, and access insights to make data-driven decisions about your scaling strategy.',
+    title: "Growth Analytics",
+    description:
+      "Track your startup's growth metrics, benchmark against peers, and access insights to make data-driven decisions about your scaling strategy.",
   },
   {
     icon: Target,
-    title: 'Strategic Planning',
-    description: 'Access growth frameworks, scaling playbooks, and strategic planning tools to chart your path from startup to scale-up to exit.',
+    title: "Strategic Planning",
+    description:
+      "Access growth frameworks, scaling playbooks, and strategic planning tools to chart your path from startup to scale-up to exit.",
   },
   {
     icon: Zap,
-    title: 'Network Effects',
-    description: 'Leverage our vibrant professional network to accelerate partnerships, customer acquisition, and market expansion through community connections.',
+    title: "Network Effects",
+    description:
+      "Leverage our vibrant professional network to accelerate partnerships, customer acquisition, and market expansion through community connections.",
   },
-]
+];
 
 export default function GrowPage() {
   return (
@@ -62,18 +76,20 @@ export default function GrowPage() {
                 Scale Your Venture
               </h1>
               <p className="text-xl sm:text-2xl text-slate-700 mb-8 leading-relaxed font-light">
-                Post jobs, discover talent, access mentorship programs, and leverage our vibrant professional network. Turn your idea into a scalable venture — faster and smarter.
+                Post jobs, discover talent, access mentorship programs, and
+                leverage our vibrant professional network. Turn your idea into a
+                scalable venture — faster and smarter.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="/register"
+                  href="https://app.growthlab.sg/signup"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors min-h-[48px]"
                 >
                   Start Growing
                   <ArrowRight size={20} />
                 </Link>
                 <Link
-                  href="/login"
+                  href="https://app.growthlab.sg/login"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold border-2 border-slate-300 rounded-lg hover:border-primary transition-colors min-h-[48px]"
                 >
                   Sign In
@@ -96,7 +112,7 @@ export default function GrowPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {features.map((feature, index) => {
-                const Icon = feature.icon
+                const Icon = feature.icon;
                 return (
                   <motion.div
                     key={feature.title}
@@ -109,10 +125,14 @@ export default function GrowPage() {
                     <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
                       <Icon className="text-amber-600" size={28} />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                    <p className="text-slate-600 leading-relaxed font-light">{feature.description}</p>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed font-light">
+                      {feature.description}
+                    </p>
                   </motion.div>
-                )
+                );
               })}
             </div>
           </div>
@@ -125,10 +145,11 @@ export default function GrowPage() {
               Ready to Scale Your Startup?
             </h2>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed font-light">
-              Join thousands of founders growing and scaling their ventures on GrowthLab.
+              Join thousands of founders growing and scaling their ventures on
+              GrowthLab.
             </p>
             <Link
-              href="/register"
+              href="https://app.growthlab.sg/signup"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors min-h-[56px]"
             >
               Start Growing Today
@@ -139,6 +160,5 @@ export default function GrowPage() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }
-

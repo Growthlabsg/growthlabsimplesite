@@ -1,43 +1,57 @@
-'use client'
+"use client";
 
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import { DollarSign, Users, TrendingUp, FileText, Search, Handshake, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import {
+  DollarSign,
+  Users,
+  TrendingUp,
+  FileText,
+  Search,
+  Handshake,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const features = [
   {
     icon: DollarSign,
-    title: 'Investor Network',
-    description: 'Connect with angel investors, VCs, and funding organizations from around the world. Access a curated network of investors actively looking for opportunities.',
+    title: "Investor Network",
+    description:
+      "Connect with angel investors, VCs, and funding organizations from around the world. Access a curated network of investors actively looking for opportunities.",
   },
   {
     icon: FileText,
-    title: 'Pitch Deck Templates',
-    description: 'Access professional pitch deck templates, investor presentation guides, and fundraising best practices. Get expert tips on structuring your pitch and telling your story.',
+    title: "Pitch Deck Templates",
+    description:
+      "Access professional pitch deck templates, investor presentation guides, and fundraising best practices. Get expert tips on structuring your pitch and telling your story.",
   },
   {
     icon: Search,
-    title: 'Investor Matching',
-    description: 'Our AI-powered matching system connects you with investors whose investment thesis, stage preferences, and industry focus align with your startup.',
+    title: "Investor Matching",
+    description:
+      "Our AI-powered matching system connects you with investors whose investment thesis, stage preferences, and industry focus align with your startup.",
   },
   {
     icon: TrendingUp,
-    title: 'Funding Opportunities',
-    description: 'Discover grants, competitions, accelerators, and funding programs. Get notified about relevant opportunities based on your startup stage and industry.',
+    title: "Funding Opportunities",
+    description:
+      "Discover grants, competitions, accelerators, and funding programs. Get notified about relevant opportunities based on your startup stage and industry.",
   },
   {
     icon: Handshake,
-    title: 'Strategic Partnerships',
-    description: 'Find and connect with potential partners, distributors, and strategic allies who can help accelerate your growth and expand your market reach.',
+    title: "Strategic Partnerships",
+    description:
+      "Find and connect with potential partners, distributors, and strategic allies who can help accelerate your growth and expand your market reach.",
   },
   {
     icon: Users,
-    title: 'Fundraising Support',
-    description: 'Get guidance from experienced founders who have successfully raised capital. Access mentorship, peer support, and fundraising communities.',
+    title: "Fundraising Support",
+    description:
+      "Get guidance from experienced founders who have successfully raised capital. Access mentorship, peer support, and fundraising communities.",
   },
-]
+];
 
 export default function FundPage() {
   return (
@@ -62,11 +76,13 @@ export default function FundPage() {
                 Raise Capital & Discover Partners
               </h1>
               <p className="text-xl sm:text-2xl text-slate-700 mb-8 leading-relaxed font-light">
-                Access funding opportunities, connect with investors, and discover strategic partners. Post fundraising needs and get matched with interested investors worldwide.
+                Access funding opportunities, connect with investors, and
+                discover strategic partners. Post fundraising needs and get
+                matched with interested investors worldwide.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="/register"
+                  href="https://app.growthlab.sg/signup"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors min-h-[48px]"
                 >
                   Start Fundraising
@@ -91,12 +107,13 @@ export default function FundPage() {
                 Your Path to Funding
               </h2>
               <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-light">
-                Everything you need to raise capital and build strategic partnerships
+                Everything you need to raise capital and build strategic
+                partnerships
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {features.map((feature, index) => {
-                const Icon = feature.icon
+                const Icon = feature.icon;
                 return (
                   <motion.div
                     key={feature.title}
@@ -109,10 +126,14 @@ export default function FundPage() {
                     <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6">
                       <Icon className="text-green-600" size={28} />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                    <p className="text-slate-600 leading-relaxed font-light">{feature.description}</p>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed font-light">
+                      {feature.description}
+                    </p>
                   </motion.div>
-                )
+                );
               })}
             </div>
           </div>
@@ -125,10 +146,11 @@ export default function FundPage() {
               Ready to Raise Capital?
             </h2>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed font-light">
-              Connect with 200+ investors and discover funding opportunities on GrowthLab.
+              Connect with 200+ investors and discover funding opportunities on
+              GrowthLab.
             </p>
             <Link
-              href="/register"
+              href="https://app.growthlab.sg/signup"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors min-h-[56px]"
             >
               Start Your Fundraising Journey
@@ -139,6 +161,5 @@ export default function FundPage() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }
-

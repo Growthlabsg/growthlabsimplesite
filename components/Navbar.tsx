@@ -220,7 +220,7 @@ export default function Navbar() {
               <div className="h-5 w-px bg-slate-300 mx-2" />
 
               <Link
-                href="/login"
+                href="https://app.growthlab.sg/login"
                 className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors duration-300 min-h-[44px] flex items-center"
               >
                 Log In
@@ -234,7 +234,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
-                  href="/register"
+                  href="https://app.growthlab.sg/signup"
                   className="relative px-6 py-2.5 bg-slate-900 text-white text-sm font-medium tracking-wide hover:bg-slate-800 transition-all duration-300 min-h-[44px] flex items-center overflow-hidden group"
                 >
                   <motion.span
@@ -307,14 +307,14 @@ export default function Navbar() {
                 </div>
                 <div className="pt-4 space-y-3 border-t border-slate-200 mt-2">
                   <Link
-                    href="/login"
+                    href="https://app.growthlab.sg/login"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="text-slate-700 font-medium hover:text-slate-900 transition-colors py-3 min-h-[44px] flex items-center"
                   >
                     Log In
                   </Link>
                   <Link
-                    href="/register"
+                    href="https://app.growthlab.sg/signup"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="w-full text-center px-6 py-3 bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors min-h-[44px] flex items-center justify-center rounded-lg"
                   >

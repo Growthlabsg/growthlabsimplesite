@@ -373,7 +373,7 @@ export default function CommunityGallery() {
               </p>
               <div className="transition-transform duration-300 hover:scale-105">
                 <Link
-                  href="/register"
+                  href="https://app.growthlab.sg/signup"
                   className="inline-flex items-center gap-2 px-10 py-4 bg-white text-slate-900 rounded-lg font-semibold transition-all duration-300 min-h-[56px] shadow-xl"
                 >
                   Join GrowthLab Now

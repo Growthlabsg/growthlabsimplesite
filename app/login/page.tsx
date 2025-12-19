@@ -1,57 +1,59 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { ArrowLeft, Mail, Lock, LogIn } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { useState } from "react";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, Mail, Lock, LogIn } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function LoginPage() {
-  const router = useRouter()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError(null)
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
     try {
-      const result = await signIn('credentials', {
+      const result = await signIn("credentials", {
         email,
         password,
         redirect: false,
-      })
+      });
 
       if (result?.error) {
-        setError('Invalid email or password. Please try again.')
+        setError("Invalid email or password. Please try again.");
       } else {
-        router.push('/')
+        router.push("/");
       }
     } catch (err) {
-      setError('An error occurred. Please try again.')
+      setError("An error occurred. Please try again.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  const handleOAuthLogin = async (provider: 'google' | 'linkedin' | 'apple') => {
-    setIsLoading(true)
-    setError(null)
-    
+  const handleOAuthLogin = async (
+    provider: "google" | "linkedin" | "apple"
+  ) => {
+    setIsLoading(true);
+    setError(null);
+
     try {
       await signIn(provider, {
-        callbackUrl: '/',
+        callbackUrl: "/",
         redirect: true,
-      })
+      });
     } catch (err) {
-      setError(`Failed to sign in with ${provider}. Please try again.`)
-      setIsLoading(false)
+      setError(`Failed to sign in with ${provider}. Please try again.`);
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center px-4">
@@ -76,7 +78,9 @@ export default function LoginPage() {
             <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4">
               <LogIn className="text-white" size={32} />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Welcome Back
+            </h1>
             <p className="text-gray-600">Sign in to your GrowthLab account</p>
           </div>
 
@@ -90,7 +94,7 @@ export default function LoginPage() {
             {/* Google Sign In */}
             <motion.button
               type="button"
-              onClick={() => handleOAuthLogin('google')}
+              onClick={() => handleOAuthLogin("google")}
               disabled={isLoading}
               whileHover={{ scale: isLoading ? 1 : 1.02 }}
               whileTap={{ scale: isLoading ? 1 : 0.98 }}
@@ -120,7 +124,7 @@ export default function LoginPage() {
             {/* LinkedIn Sign In */}
             <motion.button
               type="button"
-              onClick={() => handleOAuthLogin('linkedin')}
+              onClick={() => handleOAuthLogin("linkedin")}
               disabled={isLoading}
               whileHover={{ scale: isLoading ? 1 : 1.02 }}
               whileTap={{ scale: isLoading ? 1 : 0.98 }}
@@ -135,7 +139,7 @@ export default function LoginPage() {
             {/* Apple Sign In */}
             <motion.button
               type="button"
-              onClick={() => handleOAuthLogin('apple')}
+              onClick={() => handleOAuthLogin("apple")}
               disabled={isLoading}
               whileHover={{ scale: isLoading ? 1 : 1.02 }}
               whileTap={{ scale: isLoading ? 1 : 0.98 }}
@@ -154,17 +158,25 @@ export default function LoginPage() {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-gray-500 font-medium">Or continue with email</span>
+              <span className="px-4 bg-white text-gray-500 font-medium">
+                Or continue with email
+              </span>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <Mail
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  size={20}
+                />
                 <input
                   id="email"
                   type="email"
@@ -178,11 +190,17 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <Lock
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  size={20}
+                />
                 <input
                   id="password"
                   type="password"
@@ -197,10 +215,16 @@ export default function LoginPage() {
 
             <div className="flex items-center justify-between">
               <label className="flex items-center">
-                <input type="checkbox" className="rounded border-gray-300 text-primary focus:ring-primary" />
+                <input
+                  type="checkbox"
+                  className="rounded border-gray-300 text-primary focus:ring-primary"
+                />
                 <span className="ml-2 text-sm text-gray-600">Remember me</span>
               </label>
-              <Link href="/contact" className="text-sm text-primary hover:underline">
+              <Link
+                href="/contact"
+                className="text-sm text-primary hover:underline"
+              >
                 Forgot password?
               </Link>
             </div>
@@ -210,14 +234,17 @@ export default function LoginPage() {
               disabled={isLoading}
               className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Signing In...' : 'Sign In'}
+              {isLoading ? "Signing In..." : "Sign In"}
             </button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-gray-600">
-              Don't have an account?{' '}
-              <Link href="/register" className="text-primary font-semibold hover:underline">
+              Don't have an account?{" "}
+              <Link
+                href="https://app.growthlab.sg/signup"
+                className="text-primary font-semibold hover:underline"
+              >
                 Sign up
               </Link>
             </p>
@@ -225,6 +252,5 @@ export default function LoginPage() {
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
-
