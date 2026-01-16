@@ -81,8 +81,8 @@ const upcomingEvents = [
     link: "https://lu.ma/growthlab.sg",
   },
   {
-    title: "GrowthLab Conference 2026",
-    date: "2026-02-15",
+    title: "GrowthLab Conference 2025",
+    date: "2025-02-15",
     time: "All Day",
     location: "Singapore",
     type: "Conference",

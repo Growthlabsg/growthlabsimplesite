@@ -8,24 +8,14 @@ import { getEventSchema } from "@/lib/seo/structuredData";
 
 const upcomingEvents = [
   {
-    title: "ROOFTOP SUNSET MIXER – Startup Surge Kickoff",
-    date: "2025-11-07",
+    title: "🌅 NEW YEAR EDITION MIXER – Startup Surge Kickoff",
+    date: "2026-01-29",
     type: "Networking",
   },
   {
-    title: "GrowthLab Monthly Networking Mixer",
-    date: "2025-12-05",
-    type: "Networking",
-  },
-  {
-    title: "AI Tools Workshop for Startups",
-    date: "2025-12-12",
-    type: "Workshop",
-  },
-  {
-    title: "GrowthLab Conference 2026",
-    date: "2026-02-15",
-    type: "Conference",
+    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
+    date: "2026-01-30",
+    type: "Talk",
   },
 ];
 

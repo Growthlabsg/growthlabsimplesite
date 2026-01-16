@@ -6,23 +6,23 @@ import Link from "next/link";
 
 const announcements = [
   {
-    type: "new",
-    title: "GrowthLab Platform Launch – New Year 2026",
+    type: "announcement",
+    title: "🌅 NEW YEAR EDITION MIXER – Startup Surge Kickoff",
     description:
-      "Ring in 2026 with the official launch of GrowthLab's new platform! AI-powered matching, enhanced business pages, and improved networking features to supercharge  startup ecosystem worldwide.",
-    date: "2025-12-31",
-    category: "Platform Launch",
-    link: "https://luma.com/growthlab.sg",
+      "Launch into the New Year with GrowthLab's Startup Surge at Minami – riverside Clarke Quay vibes, cold drinks, real founders, and fresh connections to power 2026. Thu 29 Jan 2026 | 6:30–9:00 PM. 1-for-1 House Pours (2nd drink on GrowthLab). Zero slides. Free entry.",
+    date: "2026-01-29",
+    category: "Event",
+    link: "https://luma.com/g7i9cfu0",
     featured: true,
   },
   {
     type: "announcement",
-    title: "ROOFTOP CHRISTMAS MIXER – Startup Surge Holiday Edition",
+    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
     description:
-      "Join us 73 floors up at Skysuites@Anson for panoramic night views, festive vibes, and ice-cold drinks. Founder intros, speed networking, and a group Christmas photo with the skyline. $10 entry includes drinks & Christmas treats.",
-    date: "2025-12-19",
+      "Join GrowthLab and SGInnovate for an evening of raw, unfiltered leadership conversations with 4 powerhouse founders and executives. No slides. No pitches. Just authentic fireside chats + Q&A. Thu, 30 January 2026 | 5:30 PM – 8:30 PM SGT at SGInnovate. FREE RSVP with drinks provided.",
+    date: "2026-01-30",
     category: "Event",
-    link: "https://luma.com/wris178p",
+    link: "https://luma.com/ilmpsrij?utm_source=embed",
     featured: true,
   },
   {
