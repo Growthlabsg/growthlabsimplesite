@@ -809,6 +809,7 @@ export function getLeadershipTeamSchema(): PersonSchema[] {
       "@type": "Person",
       name: "Xavier Tan",
       jobTitle: "Chief Operating Officer",
+      url: "https://www.linkedin.com/in/xavier-tan",
       sameAs: ["https://www.linkedin.com/in/xavier-tan"],
       worksFor: {
         "@type": "Organization",
