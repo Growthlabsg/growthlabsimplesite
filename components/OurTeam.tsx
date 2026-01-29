@@ -1,163 +1,192 @@
-'use client'
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion'
-import { Linkedin, Mail, Sparkles, Users, Globe, ExternalLink, X } from 'lucide-react'
-import Image from 'next/image'
-import GrowthLabLogo from './GrowthLabLogo'
-import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Linkedin,
+  Mail,
+  Sparkles,
+  Users,
+  Globe,
+  ExternalLink,
+  X,
+} from "lucide-react";
+import Image from "next/image";
+import GrowthLabLogo from "./GrowthLabLogo";
+import LeadershipTeamSchema from "./LeadershipTeamSchema";
+import { useState, useEffect } from "react";
 
 interface Venture {
-  name: string
-  url: string
-  logo?: string
-  icon?: React.ReactNode
+  name: string;
+  url: string;
+  logo?: string;
+  icon?: React.ReactNode;
 }
 
 interface TeamMember {
-  id: number
-  name: string
-  role: string
-  bio: string[]
-  quote: string
-  image: string
-  linkedin?: string
-  email?: string
-  portfolio?: string
-  ventures?: Venture[]
-  isMainMember?: boolean // true for CEO/CTO, false for general team members
+  id: number;
+  name: string;
+  role: string;
+  bio: string[];
+  quote: string;
+  image: string;
+  linkedin?: string;
+  email?: string;
+  portfolio?: string;
+  ventures?: Venture[];
+  isMainMember?: boolean; // true for CEO/CTO, false for general team members
 }
 
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: 'Arul Murugan',
-    role: 'Founder & CEO',
+    name: "Arul Murugan",
+    role: "Founder & CEO",
     isMainMember: true,
     bio: [
-      'Arul Murugan is a passionate entrepreneur and startup ecosystem builder with a deep commitment to empowering founders, investors, students, and innovators worldwide. Through GrowthLab, he has created a comprehensive platform that combines community, education, funding, and technology to help early-stage entrepreneurs succeed.',
+      "Arul Murugan is a passionate entrepreneur and startup ecosystem builder with a deep commitment to empowering founders, investors, students, and innovators worldwide. Through GrowthLab, he has created a comprehensive platform that combines community, education, funding, and technology to help early-stage entrepreneurs succeed.",
       'With a vision to create "LinkedIn for startups," Arul has built GrowthLab into a vibrant global ecosystem with 2,500+ members across 50+ countries. The platform facilitates networking, business development, funding opportunities, and access to essential startup resources—all in one place.',
-      'Beyond GrowthLab, Arul is dedicated to building communities and fostering innovation. He believes in the power of connections and the transformative impact of bringing together passionate entrepreneurs from around the world to collaborate, learn, and grow together.',
+      "Beyond GrowthLab, Arul is dedicated to building communities and fostering innovation. He believes in the power of connections and the transformative impact of bringing together passionate entrepreneurs from around the world to collaborate, learn, and grow together.",
     ],
-    quote: 'I founded GrowthLab with a simple vision: to bridge the gap between innovation and opportunity. Every entrepreneur deserves access to the right network, resources, and support to turn their ideas into reality. We\'re building more than a platform—we\'re creating an ecosystem where startups thrive.',
-    image: '/founder-arul-murugan.jpg',
-    linkedin: 'https://www.linkedin.com/in/arul-murugan-525b321a7/',
-    email: 'arul@growthlab.sg',
-    portfolio: 'https://www.walkwitharul.com',
+    quote:
+      "I founded GrowthLab with a simple vision: to bridge the gap between innovation and opportunity. Every entrepreneur deserves access to the right network, resources, and support to turn their ideas into reality. We're building more than a platform—we're creating an ecosystem where startups thrive.",
+    image: "/founder-arul-murugan.jpg",
+    linkedin: "https://www.linkedin.com/in/arul-murugan-525b321a7/",
+    email: "arul@growthlab.sg",
+    portfolio: "https://www.walkwitharul.com",
     ventures: [
       {
-        name: 'GrowthLab',
-        url: 'https://www.growthlab.sg',
+        name: "GrowthLab",
+        url: "https://www.growthlab.sg",
         icon: <GrowthLabLogo size={20} />,
       },
       {
-        name: 'VELANTEC',
-        url: 'https://www.velantec.com',
+        name: "VELANTEC",
+        url: "https://www.velantec.com",
         icon: <Globe className="text-primary" size={20} />,
       },
       {
-        name: 'MrAssistant.Ai',
-        url: 'https://www.mrassistant.ai',
+        name: "MrAssistant.Ai",
+        url: "https://www.mrassistant.ai",
         icon: <Globe className="text-primary" size={20} />,
       },
       {
-        name: 'ONESTOPSG',
-        url: 'https://www.onestopsg.com',
+        name: "ONESTOPSG",
+        url: "https://www.onestopsg.com",
         icon: <Globe className="text-primary" size={20} />,
       },
       {
-        name: 'Aval.sg',
-        url: 'https://www.aval.sg',
+        name: "Aval.sg",
+        url: "https://www.aval.sg",
         icon: <Globe className="text-primary" size={20} />,
       },
       {
-        name: 'Avan.sg',
-        url: 'https://www.avan.sg',
+        name: "Avan.sg",
+        url: "https://www.avan.sg",
         icon: <Globe className="text-primary" size={20} />,
       },
       {
-        name: 'BuzzzBuzzz',
-        url: 'https://www.buzzzbuzzz.com',
+        name: "BuzzzBuzzz",
+        url: "https://www.buzzzbuzzz.com",
         icon: <Globe className="text-primary" size={20} />,
       },
     ],
   },
   {
     id: 2,
-    name: 'Ansh Garg',
-    role: 'Chief Technology Officer',
+    name: "Xavier Tan",
+    role: "Chief Operating Officer",
     isMainMember: true,
     bio: [
-      'Ansh Garg is a visionary technologist and engineering leader with a passion for building scalable platforms that empower entrepreneurs. As GrowthLab\'s Chief Technology Officer, he leads the development of innovative solutions that power the "LinkedIn for startups" platform, enabling 2,500+ members to connect, launch, fund, and grow their ventures.',
-      'With extensive expertise in software architecture, AI-driven systems, and cloud infrastructure, Ansh oversees the technical strategy that makes GrowthLab a seamless, intelligent platform. He is responsible for developing cutting-edge features including AI-powered matching, analytics dashboards, and automation tools that help startups accelerate their growth journey.',
-      'Ansh believes that technology should be an enabler, not a barrier. His focus on creating intuitive, powerful tools ensures that founders can spend less time navigating complex systems and more time building their businesses. Under his leadership, GrowthLab continues to evolve as a platform that combines cutting-edge technology with user-centric design to deliver exceptional value to the global startup community.',
+      "Xavier Tan is an accomplished business leader and operations expert who brings strategic vision and operational excellence to GrowthLab as the Chief Operating Officer. With extensive experience in scaling businesses and optimizing operations, Xavier plays a crucial role in driving GrowthLab's growth across global markets.",
+      "Xavier oversees the day-to-day operations, strategic partnerships, and business development initiatives that fuel GrowthLab's expansion. His expertise in operational efficiency, process optimization, and strategic planning ensures that the platform continues to deliver exceptional value to its 2,500+ members across 50+ countries.",
+      "With a passion for entrepreneurship and a deep understanding of the startup ecosystem, Xavier works closely with founders, investors, and partners to create scalable systems and processes that enable sustainable growth. His leadership ensures that GrowthLab maintains its position as the premier platform connecting the global startup community.",
     ],
-    quote: 'Technology at its best is invisible—it works seamlessly in the background so entrepreneurs can focus on what matters most: building, connecting, and growing. At GrowthLab, we\'re not just building a platform; we\'re creating the technological foundation for the next generation of startups.',
-    image: '/team-ansh-garg.jpg',
-    linkedin: 'https://www.linkedin.com/in/ansh-garg-877785136',
-    email: 'anshgarg@growthlab.sg',
+    quote:
+      "Operations excellence is the backbone of any successful platform. At GrowthLab, we focus on creating seamless experiences and robust systems that allow entrepreneurs to focus on what they do best—building and scaling their ventures while we handle the infrastructure that powers their success.",
+    image: "/founder_xavier_tan.jpeg",
+    linkedin: "https://www.linkedin.com/in/xavier-tan",
+    email: "xavier@growthlab.sg",
   },
   {
     id: 3,
-    name: 'Iniya Sundararajan',
-    role: 'Community Advisor',
+    name: "Ansh Garg",
+    role: "Chief Technology Officer",
+    isMainMember: true,
+    bio: [
+      'Ansh Garg is a visionary technologist and engineering leader with a passion for building scalable platforms that empower entrepreneurs. As GrowthLab\'s Chief Technology Officer, he leads the development of innovative solutions that power the "LinkedIn for startups" platform, enabling 2,500+ members to connect, launch, fund, and grow their ventures.',
+      "With extensive expertise in software architecture, AI-driven systems, and cloud infrastructure, Ansh oversees the technical strategy that makes GrowthLab a seamless, intelligent platform. He is responsible for developing cutting-edge features including AI-powered matching, analytics dashboards, and automation tools that help startups accelerate their growth journey.",
+      "Ansh believes that technology should be an enabler, not a barrier. His focus on creating intuitive, powerful tools ensures that founders can spend less time navigating complex systems and more time building their businesses. Under his leadership, GrowthLab continues to evolve as a platform that combines cutting-edge technology with user-centric design to deliver exceptional value to the global startup community.",
+    ],
+    quote:
+      "Technology at its best is invisible—it works seamlessly in the background so entrepreneurs can focus on what matters most: building, connecting, and growing. At GrowthLab, we're not just building a platform; we're creating the technological foundation for the next generation of startups.",
+    image: "/team-ansh-garg.jpg",
+    linkedin: "https://www.linkedin.com/in/ansh-garg-877785136",
+    email: "anshgarg@growthlab.sg",
+  },
+  {
+    id: 4,
+    name: "Iniya Sundararajan",
+    role: "Community Advisor",
     isMainMember: false,
     bio: [
-      'Iniya Sundararajan is a dedicated community builder and advisor with a passion for fostering meaningful connections and empowering entrepreneurs. As GrowthLab\'s Community Advisor, she plays a pivotal role in nurturing the vibrant ecosystem of 2,500+ members across 50+ countries.',
-      'With a deep understanding of community dynamics and startup ecosystems, Iniya works closely with founders, investors, and innovators to create inclusive spaces where ideas flourish and relationships thrive. Her expertise in community engagement, event coordination, and member support has been instrumental in building GrowthLab into a trusted platform for startup professionals worldwide.',
-      'Iniya believes that strong communities are the foundation of successful startups. She focuses on creating authentic connections, facilitating knowledge sharing, and ensuring every member feels valued and supported in their entrepreneurial journey. Through her work, she helps transform GrowthLab from a platform into a true ecosystem where collaboration and growth go hand in hand.',
+      "Iniya Sundararajan is a dedicated community builder and advisor with a passion for fostering meaningful connections and empowering entrepreneurs. As GrowthLab's Community Advisor, she plays a pivotal role in nurturing the vibrant ecosystem of 2,500+ members across 50+ countries.",
+      "With a deep understanding of community dynamics and startup ecosystems, Iniya works closely with founders, investors, and innovators to create inclusive spaces where ideas flourish and relationships thrive. Her expertise in community engagement, event coordination, and member support has been instrumental in building GrowthLab into a trusted platform for startup professionals worldwide.",
+      "Iniya believes that strong communities are the foundation of successful startups. She focuses on creating authentic connections, facilitating knowledge sharing, and ensuring every member feels valued and supported in their entrepreneurial journey. Through her work, she helps transform GrowthLab from a platform into a true ecosystem where collaboration and growth go hand in hand.",
     ],
-    quote: 'Community is not just about bringing people together—it\'s about creating an environment where every member can thrive, learn, and grow. At GrowthLab, we\'re building something more than a network; we\'re cultivating a movement of entrepreneurs who support and uplift each other.',
-    image: '/team-iniya-sundararajan.jpg',
-    linkedin: 'https://www.linkedin.com/in/iniya-sundararajan-54523a120',
-    email: 'iniya@growthlab.sg',
+    quote:
+      "Community is not just about bringing people together—it's about creating an environment where every member can thrive, learn, and grow. At GrowthLab, we're building something more than a network; we're cultivating a movement of entrepreneurs who support and uplift each other.",
+    image: "/team-iniya-sundararajan.jpg",
+    linkedin: "https://www.linkedin.com/in/iniya-sundararajan-54523a120",
+    email: "iniya@growthlab.sg",
   },
   // Add more team members here in the future
-]
+];
 
 export default function OurTeam() {
-  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Handle member card click - open modal
   const handleMemberClick = (member: TeamMember) => {
-    setSelectedMember(member)
-    setIsModalOpen(true)
-  }
+    setSelectedMember(member);
+    setIsModalOpen(true);
+  };
 
   // Close modal
   const closeModal = () => {
-    setIsModalOpen(false)
-    setSelectedMember(null)
-  }
+    setIsModalOpen(false);
+    setSelectedMember(null);
+  };
 
   // Keyboard navigation
   useEffect(() => {
-    if (!isModalOpen) return
+    if (!isModalOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeModal()
+      if (e.key === "Escape") {
+        closeModal();
       }
-    }
+    };
 
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isModalOpen])
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isModalOpen])
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
 
   return (
     <>
+      <LeadershipTeamSchema />
       <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0">
@@ -171,11 +200,13 @@ export default function OurTeam() {
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="lg:col-span-2 relative z-10"
             >
-              <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">08</span>
+              <span className="text-7xl sm:text-8xl font-bold text-slate-300 block leading-none">
+                08
+              </span>
               <motion.div
                 className="absolute top-0 left-0 w-16 h-1 bg-gradient-to-r from-primary to-amber"
                 initial={{ width: 0 }}
@@ -188,8 +219,8 @@ export default function OurTeam() {
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
               className="lg:col-span-10"
             >
               <div className="flex items-center gap-3 mb-6">
@@ -199,167 +230,209 @@ export default function OurTeam() {
                 </h2>
               </div>
               <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light">
-                The passionate individuals behind GrowthLab, driving our mission to empower startups worldwide.
+                The passionate individuals behind GrowthLab, driving our mission
+                to empower startups worldwide.
               </p>
             </motion.div>
           </div>
 
           {/* Team Members - Main Members Only (CEO, CTO) */}
           <div className="space-y-20 lg:space-y-24">
-            {teamMembers.filter(member => member.isMainMember !== false).map((member, memberIndex) => (
-              <div 
-                key={member.id} 
-                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center pb-8 lg:pb-12"
-              >
-                {/* Image Section */}
-                <motion.div
-                  initial={{ opacity: 0, x: -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.8, delay: memberIndex * 0.2, ease: 'easeOut' }}
-                  className="relative w-full lg:w-auto"
+            {teamMembers
+              .filter((member) => member.isMainMember !== false)
+              .map((member, memberIndex) => (
+                <div
+                  key={member.id}
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center pb-8 lg:pb-12"
                 >
-                  <div className="relative aspect-[3/4] max-w-md mx-auto lg:mx-0 mb-8 lg:mb-0">
-                    {/* Image container - clean, no background */}
-                    <div className="relative w-full h-full rounded-2xl overflow-hidden group">
-                      <Image
-                        src={member.image}
-                        alt={`${member.name} - ${member.role}`}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        priority={memberIndex === 0}
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </div>
-                    
-                    {/* Floating badge - adjusted positioning */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.3 + memberIndex * 0.2 }}
-                      className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 bg-white rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-xl border border-slate-200 z-10"
-                    >
-                      <div className="flex items-center gap-2 lg:gap-3">
-                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                          <Sparkles className="text-primary" size={20} />
-                        </div>
-                        <div className="min-w-0">
-                          <div className="text-xs lg:text-sm font-semibold text-slate-900 truncate">{member.role}</div>
-                          <div className="text-[10px] lg:text-xs text-slate-600">GrowthLab</div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                </motion.div>
-
-                {/* Content Section */}
-                <motion.div
-                  initial={{ opacity: 0, x: 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.8, delay: 0.2 + memberIndex * 0.2, ease: 'easeOut' }}
-                  className="space-y-6 lg:space-y-8 w-full"
-                >
-                  {/* Name and Title */}
-                  <div>
-                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-2 lg:mb-3 tracking-tight">
-                      {member.name}
-                    </h3>
-                    <p className="text-lg lg:text-xl text-primary font-semibold mb-4 lg:mb-6">{member.role}</p>
-                    
-                    {/* Social Links */}
-                    <div className="flex items-center gap-3 mb-4 lg:mb-6">
-                      {member.linkedin && (
-                        <a
-                          href={member.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-all duration-300 group hover:scale-110 flex-shrink-0"
-                          aria-label="LinkedIn"
-                          title="LinkedIn"
-                        >
-                          <Linkedin className="text-primary group-hover:text-white" size={20} />
-                        </a>
-                      )}
-                      {member.email && (
-                        <a
-                          href={`mailto:${member.email}`}
-                          className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-all duration-300 group hover:scale-110 flex-shrink-0"
-                          aria-label="Email"
-                          title="Email"
-                        >
-                          <Mail className="text-primary group-hover:text-white" size={20} />
-                        </a>
-                      )}
-                      {member.portfolio && (
-                        <a
-                          href={member.portfolio}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-all duration-300 group hover:scale-110 flex-shrink-0"
-                          aria-label="Portfolio"
-                          title="Personal Portfolio"
-                        >
-                          <Globe className="text-primary group-hover:text-white" size={20} />
-                        </a>
-                      )}
-                    </div>
-
-                    {/* Ventures */}
-                    {member.ventures && member.ventures.length > 0 && (
-                      <div className="mb-4 lg:mb-6">
-                        <p className="text-xs lg:text-sm font-semibold text-slate-600 mb-2 lg:mb-3 uppercase tracking-wider">Ventures</p>
-                        <div className="flex flex-wrap items-center gap-2 lg:gap-2.5">
-                          {member.ventures.map((venture, vIndex) => (
-                            <motion.a
-                              key={vIndex}
-                              href={venture.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              whileHover={{ scale: 1.05, y: -2 }}
-                              whileTap={{ scale: 0.95 }}
-                              className="group relative inline-flex items-center gap-1.5 lg:gap-2 px-2.5 lg:px-3 py-1.5 lg:py-2 bg-white border border-slate-200 rounded-lg hover:border-primary hover:shadow-md transition-all duration-300"
-                              title={venture.name}
-                            >
-                              <div className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0">
-                                {venture.icon || <Globe className="text-primary" size={14} />}
-                              </div>
-                              <span className="text-[10px] lg:text-xs font-semibold text-slate-700 group-hover:text-primary transition-colors whitespace-nowrap">
-                                {venture.name}
-                              </span>
-                              <ExternalLink className="text-slate-400 group-hover:text-primary transition-colors flex-shrink-0" size={10} />
-                            </motion.a>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Quote */}
+                  {/* Image Section */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 + memberIndex * 0.2 }}
-                    className="relative bg-gradient-to-br from-primary/10 via-amber/5 to-primary/10 border-l-4 border-primary p-6 lg:p-8 rounded-r-2xl"
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{
+                      duration: 0.8,
+                      delay: memberIndex * 0.2,
+                      ease: "easeOut",
+                    }}
+                    className="relative w-full lg:w-auto"
                   >
-                    <p className="text-lg lg:text-xl text-slate-700 font-light leading-relaxed relative z-10">
-                      "{member.quote}"
-                    </p>
+                    <div className="relative aspect-[3/4] max-w-md mx-auto lg:mx-0 mb-8 lg:mb-0">
+                      {/* Image container - clean, no background */}
+                      <div className="relative w-full h-full rounded-2xl overflow-hidden group">
+                        <Image
+                          src={member.image}
+                          alt={`${member.name} - ${member.role}`}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          priority={memberIndex === 0}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+
+                      {/* Floating badge - adjusted positioning */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.6,
+                          delay: 0.3 + memberIndex * 0.2,
+                        }}
+                        className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 bg-white rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-xl border border-slate-200 z-10"
+                      >
+                        <div className="flex items-center gap-2 lg:gap-3">
+                          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Sparkles className="text-primary" size={20} />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-xs lg:text-sm font-semibold text-slate-900 truncate">
+                              {member.role}
+                            </div>
+                            <div className="text-[10px] lg:text-xs text-slate-600">
+                              GrowthLab
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
                   </motion.div>
 
-                  {/* Bio */}
-                  <div className="space-y-3 lg:space-y-4">
-                    {member.bio.map((paragraph, index) => (
-                      <p key={index} className="text-base lg:text-lg text-slate-700 leading-relaxed font-light">
-                        {paragraph}
+                  {/* Content Section */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.2 + memberIndex * 0.2,
+                      ease: "easeOut",
+                    }}
+                    className="space-y-6 lg:space-y-8 w-full"
+                  >
+                    {/* Name and Title */}
+                    <div>
+                      <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-2 lg:mb-3 tracking-tight">
+                        {member.name}
+                      </h3>
+                      <p className="text-lg lg:text-xl text-primary font-semibold mb-4 lg:mb-6">
+                        {member.role}
                       </p>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
-            ))}
+
+                      {/* Social Links */}
+                      <div className="flex items-center gap-3 mb-4 lg:mb-6">
+                        {member.linkedin && (
+                          <a
+                            href={member.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-all duration-300 group hover:scale-110 flex-shrink-0"
+                            aria-label="LinkedIn"
+                            title="LinkedIn"
+                          >
+                            <Linkedin
+                              className="text-primary group-hover:text-white"
+                              size={20}
+                            />
+                          </a>
+                        )}
+                        {member.email && (
+                          <a
+                            href={`mailto:${member.email}`}
+                            className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-all duration-300 group hover:scale-110 flex-shrink-0"
+                            aria-label="Email"
+                            title="Email"
+                          >
+                            <Mail
+                              className="text-primary group-hover:text-white"
+                              size={20}
+                            />
+                          </a>
+                        )}
+                        {member.portfolio && (
+                          <a
+                            href={member.portfolio}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary transition-all duration-300 group hover:scale-110 flex-shrink-0"
+                            aria-label="Portfolio"
+                            title="Personal Portfolio"
+                          >
+                            <Globe
+                              className="text-primary group-hover:text-white"
+                              size={20}
+                            />
+                          </a>
+                        )}
+                      </div>
+
+                      {/* Ventures */}
+                      {member.ventures && member.ventures.length > 0 && (
+                        <div className="mb-4 lg:mb-6">
+                          <p className="text-xs lg:text-sm font-semibold text-slate-600 mb-2 lg:mb-3 uppercase tracking-wider">
+                            Ventures
+                          </p>
+                          <div className="flex flex-wrap items-center gap-2 lg:gap-2.5">
+                            {member.ventures.map((venture, vIndex) => (
+                              <motion.a
+                                key={vIndex}
+                                href={venture.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.05, y: -2 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="group relative inline-flex items-center gap-1.5 lg:gap-2 px-2.5 lg:px-3 py-1.5 lg:py-2 bg-white border border-slate-200 rounded-lg hover:border-primary hover:shadow-md transition-all duration-300"
+                                title={venture.name}
+                              >
+                                <div className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0">
+                                  {venture.icon || (
+                                    <Globe className="text-primary" size={14} />
+                                  )}
+                                </div>
+                                <span className="text-[10px] lg:text-xs font-semibold text-slate-700 group-hover:text-primary transition-colors whitespace-nowrap">
+                                  {venture.name}
+                                </span>
+                                <ExternalLink
+                                  className="text-slate-400 group-hover:text-primary transition-colors flex-shrink-0"
+                                  size={10}
+                                />
+                              </motion.a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Quote */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.3 + memberIndex * 0.2,
+                      }}
+                      className="relative bg-gradient-to-br from-primary/10 via-amber/5 to-primary/10 border-l-4 border-primary p-6 lg:p-8 rounded-r-2xl"
+                    >
+                      <p className="text-lg lg:text-xl text-slate-700 font-light leading-relaxed relative z-10">
+                        "{member.quote}"
+                      </p>
+                    </motion.div>
+
+                    {/* Bio */}
+                    <div className="space-y-3 lg:space-y-4">
+                      {member.bio.map((paragraph, index) => (
+                        <p
+                          key={index}
+                          className="text-base lg:text-lg text-slate-700 leading-relaxed font-light"
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
           </div>
         </div>
       </section>
@@ -417,10 +490,15 @@ export default function OurTeam() {
                   </div>
                   {/* Info */}
                   <div className="p-3 lg:p-4">
-                    <h3 className="font-bold text-slate-900 mb-1 text-sm lg:text-base truncate" title={member.name}>
+                    <h3
+                      className="font-bold text-slate-900 mb-1 text-sm lg:text-base truncate"
+                      title={member.name}
+                    >
                       {member.name}
                     </h3>
-                    <p className="text-xs lg:text-sm text-primary font-semibold mb-2 truncate">{member.role}</p>
+                    <p className="text-xs lg:text-sm text-primary font-semibold mb-2 truncate">
+                      {member.role}
+                    </p>
                     {member.ventures && member.ventures.length > 0 && (
                       <div className="flex items-center gap-1 flex-wrap mt-2 mb-2">
                         {member.ventures.slice(0, 3).map((venture, vIndex) => (
@@ -430,14 +508,18 @@ export default function OurTeam() {
                             title={venture.name}
                           >
                             {venture.icon ? (
-                              <div className="scale-75 lg:scale-100">{venture.icon}</div>
+                              <div className="scale-75 lg:scale-100">
+                                {venture.icon}
+                              </div>
                             ) : (
                               <Globe className="text-primary" size={10} />
                             )}
                           </div>
                         ))}
                         {member.ventures.length > 3 && (
-                          <span className="text-[10px] lg:text-xs text-slate-500 ml-0.5">+{member.ventures.length - 3}</span>
+                          <span className="text-[10px] lg:text-xs text-slate-500 ml-0.5">
+                            +{member.ventures.length - 3}
+                          </span>
                         )}
                       </div>
                     )}
@@ -481,7 +563,10 @@ export default function OurTeam() {
               className="text-center mt-12 lg:mt-16"
             >
               <div className="inline-block bg-slate-50 rounded-xl p-6 lg:p-8 border-2 border-dashed border-slate-300 max-w-md mx-auto">
-                <Users className="mx-auto mb-3 lg:mb-4 text-slate-400" size={40} />
+                <Users
+                  className="mx-auto mb-3 lg:mb-4 text-slate-400"
+                  size={40}
+                />
                 <p className="text-sm lg:text-base text-slate-600 font-light">
                   More team members coming soon...
                 </p>
@@ -541,8 +626,10 @@ export default function OurTeam() {
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 mb-2 tracking-tight">
                     {selectedMember.name}
                   </h2>
-                  <p className="text-lg sm:text-xl lg:text-2xl text-primary font-semibold mb-4 sm:mb-6">{selectedMember.role}</p>
-                  
+                  <p className="text-lg sm:text-xl lg:text-2xl text-primary font-semibold mb-4 sm:mb-6">
+                    {selectedMember.role}
+                  </p>
+
                   {/* Social Links */}
                   <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
                     {selectedMember.linkedin && (
@@ -555,7 +642,10 @@ export default function OurTeam() {
                         title="LinkedIn"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <Linkedin className="text-primary group-hover:text-white" size={20} />
+                        <Linkedin
+                          className="text-primary group-hover:text-white"
+                          size={20}
+                        />
                       </a>
                     )}
                     {selectedMember.email && (
@@ -566,7 +656,10 @@ export default function OurTeam() {
                         title="Email"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <Mail className="text-primary group-hover:text-white" size={20} />
+                        <Mail
+                          className="text-primary group-hover:text-white"
+                          size={20}
+                        />
                       </a>
                     )}
                     {selectedMember.portfolio && (
@@ -579,40 +672,51 @@ export default function OurTeam() {
                         title="Personal Portfolio"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <Globe className="text-primary group-hover:text-white" size={20} />
+                        <Globe
+                          className="text-primary group-hover:text-white"
+                          size={20}
+                        />
                       </a>
                     )}
                   </div>
 
                   {/* Ventures */}
-                  {selectedMember.ventures && selectedMember.ventures.length > 0 && (
-                    <div className="mb-6 sm:mb-8">
-                      <p className="text-xs sm:text-sm font-semibold text-slate-600 mb-3 sm:mb-4 uppercase tracking-wider text-center">Ventures</p>
-                      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-                        {selectedMember.ventures.map((venture, vIndex) => (
-                          <motion.a
-                            key={vIndex}
-                            href={venture.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="group relative inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg hover:border-primary hover:shadow-md transition-all duration-300"
-                            title={venture.name}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <div className="flex items-center justify-center w-5 h-5 flex-shrink-0">
-                              {venture.icon || <Globe className="text-primary" size={16} />}
-                            </div>
-                            <span className="text-sm font-semibold text-slate-700 group-hover:text-primary transition-colors">
-                              {venture.name}
-                            </span>
-                            <ExternalLink className="text-slate-400 group-hover:text-primary transition-colors flex-shrink-0" size={12} />
-                          </motion.a>
-                        ))}
+                  {selectedMember.ventures &&
+                    selectedMember.ventures.length > 0 && (
+                      <div className="mb-6 sm:mb-8">
+                        <p className="text-xs sm:text-sm font-semibold text-slate-600 mb-3 sm:mb-4 uppercase tracking-wider text-center">
+                          Ventures
+                        </p>
+                        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                          {selectedMember.ventures.map((venture, vIndex) => (
+                            <motion.a
+                              key={vIndex}
+                              href={venture.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              whileTap={{ scale: 0.95 }}
+                              className="group relative inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg hover:border-primary hover:shadow-md transition-all duration-300"
+                              title={venture.name}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <div className="flex items-center justify-center w-5 h-5 flex-shrink-0">
+                                {venture.icon || (
+                                  <Globe className="text-primary" size={16} />
+                                )}
+                              </div>
+                              <span className="text-sm font-semibold text-slate-700 group-hover:text-primary transition-colors">
+                                {venture.name}
+                              </span>
+                              <ExternalLink
+                                className="text-slate-400 group-hover:text-primary transition-colors flex-shrink-0"
+                                size={12}
+                              />
+                            </motion.a>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
 
                 {/* Quote */}
@@ -624,9 +728,14 @@ export default function OurTeam() {
 
                 {/* Bio */}
                 <div className="space-y-3 sm:space-y-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 sm:mb-4">About</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 sm:mb-4">
+                    About
+                  </h3>
                   {selectedMember.bio.map((paragraph, index) => (
-                    <p key={index} className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-light">
+                    <p
+                      key={index}
+                      className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-light"
+                    >
                       {paragraph}
                     </p>
                   ))}
@@ -637,6 +746,5 @@ export default function OurTeam() {
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }
-

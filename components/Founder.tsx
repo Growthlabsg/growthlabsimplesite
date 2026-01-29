@@ -4,12 +4,12 @@ import { motion } from 'framer-motion'
 import { Linkedin, Mail, Sparkles, Quote, Globe, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import GrowthLabLogo from './GrowthLabLogo'
-import FounderSchema from './FounderSchema'
+import LeadershipTeamSchema from './LeadershipTeamSchema'
 
 export default function Founder() {
   return (
     <>
-      <FounderSchema />
+      <LeadershipTeamSchema />
       <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0">
@@ -47,11 +47,11 @@ export default function Founder() {
             <div className="flex items-center gap-3 mb-6">
               <Sparkles className="text-primary" size={28} />
               <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 tracking-tight">
-                Meet the Founder
+                Meet Our Leadership
               </h2>
             </div>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light">
-              The vision behind GrowthLab and the passion driving our global startup ecosystem.
+              The visionary leaders behind GrowthLab and the passion driving our global startup ecosystem.
             </p>
           </motion.div>
         </div>
@@ -71,7 +71,7 @@ export default function Founder() {
               <div className="relative w-full h-full rounded-2xl overflow-hidden group">
                 <Image
                   src="/founder-arul-murugan.jpg"
-                  alt="Arul Murugan - Founder of GrowthLab"
+                  alt="Arul Murugan - Founder & CEO of GrowthLab"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   priority
