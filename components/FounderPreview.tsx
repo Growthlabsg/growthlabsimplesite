@@ -70,13 +70,13 @@ export default function FounderPreview() {
                 </p>
               </div>
 
-              {/* COO Section */}
+              {/* CTO Section */}
               <div className="space-y-4 pt-6 border-t border-slate-200">
                 <div className="flex items-center gap-4">
                   <div className="relative w-16 h-16 rounded-full overflow-hidden">
                     <Image
-                      src="/founder_xavier_tan.jpeg"
-                      alt="Xavier Tan - Chief Operating Officer"
+                      src="/team-ansh-garg.jpg"
+                      alt="Ansh Garg - Chief Technology Officer"
                       fill
                       className="object-cover"
                       sizes="64px"
@@ -84,18 +84,17 @@ export default function FounderPreview() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-slate-900">
-                      Xavier Tan
+                      Ansh Garg
                     </h3>
                     <p className="text-lg text-primary font-semibold">
-                      Chief Operating Officer
+                      Chief Technology Officer
                     </p>
                   </div>
                 </div>
                 <p className="text-base text-slate-600 leading-relaxed font-light">
-                  "Operations excellence is the backbone of any successful
-                  platform. We focus on creating seamless experiences that allow
-                  entrepreneurs to focus on building and scaling their
-                  ventures."
+                  "Technology at its best is invisible—it works seamlessly in
+                  the background so entrepreneurs can focus on what matters
+                  most: building, connecting, and growing."
                 </p>
               </div>
 

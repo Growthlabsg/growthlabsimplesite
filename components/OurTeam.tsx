@@ -93,22 +93,6 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 2,
-    name: "Xavier Tan",
-    role: "Chief Operating Officer",
-    isMainMember: true,
-    bio: [
-      "Xavier Tan is an accomplished business leader and operations expert who brings strategic vision and operational excellence to GrowthLab as the Chief Operating Officer. With extensive experience in scaling businesses and optimizing operations, Xavier plays a crucial role in driving GrowthLab's growth across global markets.",
-      "Xavier oversees the day-to-day operations, strategic partnerships, and business development initiatives that fuel GrowthLab's expansion. His expertise in operational efficiency, process optimization, and strategic planning ensures that the platform continues to deliver exceptional value to its 2,500+ members across 50+ countries.",
-      "With a passion for entrepreneurship and a deep understanding of the startup ecosystem, Xavier works closely with founders, investors, and partners to create scalable systems and processes that enable sustainable growth. His leadership ensures that GrowthLab maintains its position as the premier platform connecting the global startup community.",
-    ],
-    quote:
-      "Operations excellence is the backbone of any successful platform. At GrowthLab, we focus on creating seamless experiences and robust systems that allow entrepreneurs to focus on what they do best—building and scaling their ventures while we handle the infrastructure that powers their success.",
-    image: "/founder_xavier_tan.jpeg",
-    linkedin: "https://www.linkedin.com/in/xavier-tan",
-    email: "xavier@growthlab.sg",
-  },
-  {
-    id: 3,
     name: "Ansh Garg",
     role: "Chief Technology Officer",
     isMainMember: true,
@@ -122,6 +106,22 @@ const teamMembers: TeamMember[] = [
     image: "/team-ansh-garg.jpg",
     linkedin: "https://www.linkedin.com/in/ansh-garg-877785136",
     email: "anshgarg@growthlab.sg",
+  },
+  {
+    id: 3,
+    name: "Xavier Tan",
+    role: "Chief Operating Officer",
+    isMainMember: true,
+    bio: [
+      "Xavier Tan is an accomplished business leader and operations expert who brings strategic vision and operational excellence to GrowthLab as the Chief Operating Officer. With extensive experience in scaling businesses and optimizing operations, Xavier plays a crucial role in driving GrowthLab's growth across global markets.",
+      "Xavier oversees the day-to-day operations, strategic partnerships, and business development initiatives that fuel GrowthLab's expansion. His expertise in operational efficiency, process optimization, and strategic planning ensures that the platform continues to deliver exceptional value to its 2,500+ members across 50+ countries.",
+      "With a passion for entrepreneurship and a deep understanding of the startup ecosystem, Xavier works closely with founders, investors, and partners to create scalable systems and processes that enable sustainable growth. His leadership ensures that GrowthLab maintains its position as the premier platform connecting the global startup community.",
+    ],
+    quote:
+      "Operations excellence is the backbone of any successful platform. At GrowthLab, we focus on creating seamless experiences and robust systems that allow entrepreneurs to focus on what they do best—building and scaling their ventures while we handle the infrastructure that powers their success.",
+    image: "/founder_xavier_tan.jpeg",
+    linkedin: "https://www.linkedin.com/in/xavier-tan",
+    email: "xavier@growthlab.sg",
   },
   {
     id: 4,
