@@ -13,6 +13,18 @@ import Link from "next/link";
 
 const upcomingEvents = [
   {
+    title: "GROWTHLAB & *SCAPE – Somerset Partners Appreciation Session",
+    date: "2026-03-02",
+    time: "1:30 PM - 3:30 PM",
+    location: "*SCAPE, Singapore",
+    type: "Networking",
+    attendees: "Coming soon",
+    description:
+      "Join GrowthLab and *SCAPE for an exclusive Somerset Partners Appreciation Session. Connect with fellow partners, celebrate community wins, and build meaningful connections.",
+    link: "https://lu.ma/growthlab.sg",
+    featured: true,
+  },
+  {
     title: "ROOFTOP SUNSET MIXER – Startup Surge Kickoff",
     date: "2025-11-07",
     time: "6:30 PM - 9:00 PM",

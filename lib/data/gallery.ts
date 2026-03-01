@@ -17,6 +17,120 @@ export interface GalleryImage {
 }
 
 export const galleryImages: GalleryImage[] = [
+  // NEW YEAR EDITION MIXER – Startup Surge Kickoff (29 Jan 2026)
+  {
+    id: 36,
+    src: "/gallery/images/mixer-2026-01-29-1.jpeg",
+    alt: "Founders networking at GrowthLab New Year Edition Mixer Startup Surge Kickoff",
+    category: "Networking",
+    title: "NEW YEAR EDITION MIXER – Startup Surge Kickoff",
+    description:
+      "Riverside Clarke Quay vibes, cold drinks, real founders, and fresh connections to power 2026",
+    date: "2026-01-29",
+    location: "Minami, Singapore",
+  },
+  {
+    id: 38,
+    src: "/gallery/images/mixer-2026-01-29-2.jpeg",
+    alt: "Startup founders connecting at New Year Mixer event Singapore",
+    category: "Networking",
+    title: "NEW YEAR EDITION MIXER – Startup Surge Kickoff",
+    description:
+      "Riverside Clarke Quay vibes, cold drinks, real founders, and fresh connections to power 2026",
+    date: "2026-01-29",
+    location: "Minami, Singapore",
+  },
+  {
+    id: 39,
+    src: "/gallery/images/mixer-2026-01-29-3.jpeg",
+    alt: "Entrepreneurs at GrowthLab Startup Surge Kickoff riverside mixer",
+    category: "Networking",
+    title: "NEW YEAR EDITION MIXER – Startup Surge Kickoff",
+    description:
+      "Riverside Clarke Quay vibes, cold drinks, real founders, and fresh connections to power 2026",
+    date: "2026-01-29",
+    location: "Minami, Singapore",
+  },
+  {
+    id: 40,
+    src: "/gallery/images/mixer-2026-01-29-4.jpeg",
+    alt: "Community networking at New Year Edition Mixer Clarke Quay",
+    category: "Networking",
+    title: "NEW YEAR EDITION MIXER – Startup Surge Kickoff",
+    description:
+      "Riverside Clarke Quay vibes, cold drinks, real founders, and fresh connections to power 2026",
+    date: "2026-01-29",
+    location: "Minami, Singapore",
+  },
+  {
+    id: 41,
+    src: "/gallery/images/mixer-2026-01-29-5.jpeg",
+    alt: "GrowthLab members celebrating New Year Startup Surge event",
+    category: "Networking",
+    title: "NEW YEAR EDITION MIXER – Startup Surge Kickoff",
+    description:
+      "Riverside Clarke Quay vibes, cold drinks, real founders, and fresh connections to power 2026",
+    date: "2026-01-29",
+    location: "Minami, Singapore",
+  },
+
+  // SPEAK LIKE A CEO — Leadership Fireside Chats - S1 (30 Jan 2026)
+  {
+    id: 37,
+    src: "/gallery/images/speak-ceo-2026-01-30-1.jpeg",
+    alt: "Leadership fireside chats at GrowthLab Speak Like a CEO event with SGInnovate",
+    category: "Events",
+    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
+    description:
+      "Raw, unfiltered leadership conversations with powerhouse founders and executives at SGInnovate",
+    date: "2026-01-30",
+    location: "SGInnovate, Singapore",
+  },
+  {
+    id: 43,
+    src: "/gallery/images/speak-ceo-2026-01-30-2.jpeg",
+    alt: "Founders sharing leadership insights at Speak Like a CEO event",
+    category: "Events",
+    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
+    description:
+      "Raw, unfiltered leadership conversations with powerhouse founders and executives at SGInnovate",
+    date: "2026-01-30",
+    location: "SGInnovate, Singapore",
+  },
+  {
+    id: 44,
+    src: "/gallery/images/speak-ceo-2026-01-30-3.jpeg",
+    alt: "Audience engaged at GrowthLab CEO fireside chat session",
+    category: "Events",
+    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
+    description:
+      "Raw, unfiltered leadership conversations with powerhouse founders and executives at SGInnovate",
+    date: "2026-01-30",
+    location: "SGInnovate, Singapore",
+  },
+  {
+    id: 45,
+    src: "/gallery/images/speak-ceo-2026-01-30-4.jpeg",
+    alt: "Panel discussion at Speak Like a CEO leadership event SGInnovate",
+    category: "Events",
+    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
+    description:
+      "Raw, unfiltered leadership conversations with powerhouse founders and executives at SGInnovate",
+    date: "2026-01-30",
+    location: "SGInnovate, Singapore",
+  },
+  {
+    id: 46,
+    src: "/gallery/images/speak-ceo-2026-01-30-5.jpeg",
+    alt: "Networking after Speak Like a CEO fireside chats at SGInnovate",
+    category: "Events",
+    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
+    description:
+      "Raw, unfiltered leadership conversations with powerhouse founders and executives at SGInnovate",
+    date: "2026-01-30",
+    location: "SGInnovate, Singapore",
+  },
+
   // ROOFTOP CHRISTMAS MIXER - All event photos
   {
     id: 6,

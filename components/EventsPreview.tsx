@@ -8,14 +8,9 @@ import { getEventSchema } from "@/lib/seo/structuredData";
 
 const upcomingEvents = [
   {
-    title: "🌅 NEW YEAR EDITION MIXER – Startup Surge Kickoff",
-    date: "2026-01-29",
+    title: "GROWTHLAB & *SCAPE – Somerset Partners Appreciation Session",
+    date: "2026-03-02",
     type: "Networking",
-  },
-  {
-    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
-    date: "2026-01-30",
-    type: "Talk",
   },
 ];
 
@@ -28,7 +23,7 @@ export default function EventsPreview() {
       date: event.date,
       location: "Singapore",
       link: "https://lu.ma/growthlab.sg",
-    })
+    }),
   );
 
   return (

@@ -7,33 +7,13 @@ import Link from "next/link";
 const announcements = [
   {
     type: "announcement",
-    title: "🌅 NEW YEAR EDITION MIXER – Startup Surge Kickoff",
+    title: "GROWTHLAB & *SCAPE – Somerset Partners Appreciation Session",
     description:
-      "Launch into the New Year with GrowthLab's Startup Surge at Minami – riverside Clarke Quay vibes, cold drinks, real founders, and fresh connections to power 2026. Thu 29 Jan 2026 | 6:30–9:00 PM. 1-for-1 House Pours (2nd drink on GrowthLab). Zero slides. Free entry.",
-    date: "2026-01-29",
+      "Join GrowthLab and *SCAPE for an exclusive Somerset Partners Appreciation Session. Connect with fellow partners, celebrate community wins, and build meaningful connections. Mon 2 Mar 2026 | 1:30–3:30 PM at *SCAPE, Singapore.",
+    date: "2026-03-02",
     category: "Event",
-    link: "https://luma.com/g7i9cfu0",
+    link: "https://lu.ma/growthlab.sg",
     featured: true,
-  },
-  {
-    type: "announcement",
-    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
-    description:
-      "Join GrowthLab and SGInnovate for an evening of raw, unfiltered leadership conversations with 4 powerhouse founders and executives. No slides. No pitches. Just authentic fireside chats + Q&A. Thu, 30 January 2026 | 5:30 PM – 8:30 PM SGT at SGInnovate. FREE RSVP with drinks provided.",
-    date: "2026-01-30",
-    category: "Event",
-    link: "https://luma.com/ilmpsrij?utm_source=embed",
-    featured: true,
-  },
-  {
-    type: "new",
-    title: "GrowthLab Job Portal Launch",
-    description:
-      "Connecting startups with top talent! Our new Job Portal will help founders find the right team members and job seekers discover exciting opportunities in the startup ecosystem.",
-    date: "2026-01-15",
-    category: "Platform Launch",
-    link: "",
-    featured: false,
   },
 ];
 

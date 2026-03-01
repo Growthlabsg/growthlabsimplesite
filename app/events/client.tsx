@@ -19,31 +19,15 @@ import type { TransformedEvent } from "@/lib/types/luma";
 const fallbackEvents: TransformedEvent[] = [
   {
     id: "0",
-    title: "🌅 NEW YEAR EDITION MIXER – Startup Surge Kickoff",
-    date: "2026-01-29",
-    time: "6:30–9:00 PM",
-    location:
-      "Minami – 20 Upper Circular Road, #B1-01/06, The Riverwalk, 058416",
+    title: "GROWTHLAB & *SCAPE – Somerset Partners Appreciation Session",
+    date: "2026-03-02",
+    time: "1:30 PM - 3:30 PM",
+    location: "*SCAPE, Singapore",
     type: "Networking",
     attendees: "Coming soon",
     description:
-      "Launch into the New Year with GrowthLab's Startup Surge at Minami – riverside Clarke Quay vibes, cold drinks, real founders, and fresh connections to power 2026. What's happening: 6:30 PM – Doors + chill beats, 7:00 PM – 2-min founder intros, 7:30 PM – 5 rounds of speed networking, 8:15 PM – Group photo riverside, 8:30 PM – Free mingle. 1-for-1 house pours (2nd sponsored). Zero slides. Free entry.",
-    link: "https://luma.com/g7i9cfu0",
-    imageUrl: null,
-    featured: true,
-  },
-
-  {
-    id: "2",
-    title: "SPEAK LIKE A CEO — Leadership Fireside Chats - S1",
-    date: "2026-01-30",
-    time: "5:30 PM - 8:30 PM",
-    location: "SGInnovate, Singapore",
-    type: "Talk",
-    attendees: "80 seats",
-    description:
-      "Join GrowthLab and SGInnovate for an evening of raw, unfiltered leadership conversations with 4 powerhouse founders and executives. 'Speak Like a CEO' brings together startup leaders to share real stories about communicating vision, handling tough feedback, leading through uncertainty, and the skills that separate great founders from good ones. No slides. No pitches. Just authentic fireside chats + Q&A with founders who've built, scaled, and learned the hard way.",
-    link: "https://luma.com/ilmpsrij?utm_source=embed",
+      "Join GrowthLab and *SCAPE for an exclusive Somerset Partners Appreciation Session. Connect with fellow partners, celebrate community wins, and build meaningful connections in the heart of Somerset.",
+    link: "https://lu.ma/growthlab.sg",
     imageUrl: null,
     featured: true,
   },
@@ -189,10 +173,10 @@ export function EventsPageClient() {
   const filteredEvents =
     activeTab === "Upcoming"
       ? upcomingEvents.filter(
-          (event) => selectedType === "All" || event.type === selectedType
+          (event) => selectedType === "All" || event.type === selectedType,
         )
       : pastEvents.filter(
-          (event) => selectedType === "All" || event.type === selectedType
+          (event) => selectedType === "All" || event.type === selectedType,
         );
 
   return (
