@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import StructuredData from "./StructuredData";
 import { getHowToSchema } from "@/lib/seo/structuredData";
+import StartBuildingDropdown from "./StartBuildingDropdown";
 
 const steps = [
   {
@@ -74,7 +75,7 @@ export default function HowItWorks() {
       title: step.title,
       description: step.description,
       features: step.features,
-    }))
+    })),
   );
 
   return (
@@ -82,7 +83,7 @@ export default function HowItWorks() {
       <StructuredData data={howToSchema} />
       <section
         id="how-it-works"
-        className="framer-motion-optimized relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden"
+        className="framer-motion-optimized relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-x-clip"
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -243,14 +244,15 @@ export default function HowItWorks() {
               <p className="text-slate-600 font-light mb-6">
                 Join GrowthLab today and start building your startup ecosystem.
               </p>
-              <motion.a
-                href="https://app.growthlab.sg/signup"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-block px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl min-h-[48px] flex items-center"
-              >
-                Get Started Now
-              </motion.a>
+              <StartBuildingDropdown openUp>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl min-h-[48px] cursor-pointer"
+                >
+                  Get Started Now
+                </motion.div>
+              </StartBuildingDropdown>
             </div>
           </motion.div>
         </div>

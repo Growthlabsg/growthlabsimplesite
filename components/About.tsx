@@ -10,6 +10,7 @@ import {
   Rocket,
   GraduationCap,
 } from "lucide-react";
+import StartBuildingDropdown from "./StartBuildingDropdown";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -46,7 +47,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden framer-motion-optimized"
+      className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-x-clip framer-motion-optimized"
     >
       {/* Subtle background decoration - separated layer for performance */}
       <div
@@ -212,7 +213,7 @@ export default function About() {
                 viewport={{ once: true, margin: "0px" }}
                 transition={{ duration: 0.6 }}
                 whileHover={{ scale: 1.02, y: -4 }}
-                className="relative bg-gradient-to-br from-primary/10 via-amber/5 to-primary/10 border-l-4 border-primary p-10 sm:p-12 my-16 rounded-r-2xl shadow-lg overflow-hidden group"
+                className="relative bg-gradient-to-br from-primary/10 via-amber/5 to-primary/10 border-l-4 border-primary p-10 sm:p-12 my-16 rounded-r-2xl shadow-lg group"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
                 <div className="relative z-10">
@@ -247,25 +248,24 @@ export default function About() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link
-                    href="https://app.growthlab.sg/signup"
-                    className="group relative inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white text-base font-semibold tracking-wide hover:from-slate-800 hover:via-slate-700 hover:to-slate-800 transition-all duration-300 min-h-[56px] rounded-lg shadow-xl hover:shadow-2xl overflow-hidden"
-                  >
-                    <span className="relative z-10">JOIN GROWTHLAB</span>
-                    <motion.div
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Number.POSITIVE_INFINITY,
-                      }}
-                    >
-                      <ArrowRight className="relative z-10" size={20} />
-                    </motion.div>
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-primary via-amber to-primary opacity-0 group-hover:opacity-20"
-                      transition={{ duration: 0.3 }}
-                    />
-                  </Link>
+                  <StartBuildingDropdown openUp>
+                    <div className="group relative inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white text-base font-semibold tracking-wide hover:from-slate-800 hover:via-slate-700 hover:to-slate-800 transition-all duration-300 min-h-[56px] rounded-lg shadow-xl hover:shadow-2xl overflow-hidden cursor-pointer">
+                      <span className="relative z-10">JOIN GROWTHLAB</span>
+                      <motion.div
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Number.POSITIVE_INFINITY,
+                        }}
+                      >
+                        <ArrowRight className="relative z-10" size={20} />
+                      </motion.div>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-primary via-amber to-primary opacity-0 group-hover:opacity-20"
+                        transition={{ duration: 0.3 }}
+                      />
+                    </div>
+                  </StartBuildingDropdown>
                 </motion.div>
               </motion.div>
             </div>

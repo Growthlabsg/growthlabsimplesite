@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Users, Building2, Rocket, Briefcase } from "lucide-react";
+import StartBuildingDropdown from "./StartBuildingDropdown";
 
 const communityTypes = [
   {
@@ -98,12 +99,11 @@ export default function Community() {
             <p className="text-white/90 mb-6">
               Start connecting with innovators and entrepreneurs today.
             </p>
-            <a
-              href="https://app.growthlab.sg/signup"
-              className="inline-block px-8 py-3 bg-white text-primary rounded-lg font-semibold hover:bg-gray-50 transition-colors"
-            >
-              Get Started Free
-            </a>
+            <StartBuildingDropdown openUp>
+              <div className="inline-block px-8 py-3 bg-white text-primary rounded-lg font-semibold hover:bg-gray-50 transition-colors cursor-pointer">
+                Get Started Free
+              </div>
+            </StartBuildingDropdown>
           </div>
         </motion.div>
       </div>

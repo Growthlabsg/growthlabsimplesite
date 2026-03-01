@@ -19,7 +19,7 @@ import {
   ChevronRight,
   ImageIcon,
 } from "lucide-react";
-import Image from "next/image";
+import StartBuildingDropdown from "./StartBuildingDropdown";
 import {
   galleryImages,
   getUniqueEventCounts,
@@ -45,7 +45,7 @@ export default function CommunityGallery() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEventTitle, setSelectedEventTitle] = useState<string | null>(
-    null
+    null,
   );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { scrollYProgress } = useScroll();
@@ -53,7 +53,7 @@ export default function CommunityGallery() {
 
   // Get unique events (one thumbnail per event)
   const uniqueEvents = getUniqueEvents(
-    activeCategory === "All" ? undefined : activeCategory
+    activeCategory === "All" ? undefined : activeCategory,
   );
 
   // Handle event click - open modal with all images from that event
@@ -92,11 +92,11 @@ export default function CommunityGallery() {
         setIsModalOpen(false);
       } else if (e.key === "ArrowLeft") {
         setCurrentImageIndex((prev) =>
-          prev === 0 ? modalImages.length - 1 : prev - 1
+          prev === 0 ? modalImages.length - 1 : prev - 1,
         );
       } else if (e.key === "ArrowRight") {
         setCurrentImageIndex((prev) =>
-          prev === modalImages.length - 1 ? 0 : prev + 1
+          prev === modalImages.length - 1 ? 0 : prev + 1,
         );
       }
     };
@@ -120,7 +120,7 @@ export default function CommunityGallery() {
   return (
     <section
       id="community"
-      className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-x-clip"
     >
       {/* Background Video - Subtle */}
       <div className="absolute inset-0 w-full h-full z-0">
@@ -372,13 +372,12 @@ export default function CommunityGallery() {
                 startup faster.
               </p>
               <div className="transition-transform duration-300 hover:scale-105">
-                <Link
-                  href="https://app.growthlab.sg/signup"
-                  className="inline-flex items-center gap-2 px-10 py-4 bg-white text-slate-900 rounded-lg font-semibold transition-all duration-300 min-h-[56px] shadow-xl"
-                >
-                  Join GrowthLab Now
-                  <ArrowRight size={20} />
-                </Link>
+                <StartBuildingDropdown openUp>
+                  <div className="inline-flex items-center gap-2 px-10 py-4 bg-white text-slate-900 rounded-lg font-semibold transition-all duration-300 min-h-[56px] shadow-xl cursor-pointer">
+                    Join GrowthLab Now
+                    <ArrowRight size={20} />
+                  </div>
+                </StartBuildingDropdown>
               </div>
             </div>
           </div>

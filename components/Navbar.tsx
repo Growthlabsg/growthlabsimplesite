@@ -11,6 +11,7 @@ import {
   useTransform,
 } from "framer-motion";
 import GrowthLabLogo from "./GrowthLabLogo";
+import StartBuildingDropdown from "./StartBuildingDropdown";
 
 export default function Navbar() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function Navbar() {
   const backgroundColor = useTransform(
     scrollY,
     [0, 50],
-    ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.95)"]
+    ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.95)"],
   );
   const blur = useTransform(scrollY, [0, 50], ["blur(8px)", "blur(12px)"]);
 
@@ -229,21 +230,19 @@ export default function Navbar() {
 
             {/* CTA Button - Interactive */}
             <div className="hidden lg:flex items-center">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link
-                  href="https://app.growthlab.sg/signup"
-                  className="relative px-6 py-2.5 bg-slate-900 text-white text-sm font-medium tracking-wide hover:bg-slate-800 transition-all duration-300 min-h-[44px] flex items-center overflow-hidden group"
+              <StartBuildingDropdown align="right">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative px-6 py-2.5 bg-slate-900 text-white text-sm font-medium tracking-wide hover:bg-slate-800 transition-all duration-300 min-h-[44px] flex items-center overflow-hidden group cursor-pointer"
                 >
                   <motion.span
                     className="absolute inset-0 bg-gradient-to-r from-primary to-amber opacity-0 group-hover:opacity-20"
                     transition={{ duration: 0.3 }}
                   />
                   <span className="relative z-10">Start Building</span>
-                </Link>
-              </motion.div>
+                </motion.div>
+              </StartBuildingDropdown>
             </div>
 
             {/* Mobile Menu Button */}
@@ -313,13 +312,11 @@ export default function Navbar() {
                   >
                     Log In
                   </Link>
-                  <Link
-                    href="https://app.growthlab.sg/signup"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full text-center px-6 py-3 bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors min-h-[44px] flex items-center justify-center rounded-lg"
-                  >
-                    Start Building
-                  </Link>
+                  <StartBuildingDropdown align="center" openUp>
+                    <div className="w-full text-center px-6 py-3 bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors min-h-[44px] flex items-center justify-center rounded-lg cursor-pointer">
+                      Start Building
+                    </div>
+                  </StartBuildingDropdown>
                 </div>
               </div>
             </motion.div>

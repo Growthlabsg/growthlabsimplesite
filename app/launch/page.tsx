@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import StartBuildingDropdown from "@/components/StartBuildingDropdown";
 
 const features = [
   {
@@ -80,13 +81,12 @@ export default function LaunchPage() {
                 startup resources to accelerate your launch.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="https://app.growthlab.sg/signup"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors min-h-[48px]"
-                >
-                  Start Building
-                  <ArrowRight size={20} />
-                </Link>
+                <StartBuildingDropdown>
+                  <div className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors min-h-[48px] cursor-pointer">
+                    Start Building
+                    <ArrowRight size={20} />
+                  </div>
+                </StartBuildingDropdown>
                 <Link
                   href="https://app.growthlab.sg/login"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold border-2 border-slate-300 rounded-lg hover:border-primary transition-colors min-h-[48px]"
@@ -148,13 +148,12 @@ export default function LaunchPage() {
               Join thousands of founders building and launching their ventures
               on GrowthLab.
             </p>
-            <Link
-              href="https://app.growthlab.sg/signup"
-              className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors min-h-[56px]"
-            >
-              Create Your Startup Page
-              <ArrowRight size={20} />
-            </Link>
+            <StartBuildingDropdown openUp>
+              <div className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors min-h-[56px] cursor-pointer">
+                Create Your Startup Page
+                <ArrowRight size={20} />
+              </div>
+            </StartBuildingDropdown>
           </div>
         </section>
       </div>
