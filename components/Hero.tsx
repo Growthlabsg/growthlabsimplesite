@@ -290,7 +290,7 @@ export default function Hero() {
               {[
                 { value: "2,500+", label: "Members" },
                 { value: "1,200+", label: "Startups" },
-                { value: "$500M+", label: "Funding" },
+                { value: "$500K+", label: "Funding" },
               ].map((stat, i) => (
                 <motion.div
                   key={i}
