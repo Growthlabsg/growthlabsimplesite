@@ -42,11 +42,11 @@ const partners: Partner[] = [
     type: "government",
     website: "https://www.imda.gov.sg",
   },
-  {
-    name: "ACE.SG",
-    type: "government",
-    website: "https://ace.sg",
-  },
+  // {
+  //   name: "ACE.SG",
+  //   type: "government",
+  //   website: "https://ace.sg",
+  // },
   {
     name: "National University of Singapore",
     type: "university",
@@ -99,8 +99,8 @@ export default function Partners() {
               partner.type === "university"
                 ? GraduationCap
                 : partner.type === "government"
-                ? Landmark
-                : Building2;
+                  ? Landmark
+                  : Building2;
             return (
               <motion.a
                 key={partner.name}
@@ -152,8 +152,8 @@ export default function Partners() {
                   {partner.type === "university"
                     ? "University"
                     : partner.type === "government"
-                    ? "Government"
-                    : "Corporate"}
+                      ? "Government"
+                      : "Corporate"}
                 </span>
               </motion.a>
             );
