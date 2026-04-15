@@ -12,11 +12,41 @@ const upcomingEvents = [
     date: "2026-03-02",
     type: "Networking",
   },
+  {
+    title: "Claude SG #002 — Build Your First Web App",
+    date: "2026-04-20",
+    type: "Workshop",
+  },
+  {
+    title: "Setup Your OpenClaw for Business & Sales in under 3 Hours",
+    date: "2026-04-29",
+    type: "Workshop",
+  },
+  {
+    title: "Trusted AI Agents: Build Agents That Earn Trust",
+    date: "2026-05-13",
+    type: "Workshop",
+  },
+  {
+    title: "OPENCLAW HACKATHON — Build Business with OpenClaw",
+    date: "2026-05-14",
+    type: "Workshop",
+  },
 ];
 
 export default function EventsPreview() {
+  // Filter to show only upcoming events (today and future)
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const futureEvents = upcomingEvents.filter((event) => {
+    const eventDate = new Date(event.date);
+    eventDate.setHours(0, 0, 0, 0);
+    return eventDate >= today;
+  });
+
   // Generate Event schemas for SEO
-  const eventSchemas = upcomingEvents.map((event) =>
+  const eventSchemas = futureEvents.map((event) =>
     getEventSchema({
       title: event.title,
       description: `Join us for ${event.title} - ${event.type} event on ${event.date}`,
@@ -91,7 +121,7 @@ export default function EventsPreview() {
 
           {/* Events Preview Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {upcomingEvents.map((event, index) => (
+            {futureEvents.map((event, index) => (
               <motion.div
                 key={event.title}
                 initial={{ opacity: 0, y: 30, scale: 0.95 }}

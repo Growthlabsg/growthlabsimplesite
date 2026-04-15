@@ -15,6 +15,46 @@ const announcements = [
     link: "https://lu.ma/growthlab.sg",
     featured: true,
   },
+  {
+    type: "announcement",
+    title: "Claude SG #002 — Build Your First Web App",
+    description:
+      "Build your first web app in an intensive hands-on workshop. No coding experience needed. By the end, you'll have shipped a real product using Claude Desktop. Mon 20 Apr 2026 | 6:00–10:00 PM. Follow along step-by-step as we build together.",
+    date: "2026-04-20",
+    category: "Workshop",
+    link: "https://luma.com/65gj1ae2",
+    featured: true,
+  },
+  {
+    type: "announcement",
+    title: "Setup Your OpenClaw for Business & Sales in under 3 Hours",
+    description:
+      "Hands-on workshop for business owners and salespeople. Configure your own OpenClaw sales assistant that handles lead generation, content creation, CRM updates, scheduling, and follow-ups. Wed 29 Apr 2026 | 7:00–10:00 PM at *SCAPE.",
+    date: "2026-04-29",
+    category: "Workshop",
+    link: "https://luma.com/8dzzoi3m",
+    featured: true,
+  },
+  {
+    type: "announcement",
+    title: "Trusted AI Agents: Build Agents That Earn Trust",
+    description:
+      "Build real AI agents using the Affinidi Trust Graph and Agent SDK. Hands-on lab with partner pitches and panel Q&A. Walk out with Early Access credentials. Wed 13 May 2026 | 2:00–6:30 PM at *SCAPE. Dinner included.",
+    date: "2026-05-13",
+    category: "Workshop",
+    link: "https://luma.com/2lv08v20",
+    featured: true,
+  },
+  {
+    type: "announcement",
+    title: "OPENCLAW HACKATHON — Build Business with OpenClaw",
+    description:
+      "Build something real in one evening. Turn OpenClaw into a working growth engine with founders, builders, and operators. Hands-on building, fast feedback, and a community that ships. Thu 14 May 2026 | 5:00–10:00 PM at Monk's Brew Club. Food & drinks included.",
+    date: "2026-05-14",
+    category: "Hackathon",
+    link: "https://luma.com/m9f9nwxa",
+    featured: true,
+  },
 ];
 
 // const announcementsDummy = [
@@ -59,6 +99,16 @@ const announcements = [
 // ];
 
 export default function Announcements() {
+  // Filter to show only upcoming announcements (today and future)
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcomingAnnouncements = announcements.filter((announcement) => {
+    const announcementDate = new Date(announcement.date);
+    announcementDate.setHours(0, 0, 0, 0);
+    return announcementDate >= today;
+  });
+
   return (
     <section className="relative py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden framer-motion-optimized">
       {/* Background decoration - simple gradients without blur */}
@@ -128,7 +178,7 @@ export default function Announcements() {
 
         {/* Featured Announcements */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          {announcements
+          {upcomingAnnouncements
             .filter((item) => item.featured)
             .map((announcement, index) => (
               <motion.div
@@ -216,7 +266,7 @@ export default function Announcements() {
 
         {/* Other Announcements */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {announcements
+          {upcomingAnnouncements
             .filter((item) => !item.featured)
             .map((announcement, index) => (
               <motion.div
